@@ -22,9 +22,6 @@ Downloads/**
 # 로그
 *.log
 
-# R2 설정
-r2_config.json
-
 # OS
 .DS_Store
 Thumbs.db

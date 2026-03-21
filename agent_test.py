@@ -1,63 +1,103 @@
 import os
+import json
+import re
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+from googleapiclient.discovery import build
 
-# 1. 환경 변수 및 API 세팅
+# 1. 설정 및 클라이언트 초기화
 load_dotenv()
-API_KEY = os.getenv("SCIENCE_KEY")
+GEMINI_KEY = os.getenv("SCIENCE_KEY")
+YOUTUBE_KEY = os.getenv("YOUTUBE_KEY")
 
-if not API_KEY:
-    raise ValueError("앗! .env 파일에서 SCIENCE_KEY를 못 찾았어.")
+ai_client = genai.Client(api_key=GEMINI_KEY)
+youtube_client = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
 
-client = genai.Client(api_key=API_KEY)
-
-# 2. 에이전트가 입출력할 파일 이름 설정
 input_filename = "today_study.txt"
 output_filename = "youtube_guide.txt"
+simulator_filename = "danial_lab.html"
 
-# [핵심] 읽을 파일이 있는지 먼저 체크하고, 없으면 알아서 만들어주는 센스!
-if not os.path.exists(input_filename):
-    with open(input_filename, "w", encoding="utf-8") as f:
-        f.write("I. 지권의 변화 - 2. 암석") # 기본 샘플을 넣어둠
-    print(f"[{input_filename}] 파일이 없어서 새로 만들었어! 나중에 여기에 다른 단원명도 적어봐.")
-
-# 3. 텍스트 파일에서 단원명 쓱 읽어오기
+# 2. 오늘 공부할 내용 읽기
 with open(input_filename, "r", encoding="utf-8") as f:
-    target_chapter = f.read().strip()
+    target_content = f.read().strip()
 
-if not target_chapter:
-    raise ValueError(f"[{input_filename}] 파일이 텅 비어있네. 공부할 단원을 적고 다시 돌려줘!")
+print(f"🚀 [진행 중] '{target_content}' 주제로 정밀 검색 및 시뮬레이터 생성 시작...")
 
-print(f"📚 에이전트가 인식한 오늘 공부할 단원: {target_chapter}")
-print("다니엘 전용 과학 멘토가 리포트를 작성하고 파일로 저장하는 중...\n")
+# 3. 제미나이에게 정교한 데이터 요청 (주제 이탈 방지 프롬프트)
+prompt = f"""
+너는 중1 과학 전문 멘토야. 반드시 다음 주제에만 집중해: [{target_content}]
 
-# 4. 에이전트 자아 및 프롬프트 세팅
-mentor_persona = """
-너는 중학교 1학년 다니엘을 위한 세상에서 가장 친절하고 유쾌한 과학 학습 멘토야.
-아빠가 '과학 교재 단원명'을 주면, 다니엘이 재밌게 볼 수 있는 유튜브 검색 키워드 3개와 추천 이유를 써줘.
-말투는 친근하게 하고, '아빠의 꿀팁'이라는 항목을 꼭 넣어줘.
+작업 1: 유튜브 검색 플랜
+- 중학교 1학년 수준에 딱 맞는 한국어 교육 영상만 찾아야 해. 
+- 검색어는 반드시 '중1 과학 [주제]' 형식으로 구체적으로 짜줘.
+- (중요) 고등학생용, 성인용 다큐멘터리, 자극적인 쇼츠는 절대 제외해.
+
+작업 2: HTML 시뮬레이터
+- 해당 주제의 원리를 깨달을 수 있는 상호작용 코드를 짜줘.
+
+아래 JSON 형식만 응답해:
+{{
+  "youtube_plan": [
+    {{"keyword": "검색어1", "tip": "이유1"}},
+    {{"keyword": "검색어2", "tip": "이유2"}},
+    {{"keyword": "검색어3", "tip": "이유3"}}
+  ],
+  "simulator_html_code": "..."
+}}
 """
 
-# 마크다운 형식으로 깔끔하게 뽑아달라고 명시함
-prompt = f"오늘 다니엘이 공부할 단원은 [{target_chapter}]야. 유튜브 큐레이션 리포트를 마크다운 형식으로 가독성 좋게 작성해 줘."
-
-# 5. API 호출 및 파일 쓰기(저장)
+# 4. API 호출 (모델명과 형식을 최신 규격으로 수정!)
 try:
-    response = client.models.generate_content(
-        model='gemini-2.5-flash',
+    response = ai_client.models.generate_content(
+        model='gemini-1.5-flash-latest', # 'models/gemini-1.5-flash' 대신 이렇게만 써봐!
         contents=prompt,
         config=types.GenerateContentConfig(
-            system_instruction=mentor_persona,
-            temperature=0.7
+            temperature=0.1,
+            # 혹시 몰라서 응답 형식을 JSON으로 강제하는 옵션도 추가했어
+            response_mime_type="application/json" 
         )
     )
     
-    # AI가 준 답변을 텍스트 파일로 촥! 저장하기
-    with open(output_filename, "w", encoding="utf-8") as f:
-        f.write(response.text)
-        
-    print(f"🎉 큐레이션 완료! 폴더를 확인해 봐. [{output_filename}] 파일이 예쁘게 만들어졌을 거야.")
+    # JSON 파싱 부분 (response_mime_type을 쓰면 마크다운 태그 없이 순수 JSON만 와서 더 안전해!)
+    data = json.loads(response.text)
     
+    # HTML 저장
+    with open(simulator_filename, "w", encoding="utf-8") as f:
+        f.write(data['simulator_html_code'])
+
+    # 리포트 작성 시작
+    report = f"# 🚀 다니엘을 위한 정밀 과학 리포트\n\n**주제:** {target_content}\n\n"
+    report += f"### 🔬 [아빠가 만든 실험실 열기](./{simulator_filename})\n\n---\n"
+
+    # 유튜브 검색 실행
+    for item in data['youtube_plan']:
+        # 검색어 보정: '중1 과학'을 접두어로 붙여서 엉뚱한 결과 방지
+        search_query = f"중1 과학 {item['keyword']}"
+        
+        search_res = youtube_client.search().list(
+            q=search_query,
+            part='snippet',
+            maxResults=1,
+            type='video',
+            relevanceLanguage='ko'
+        ).execute()
+
+        if search_res['items']:
+            v = search_res['items'][0]
+            title = v['snippet']['title']
+            # URL 생성 시 중복 방지 (videoId만 가져와서 깔끔하게 조합)
+            video_id = v['id']['videoId']
+            actual_url = f"https://www.youtube.com/watch?v={video_id}"
+            
+            report += f"### 📺 [{title}]({actual_url})\n"
+            report += f"- **검색어:** `{search_query}`\n"
+            report += f"- **꿀팁:** {item['tip']}\n\n---\n"
+
+    with open(output_filename, "w", encoding="utf-8") as f:
+        f.write(report)
+    
+    print("✅ 완료! 이제 링크랑 주제가 제대로 잡혔을 거야. 확인해 봐!")
+
 except Exception as e:
-    print(f"API 호출 중 에러 발생: {e}")
+    print(f"❌ 에러 발생: {e}")

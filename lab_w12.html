@@ -1,0 +1,43 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>얼음 실험실</title>
+        <style>
+            body { font-family: 'Malgun Gothic', sans-serif; background: #eef2f3; text-align: center; padding: 20px; }
+            .lab-box { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+            .ice-container { height: 180px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: #f9fbfd; border-radius: 15px; position: relative; }
+            .ice { width: 100px; height: 100px; background: linear-gradient(135deg, #fff, #abdfff); border-radius: 15px; transition: transform 0.1s; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #3498db; }
+            .btn { background: #e67e22; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1.1em;}
+            #timer { font-size: 2.5em; color: #e74c3c; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="lab-box">
+            <h2>🔬 얼음 녹이기 실험</h2>
+            <div id="timer">00:00</div>
+            <div class="ice-container"><div id="iceBlock" class="ice">ICE</div></div>
+            <select id="drink" style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px; font-size: 1em;">
+                <option value="15">물 (빨름)</option><option value="35">주스 (중간)</option><option value="55">설탕물 (느림)</option>
+            </select>
+            <button class="btn" onclick="start()">실험 시작!</button>
+            <p id="msg" style="margin-top:20px; font-weight:bold;"></p>
+            <a href="./report_w12.html" style="color:#3498db; text-decoration:none; display:inline-block; margin-top:15px; font-weight:bold;">← 이번 주 리포트로 돌아가기</a>
+        </div>
+        <script>
+            let t=0, timer=null;
+            function start(){
+                const ice=document.getElementById('iceBlock'), target=parseInt(document.getElementById('drink').value);
+                t=0; if(timer) clearInterval(timer);
+                ice.style.transform="scale(1)"; ice.style.opacity="1"; document.getElementById('msg').innerText="";
+                timer=setInterval(()=>{
+                    t++; document.getElementById('timer').innerText=`00:${String(t).padStart(2,'0')}`;
+                    let s=1-(t/target); ice.style.transform=`scale(${s})`; ice.style.opacity=s;
+                    if(t>=target){ clearInterval(timer); document.getElementById('msg').innerHTML="✅ 다 녹았다!<br>조건에 따라 속도가 다르지?"; ice.style.transform="scale(0)"; }
+                },100);
+            }
+        </script>
+    </body>
+    </html>
+    

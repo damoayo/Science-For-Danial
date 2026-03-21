@@ -15,7 +15,7 @@ ai_client = genai.Client(api_key=GEMINI_KEY)
 youtube_client = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
 
 input_filename = "today_study.txt"
-output_filename = "youtube_guide.txt"
+output_filename = "index.html"
 simulator_filename = "danial_lab.html"
 
 # 2. 오늘 공부할 내용 읽기
@@ -66,36 +66,65 @@ try:
     with open(simulator_filename, "w", encoding="utf-8") as f:
         f.write(data['simulator_html_code'])
 
-    # 리포트 작성 시작
-    report = f"# 🚀 다니엘을 위한 정밀 과학 리포트\n\n**주제:** {target_content}\n\n"
-    report += f"### 🔬 [아빠가 만든 실험실 열기](./{simulator_filename})\n\n---\n"
+    # 1. 리포트 본문 작성 (HTML 형식으로 작성해서 웹브라우저에서 바로 보이게 함)
+    # 스타일을 살짝 넣어서 아빠가 만든 티를 팍팍 내보자!
+    report_html = f"""
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>다니엘의 과학 큐레이션</title>
+        <style>
+            body {{ font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 40px; background-color: #f4f7f6; }}
+            .container {{ background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }}
+            h1 {{ color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }}
+            .lab-link {{ display: inline-block; background: #e67e22; color: white; padding: 15px 25px; border-radius: 12px; text-decoration: none; font-weight: bold; margin: 20px 0; }}
+            .video-card {{ border-left: 5px solid #3498db; background: #f9f9f9; padding: 15px; margin-bottom: 20px; border-radius: 0 10px 10px 0; }}
+            .video-link {{ color: #2980b9; font-weight: bold; font-size: 1.1em; }}
+            .tip {{ color: #27ae60; font-style: italic; margin-top: 10px; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚀 다니엘을 위한 정밀 과학 리포트</h1>
+            <p><b>주제:</b> {target_content}</p>
+            
+            <a href="./{simulator_filename}" class="lab-link">🔬 아빠가 만든 미니 실험실 열기</a>
+            <p><i>(먼저 실험실에서 원리를 만져보고 아래 영상을 보면 이해가 쏙쏙 될 거야!)</i></p>
+            <hr>
+    """
 
-    # 유튜브 검색 실행
+    # 2. 유튜브 검색 결과 추가 (반복문 안에서 HTML 태그로 감싸기)
     for item in data['youtube_plan']:
-        # 검색어 보정: '중1 과학'을 접두어로 붙여서 엉뚱한 결과 방지
         search_query = f"중1 과학 {item['keyword']}"
-        
         search_res = youtube_client.search().list(
-            q=search_query,
-            part='snippet',
-            maxResults=1,
-            type='video',
-            relevanceLanguage='ko'
+            q=search_query, part='snippet', maxResults=1, type='video', relevanceLanguage='ko'
         ).execute()
 
         if search_res['items']:
             v = search_res['items'][0]
-            title = v['snippet']['title']
-            # URL 생성 시 중복 방지 (videoId만 가져와서 깔끔하게 조합)
             video_id = v['id']['videoId']
             actual_url = f"https://www.youtube.com/watch?v={video_id}"
+            title = v['snippet']['title']
             
-            report += f"### 📺 [{title}]({actual_url})\n"
-            report += f"- **검색어:** `{search_query}`\n"
-            report += f"- **꿀팁:** {item['tip']}\n\n---\n"
+            report_html += f"""
+            <div class="video-card">
+                <a href="{actual_url}" class="video-link" target="_blank">📺 {title}</a><br>
+                <small>검색어: {search_query}</small>
+                <p class="tip">👨‍🏫 <b>아빠의 꿀팁:</b> {item['tip']}</p>
+            </div>
+            """
 
-    with open(output_filename, "w", encoding="utf-8") as f:
-        f.write(report)
+    # 3. HTML 마무리 태그 및 파일 저장
+    report_html += """
+        </div>
+    </body>
+    </html>
+    """
+
+    # 최종 결과물을 index.html로 저장 (GitHub Pages의 대문 파일)
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(report_html)
     
     print("✅ 완료! 이제 링크랑 주제가 제대로 잡혔을 거야. 확인해 봐!")
 

@@ -2,16 +2,15 @@ name: Danial Science Report Update
 
 on:
   schedule:
-    - cron: "0 0 * * 6" # 한국 시간 매주 토요일 오전 9시
-  push:
-    branches: [main] # 메인 브랜치에 올릴 때마다 테스트로 자동 실행
-  workflow_dispatch: # 버튼 눌러서 수동으로도 실행 가능하게 함
+    - cron: "0 0 * * 6" # 한국 시간 매주 토요일 오전 9시에 자동 실행
+  workflow_dispatch: # 깃허브 웹사이트에서 수동으로 버튼 눌러서 실행할 수 있게 함
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # GitHub Pages에 파일을 쓸 수 있는 권한 허용
+      contents: write # 파일 수정 및 Push 권한 허용
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,15 +24,16 @@ jobs:
         run: |
           pip install google-generativeai google-api-python-client python-dotenv
 
-      - name: Run Science Agent
+      - name: Run Science Agent (Gemini 2.5가 리포트 만들기)
         env:
           SCIENCE_KEY: ${{ secrets.SCIENCE_KEY }}
           YOUTUBE_KEY: ${{ secrets.YOUTUBE_KEY }}
         run: python agent_test.py
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: . # 현재 폴더 전체를 올리겠다!
-          branch: gh-pages
-          clean: true # 예전 파일은 싹 지우고 새로 올리기
+      - name: Commit and Push changes to Main
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html danial_lab.html
+          git commit -m "🚀 Auto-update: 다니엘의 주간 과학 리포트 자동 생성 완료" || echo "No changes to commit"
+          git push origin main

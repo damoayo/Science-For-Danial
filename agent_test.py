@@ -1,27 +1,47 @@
 import os
 import json
 import time
+import datetime
 import google.generativeai as genai
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
-# 1. 설정 로드
+# 1. 환경 설정
 load_dotenv()
 GEMINI_KEY = os.getenv("SCIENCE_KEY")
 YOUTUBE_KEY = os.getenv("YOUTUBE_KEY")
 
 genai.configure(api_key=GEMINI_KEY)
-# 서버가 불안정할 땐 2.5-flash 대신 1.5-flash나 1.5-pro로 자동 전환되게 모델명을 리스트에 두자
-# 하지만 네 계정은 2.5가 메인이니 일단 2.5로 시도!
 model = genai.GenerativeModel('models/gemini-2.5-flash')
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
 
-# 2. 주제 읽기
-try:
-    with open("today_study.txt", "r", encoding="utf-8") as f:
-        target_content = f.read().strip()
-except:
-    target_content = "중학교 1학년 과학: I. 과학과 인류의 지속가능한 삶"
+# ==========================================
+# 2. [추가된 마법] 중학교 1학년 과학 자동 진도표 
+# ==========================================
+curriculum = [
+    "중학교 1학년 과학: 1. 과학과 인류의 지속가능한 삶",
+    "중학교 1학년 과학: 2. 지각의 물질 (광물과 암석)",
+    "중학교 1학년 과학: 3. 지각의 변화 (지진과 화산)",
+    "중학교 1학년 과학: 4. 여러 가지 힘 (중력과 탄성력)",
+    "중학교 1학년 과학: 5. 여러 가지 힘 (마찰력과 부력)",
+    "중학교 1학년 과학: 6. 물질의 상태 변화 (고체, 액체, 기체)",
+    "중학교 1학년 과학: 7. 물질의 상태 변화와 열 에너지",
+    "중학교 1학년 과학: 8. 기체의 성질 (보일 법칙과 샤를 법칙)",
+    "중학교 1학년 과학: 9. 빛과 파동 (빛의 반사와 굴절)",
+    "중학교 1학년 과학: 10. 빛과 파동 (파동과 소리)",
+    "중학교 1학년 과학: 11. 생물의 다양성과 분류",
+    "중학교 1학년 과학: 12. 생물 다양성의 보전"
+]
+
+# 오늘이 1년 중 몇 번째 주인지 계산 (예: 12주차)
+current_week = datetime.date.today().isocalendar()[1]
+
+# 전체 진도표 개수로 나눈 나머지를 구해서 매주 알아서 다음 주제로 넘어가게 함
+topic_index = current_week % len(curriculum)
+target_content = curriculum[topic_index]
+
+print(f"📅 [자동 진도 시스템] 이번 주 주제: {target_content}")
+# ==========================================
 
 print(f"🚀 [Gemini 2.5] 다니엘 맞춤형 리포트 생성 시작...")
 
@@ -59,7 +79,7 @@ try:
     data = generate_with_retry()
     print("✅ 데이터 생성 완료!")
 
-    # 4. index.html 생성 (세련된 디자인)
+    # 4. index.html 생성
     report_html = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -74,7 +94,8 @@ try:
             .section {{ padding: 40px; border-bottom: 1px solid #eee; }}
             .study-card {{ background: #f9fbfd; border-radius: 20px; padding: 25px; border-left: 8px solid var(--primary); }}
             .lab-banner {{ background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80') center/cover; height: 250px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; }}
-            .lab-btn {{ background: rgba(230, 126, 34, 0.95); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2em; backdrop-filter: blur(5px); }}
+            .lab-btn {{ background: rgba(230, 126, 34, 0.95); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2em; backdrop-filter: blur(5px); transition: 0.3s; }}
+            .lab-btn:hover {{ transform: scale(1.05); background: var(--accent); }}
             .yt-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
             .yt-card {{ border: 1px solid #eee; border-radius: 15px; overflow: hidden; background: #fff; }}
             .yt-btn {{ display: block; background: #ff0000; color: white; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; }}
@@ -93,13 +114,13 @@ try:
     <body>
         <div class="container">
             <div class="header">
-                <h1>🧪 다니엘의 스마트 과학 정복 리포트</h1>
-                <p>아빠가 직접 코딩해서 만든 다니엘 전용 학습지!</p>
+                <h1 style="margin:0;">🧪 다니엘의 스마트 과학 정복 리포트</h1>
+                <p style="margin-top:10px; font-size:1.1em; opacity:0.9;">아빠가 직접 코딩해서 만든 <b>이번 주({target_content})</b> 학습지!</p>
             </div>
             <div class="section">
                 <h2>📖 핵심 요약 노트</h2>
                 <div class="study-card">
-                    {"".join([f'<p><b>{i+1}. </b> {point}</p>' for i, point in enumerate(data['summary_points'])])}
+                    {"".join([f'<p style="margin-bottom:15px; line-height:1.7;"><b>{i+1}. </b> {point}</p>' for i, point in enumerate(data['summary_points'])])}
                 </div>
                 <div class="lab-banner">
                     <a href="./danial_lab.html" class="lab-btn">🔬 나만의 애니메이션 실험실 가기</a>
@@ -131,11 +152,11 @@ try:
     """
 
     for i, q in enumerate(data['quizzes']):
-        opts = "".join([f"<li>{o}</li>" for o in q.get('options', [])])
+        opts = "".join([f"<li style='margin-bottom:5px;'>{o}</li>" for o in q.get('options', [])])
         report_html += f"""
             <div class="q-card">
                 <p><b>Q{i+1}. {q['q']}</b></p>
-                {f'<ul style="list-style:none; padding:0;">{opts}</ul>' if opts else ''}
+                {f'<ul style="list-style:none; padding-left:10px;">{opts}</ul>' if opts else ''}
                 <button class="check-btn" onclick="toggleAns('ans{i}')">정답 확인</button>
                 <div id="ans{i}" class="ans-box">정답: {q['a']} <br><small>💡 {q['ex']}</small></div>
             </div>
@@ -163,7 +184,8 @@ try:
             .lab-box { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
             .ice-container { height: 180px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: #f9fbfd; border-radius: 15px; position: relative; }
             .ice { width: 100px; height: 100px; background: linear-gradient(135deg, #fff, #abdfff); border-radius: 15px; transition: transform 0.1s; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #3498db; }
-            .btn { background: #e67e22; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; }
+            .btn { background: #e67e22; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1.1em;}
+            .btn:hover { background: #d35400; }
             #timer { font-size: 2.5em; color: #e74c3c; font-weight: bold; }
         </style>
     </head>
@@ -173,22 +195,23 @@ try:
             <p>공정한 실험을 위해 <b>똑같은 조건</b>을 맞춰보자!</p>
             <div id="timer">00:00</div>
             <div class="ice-container"><div id="iceBlock" class="ice">ICE</div></div>
-            <select id="drink" style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px;">
+            <select id="drink" style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px; font-size: 1em;">
                 <option value="15">물 (빨름)</option><option value="35">주스 (중간)</option><option value="55">설탕물 (느림)</option>
             </select>
             <button class="btn" onclick="start()">실험 시작!</button>
             <p id="msg" style="margin-top:20px; font-weight:bold;"></p>
-            <a href="./index.html" style="color:#3498db; text-decoration:none;">← 돌아가기</a>
+            <a href="./index.html" style="color:#3498db; text-decoration:none; display:inline-block; margin-top:15px; font-weight:bold;">← 리포트로 돌아가기</a>
         </div>
         <script>
             let t=0, timer=null;
             function start(){
                 const ice=document.getElementById('iceBlock'), target=parseInt(document.getElementById('drink').value);
                 t=0; if(timer) clearInterval(timer);
+                ice.style.transform="scale(1)"; ice.style.opacity="1"; document.getElementById('msg').innerText="";
                 timer=setInterval(()=>{
                     t++; document.getElementById('timer').innerText=`00:${String(t).padStart(2,'0')}`;
                     let s=1-(t/target); ice.style.transform=`scale(${s})`; ice.style.opacity=s;
-                    if(t>=target){ clearInterval(timer); document.getElementById('msg').innerText="✅ 다 녹았다! 조건에 따라 속도가 다르지?"; ice.style.transform="scale(0)"; }
+                    if(t>=target){ clearInterval(timer); document.getElementById('msg').innerHTML="✅ 다 녹았다!<br>음료수(조건)에 따라 속도가 다르지?"; ice.style.transform="scale(0)"; }
                 },100);
             }
         </script>

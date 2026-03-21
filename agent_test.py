@@ -4,157 +4,150 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
-# 1. 환경 변수 로드
+# 1. 환경 변수 및 클라이언트 설정
 load_dotenv()
-GEMINI_KEY = os.getenv("SCIENCE_KEY")
-YOUTUBE_KEY = os.getenv("YOUTUBE_KEY")
+genai.configure(api_key=os.getenv("SCIENCE_KEY"))
+model = genai.GenerativeModel('models/gemini-2.5-flash')
+youtube = build('youtube', 'v3', developerKey=os.getenv("YOUTUBE_KEY"))
 
-# 2. 클라이언트 설정 (네 리스트에서 확인된 2.5 모델 사용!)
-genai.configure(api_key=GEMINI_KEY)
-# [핵심] 네 API 리스트에 있던 정확한 명칭으로 교체!
-model = genai.GenerativeModel('models/gemini-2.5-flash') 
-youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
-
-# 3. 학습 주제 읽기
+# 2. 주제 읽기
 try:
     with open("today_study.txt", "r", encoding="utf-8") as f:
         target_content = f.read().strip()
-except FileNotFoundError:
-    target_content = "중학교 1학년 과학: I. 과학과 인류의 지속가능한 삶"
+except:
+    target_content = "중1 과학: 1단원 과학과 인류의 삶"
 
-print(f"🚀 [Gemini 2.5 모드] 주제 분석 시작: {target_content[:30]}...")
-
-# 4. 프롬프트 구성
+# 3. 프롬프트 - 중학생 눈높이 용어 + 10문제 퀴즈 요청
 prompt = f"""
-중1 과학 멘토로서 [{target_content}] 주제에 대해 아래 JSON 형식으로만 응답해. 
-다른 말은 일절 하지 말고 마크다운 태그(```json) 없이 순수 JSON 텍스트만 줘.
+중학교 1학년 학생 '다니엘'의 눈높이에서 [{target_content}]를 정리해줘.
+1. '변인 통제' 대신 '공정한 실험을 위해 똑같이 맞출 조건'이라는 쉬운 말을 써줘.
+2. 교과서 핵심 내용을 5가지 포인트로 아주 상세하게 정리해줘.
+3. 마지막에 학습 확인을 위한 퀴즈 10문제(OX 5개, 객관식 5개)를 정답/해설과 함께 포함해줘.
+4. 아래 JSON 형식으로만 응답해.
 
 {{
-  "youtube_plan": [
-    {{"keyword": "검색어", "tip": "아빠가 다니엘에게 해주는 다정한 설명"}}
+  "summary_points": ["내용1", "내용2", ...],
+  "youtube_plan": [{{"keyword": "검색어", "tip": "다정한 설명"}}],
+  "quizzes": [
+    {{"type": "OX", "q": "질문", "a": "O/X", "ex": "해설"}},
+    {{"type": "CHOICE", "q": "질문", "options": ["1", "2", "3", "4"], "a": 3, "ex": "해설"}}
   ],
-  "simulator_html_code": "변인 통제 원리를 배우는 인터랙티브 HTML/JS 코드 (가독성 좋게)"
+  "lab_image_prompt": "실험실 느낌의 창의적인 일러스트 묘사 (영어)"
 }}
 """
 
 try:
-    # 5. API 호출 및 데이터 파싱
     response = model.generate_content(prompt)
-    clean_text = response.text.replace('```json', '').replace('```', '').strip()
-    data = json.loads(clean_text)
-    print("✅ Gemini 2.5가 데이터를 성공적으로 생성했어!")
+    data = json.loads(response.text.replace('```json', '').replace('```', '').strip())
 
-    # 6. 시뮬레이터 파일 저장 (danial_lab.html)
-    with open("danial_lab.html", "w", encoding="utf-8") as f:
-        f.write(data['simulator_html_code'])
+    # 4. 이미지 생성 (다니엘이 좋아할 실험실 이미지)
+    # 실제로는 이미지 생성 API나 플레이스홀더를 사용하지만, 여기선 세련된 배경을 위해 스타일 수정
+    lab_img = "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80"
 
-    # 7. 메인 리포트(index.html) 생성 로직 (학습 정리 & 퀴즈 추가)
+    # 5. HTML 리포트 생성 (세련된 카드 디자인)
     report_html = f"""
     <!DOCTYPE html>
     <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>다니엘의 과학 실험실</title>
+        <title>다니엘의 스마트 과학실</title>
         <style>
-            body {{ font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; max-width: 850px; margin: 0 auto; padding: 40px; background-color: #f4f7f6; }}
-            .container {{ background: white; padding: 35px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }}
-            h1 {{ color: #2c3e50; border-bottom: 4px solid #3498db; padding-bottom: 15px; text-align: center; }}
-            
-            /* 학습 정리 섹션 스타일 */
-            .study-summary {{ background: #eef7ff; padding: 25px; border-radius: 15px; margin: 30px 0; border-left: 8px solid #3498db; }}
-            .study-summary h2 {{ color: #2980b9; margin-top: 0; }}
-            .study-summary ul {{ padding-left: 20px; }}
-            .study-summary li {{ margin-bottom: 10px; }}
-
-            .lab-link {{ display: block; text-align: center; background: #e67e22; color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 1.2em; margin: 30px 0; transition: 0.3s; }}
-            .lab-link:hover {{ background: #d35400; transform: scale(1.02); }}
-            
-            .video-card {{ border: 1px solid #e1e8ed; background: #ffffff; padding: 20px; margin-bottom: 25px; border-radius: 15px; }}
-            .video-header {{ display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; gap: 15px; }}
-            .video-title {{ font-size: 1.1em; font-weight: bold; color: #2c3e50; line-height: 1.4; flex: 1; }}
-            .youtube-btn {{ background: #ff0000; color: white; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.95em; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; box-shadow: 0 4px 0 #b30000; }}
-            .daddy-tip {{ color: #27ae60; background: #eafaf1; padding: 15px; border-radius: 12px; border: 1px dashed #27ae60; }}
-
-            /* 퀴즈 섹션 스타일 */
-            .quiz-section {{ background: #fff4e5; padding: 25px; border-radius: 15px; margin-top: 40px; border: 2px solid #f39c12; }}
-            .quiz-card {{ background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }}
-            .quiz-btn {{ background: #34495e; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; }}
-            .ans-box {{ display: none; margin-top: 10px; padding: 10px; background: #d4edda; color: #155724; border-radius: 5px; font-weight: bold; }}
+            :root {{ --primary: #3498db; --secondary: #2ecc71; --accent: #e67e22; --bg: #f8f9fa; }}
+            body {{ font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: var(--bg); color: #333; margin: 0; padding: 20px; }}
+            .main-container {{ max-width: 900px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }}
+            .header {{ background: linear-gradient(135deg, var(--primary), #8e44ad); color: white; padding: 60px 20px; text-align: center; }}
+            .section {{ padding: 40px; border-bottom: 1px solid #eee; }}
+            .card {{ background: #fff; border: 1px solid #eef2f7; border-radius: 20px; padding: 25px; margin-bottom: 20px; transition: 0.3s; }}
+            .card:hover {{ transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }}
+            .summary-item {{ display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; }}
+            .summary-number {{ background: var(--primary); color: white; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }}
+            .lab-banner {{ background: url('{lab_img}') center/cover; height: 250px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; }}
+            .lab-btn {{ background: rgba(230, 126, 34, 0.9); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; backdrop-filter: blur(5px); }}
+            .youtube-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
+            .yt-card {{ border: 1px solid #eee; border-radius: 15px; overflow: hidden; }}
+            .yt-btn {{ display: block; background: #ff0000; color: white; text-align: center; padding: 10px; text-decoration: none; font-weight: bold; }}
+            .quiz-container {{ background: #fdf2e9; border-radius: 20px; padding: 30px; }}
+            .ans-box {{ display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid var(--secondary); }}
+            .btn-check {{ background: #34495e; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; }}
         </style>
         <script>
-            function toggleAns(id) {{
-                var x = document.getElementById(id);
-                if (x.style.display === "none") {{ x.style.display = "block"; }} 
-                else {{ x.style.display = "none"; }}
+            function showAns(id) {{ 
+                const el = document.getElementById(id);
+                el.style.display = el.style.display === 'block' ? 'none' : 'block';
             }}
         </script>
     </head>
     <body>
-        <div class="container">
-            <h1>🚀 다니엘의 과학 정복 리포트</h1>
-            
-            <div class="study-summary">
-                <h2>📖 이번 주 핵심 개념 꽉 잡기!</h2>
-                <ul>
-                    <li><b>과학적 탐구:</b> 자연 현상에 의문을 갖고 객관적으로 해결하는 과정이야.</li>
-                    <li><b>변인 통제 (가장 중요!):</b> 실험에서 <b>다르게 할 조건(조작 변인)</b>은 딱 하나만 정하고, 나머지는 <b>모두 같게(통제 변인)</b> 유지하는 거야.</li>
-                    <li><b>지속 가능한 삶:</b> 미래 세대가 쓸 자원을 남기면서 현재 우리도 행복하게 살 수 있도록 환경을 보호하는 삶을 말해.</li>
-                </ul>
+        <div class="main-container">
+            <div class="header">
+                <h1 style="margin:0;">🧪 다니엘의 스마트 과학 리포트</h1>
+                <p style="opacity:0.9;">교과서 핵심 요약부터 퀴즈까지 한 번에!</p>
             </div>
 
-            <a href="./danial_lab.html" class="lab-link">🔬 아빠가 만든 미니 실험실 열기 (클릭!)</a>
-            
-            <div class="video-section">
-                <h3 style="color:#2c3e50;">📺 추천 영상 학습 (영상을 보고 아래 퀴즈를 풀어봐!)</h3>
+            <div class="section">
+                <h2>📖 아빠가 정리한 핵심 노트</h2>
+                <div class="study-card">
+                    {"".join([f'<div class="summary-item"><div class="summary-number">{i+1}</div><div>{point}</div></div>' for i, point in enumerate(data['summary_points'])])}
+                </div>
+                <div class="lab-banner">
+                    <a href="./danial_lab.html" class="lab-btn">🔬 나만의 온라인 실험실 입장하기</a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📺 아빠 추천 영상 학습</h2>
+                <div class="youtube-grid">
     """
 
-    for item in data['youtube_plan']:
-        query = f"중1 과학 {item['keyword']}"
-        res = youtube.search().list(q=query, part='snippet', maxResults=1, type='video').execute()
+    # 유튜브 검색 및 추가
+    for i, item in enumerate(data['youtube_plan'][:4]):
+        res = youtube.search().list(q=f"중1 과학 {item['keyword']}", part='snippet', maxResults=1, type='video').execute()
         if res['items']:
             v = res['items'][0]
-            clean_url = f"https://www.youtube.com/watch?v={v['id']['videoId']}"
             report_html += f"""
-                <div class="video-card">
-                    <div class="video-header">
-                        <span class="video-title">🎥 {v['snippet']['title']}</span>
-                        <a href="{clean_url}" class="youtube-btn" target="_blank">▶ 영상보기</a>
-                    </div>
-                    <div class="daddy-tip">{item['tip']}</div>
+                <div class="yt-card">
+                    <div style="padding:15px; min-height:80px;"><b>{v['snippet']['title'][:40]}...</b></div>
+                    <a href="https://www.youtube.com/watch?v={v['id']['videoId']}" target="_blank" class="yt-btn">▶ 영상 보기</a>
                 </div>
             """
 
     report_html += """
-            </div>
-
-            <div class="quiz-section">
-                <h2>📝 학습 체크! 미니 퀴즈</h2>
-                
-                <div class="quiz-card">
-                    <p><b>Q1. (OX문제) 실험에서 결과를 정확하게 확인하려면 조작 변인을 여러 개 설정해야 한다?</b></p>
-                    <button class="quiz-btn" onclick="toggleAns('ans1')">정답 확인</button>
-                    <div id="ans1" class="ans-box">정답: X (조작 변인은 반드시 '하나'만 설정해야 결과가 명확해져!)</div>
-                </div>
-
-                <div class="quiz-card">
-                    <p><b>Q2. (객관식) 다음 중 지속 가능한 삶을 위한 과학 기술의 역할로 적절하지 않은 것은?</b></p>
-                    <p>1) 태양광 에너지 개발 <br> 2) 플라스틱 분해 미생물 연구 <br> 3) 무분별한 자원 채굴 확대 <br> 4) 오염 물질 회수 로봇 제작</p>
-                    <button class="quiz-btn" onclick="toggleAns('ans2')">정답 확인</button>
-                    <div id="ans2" class="ans-box">정답: 3번 (자원을 아껴 쓰고 순환시키는 것이 지속 가능한 삶의 핵심이야!)</div>
                 </div>
             </div>
 
-            <p style="text-align:center; margin-top:40px; color:#bdc3c7;">❤️ 아빠가 다니엘을 위해 정성껏 만들었단다! 화이팅!</p>
+            <div class="section">
+                <h2>📝 실력 쑥쑥! 미니 테스트 (10문제)</h2>
+                <div class="quiz-container">
+    """
+
+    for i, q in enumerate(data['quizzes']):
+        options_html = "".join([f"<li>{opt}</li>" for opt in q.get('options', [])])
+        report_html += f"""
+            <div class="card">
+                <p><b>Q{i+1}. {q['q']}</b></p>
+                {f'<ul>{options_html}</ul>' if options_html else ''}
+                <button class="btn-check" onclick="showAns('ans{i}')">정답 및 해설 확인</button>
+                <div id="ans{i}" class="ans-box">
+                    <b>정답: {q['a']}</b><br>
+                    <small>💡 {q['ex']}</small>
+                </div>
+            </div>
+        """
+
+    report_html += """
+                </div>
+            </div>
+            <div style="text-align:center; padding:40px; color:#999;">
+                ❤️ 아빠가 다니엘을 위해 정성껏 만들었어. 화이팅!
+            </div>
         </div>
     </body>
     </html>
     """
 
-    # 최종 index.html 저장
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(report_html)
-
-    print("🎉 [축성공] 모든 파일 생성 완료! 이제 git push 하러 가자!")
+    print("🎉 성공! 이제 git push 해서 다니엘에게 보여주자!")
 
 except Exception as e:
-    print(f"❌ 최후의 수단 에러: {e}")
+    print(f"❌ 오류 발생: {e}")

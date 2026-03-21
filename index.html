@@ -5,52 +5,125 @@
         <meta charset="UTF-8">
         <title>다니엘의 과학 실험실</title>
         <style>
-            body { font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; max-width: 850px; margin: 0 auto; padding: 40px; background-color: #f0f4f8; }
+            body { font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; max-width: 850px; margin: 0 auto; padding: 40px; background-color: #f4f7f6; }
             .container { background: white; padding: 35px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
             h1 { color: #2c3e50; border-bottom: 4px solid #3498db; padding-bottom: 15px; text-align: center; }
+            
+            /* 학습 정리 섹션 스타일 */
+            .study-summary { background: #eef7ff; padding: 25px; border-radius: 15px; margin: 30px 0; border-left: 8px solid #3498db; }
+            .study-summary h2 { color: #2980b9; margin-top: 0; }
+            .study-summary ul { padding-left: 20px; }
+            .study-summary li { margin-bottom: 10px; }
+
             .lab-link { display: block; text-align: center; background: #e67e22; color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 1.2em; margin: 30px 0; transition: 0.3s; }
             .lab-link:hover { background: #d35400; transform: scale(1.02); }
-            .video-section { margin-top: 30px; }
-            .video-card { border-left: 6px solid #3498db; background: #f9f9f9; padding: 20px; margin-bottom: 25px; border-radius: 0 15px 15px 0; }
-            .video-title { font-size: 1.1em; font-weight: bold; color: #2980b9; text-decoration: none; }
-            .daddy-tip { color: #27ae60; background: #eafaf1; padding: 10px; border-radius: 8px; margin-top: 10px; }
+            
+            .video-card { border: 1px solid #e1e8ed; background: #ffffff; padding: 20px; margin-bottom: 25px; border-radius: 15px; }
+            .video-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; gap: 15px; }
+            .video-title { font-size: 1.1em; font-weight: bold; color: #2c3e50; line-height: 1.4; flex: 1; }
+            .youtube-btn { background: #ff0000; color: white; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.95em; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; box-shadow: 0 4px 0 #b30000; }
+            .daddy-tip { color: #27ae60; background: #eafaf1; padding: 15px; border-radius: 12px; border: 1px dashed #27ae60; }
+
+            /* 퀴즈 섹션 스타일 */
+            .quiz-section { background: #fff4e5; padding: 25px; border-radius: 15px; margin-top: 40px; border: 2px solid #f39c12; }
+            .quiz-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+            .quiz-btn { background: #34495e; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+            .ans-box { display: none; margin-top: 10px; padding: 10px; background: #d4edda; color: #155724; border-radius: 5px; font-weight: bold; }
         </style>
+        <script>
+            function toggleAns(id) {
+                var x = document.getElementById(id);
+                if (x.style.display === "none") { x.style.display = "block"; } 
+                else { x.style.display = "none"; }
+            }
+        </script>
     </head>
     <body>
         <div class="container">
-            <h1>🚀 다니엘을 위한 정밀 과학 리포트</h1>
-            <p style="text-align:center; color:#7f8c8d;">주제: 중학교 1학년 과학: I. 과학과 인류의 지속가능한 삶
-
-[핵심 세부 주제 및 학습 목표]
-
-과학적 탐구 방법론: 일상 속 문제 인식 -> 가설 설정 -> 탐구 설계(변인 통제: 다르게 할 조건, 같게 할 조건) -> 탐구 수행 -> 결과 해석 및 결론 도출. (예시 실험: 음료수 종류에 따라 얼음이 녹는 시간 비교)
-
-과학 발전과 인류 문명: 불의 사용부터 첨단 과학기술(드론, 자율주행차, 인공지능, 사물인터넷)이 우리 삶과 직업에 미치는 영향.
-
-인류의 지속가능한 삶을 위한 노력: 자원 고갈, 기후 변화, 수질 오염 등 환경 문제 인식. 이를 해결하기 위한 과학기술의 역할(수소 에너지, 태양광, 오염 물질 회수 로봇)과 개인적/사회적 실천 방안(자원 순환, 일회용품 줄이기).</p>
+            <h1>🚀 다니엘의 과학 정복 리포트</h1>
             
+            <div class="study-summary">
+                <h2>📖 이번 주 핵심 개념 꽉 잡기!</h2>
+                <ul>
+                    <li><b>과학적 탐구:</b> 자연 현상에 의문을 갖고 객관적으로 해결하는 과정이야.</li>
+                    <li><b>변인 통제 (가장 중요!):</b> 실험에서 <b>다르게 할 조건(조작 변인)</b>은 딱 하나만 정하고, 나머지는 <b>모두 같게(통제 변인)</b> 유지하는 거야.</li>
+                    <li><b>지속 가능한 삶:</b> 미래 세대가 쓸 자원을 남기면서 현재 우리도 행복하게 살 수 있도록 환경을 보호하는 삶을 말해.</li>
+                </ul>
+            </div>
+
             <a href="./danial_lab.html" class="lab-link">🔬 아빠가 만든 미니 실험실 열기 (클릭!)</a>
             
             <div class="video-section">
-                <h3>📺 이번 주 추천 과학 영상</h3>
+                <h3 style="color:#2c3e50;">📺 추천 영상 학습 (영상을 보고 아래 퀴즈를 풀어봐!)</h3>
     
                 <div class="video-card">
-                    <a href="[https://www.youtube.com/watch?v=](https://www.youtube.com/watch?v=)6vIn5mEZYZE" class="video-title" target="_blank">🎥 경희대 한의대생의 과학 공부법 #한의대 #한의대생 #공부법 #내신1등급 #내신과학</a>
-                    <p class="daddy-tip">👨‍🏫 <b>아빠의 꿀팁:</b> 궁금증을 해결하는 과학자처럼 생각하는 방법, 그리고 공정한 실험을 위해 뭘 지켜야 하는지 아빠가 재미있는 예시로 알려줄게.</p>
+                    <div class="video-header">
+                        <span class="video-title">🎥 [중1 과학 안현정] 과학적 탐구 방법 - 온리원중등</span>
+                        <a href="https://www.youtube.com/watch?v=Z9xsx0y123o" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 궁금증을 해결하는 방법을 알려주듯이, 일상 속 예시로 가설 세우기, 변수 조절하기를 설명해요. '음료수에 따라 얼음이 녹는 시간이 왜 다를까?' 같은 질문을 가지고 함께 탐정 놀이를 하듯이요.</div>
                 </div>
             
                 <div class="video-card">
-                    <a href="[https://www.youtube.com/watch?v=](https://www.youtube.com/watch?v=)uotVYTpsbNw" class="video-title" target="_blank">🎥 [사이언스포럼] 과학과 기술, 우리의 삶 / YTN 사이언스</a>
-                    <p class="daddy-tip">👨‍🏫 <b>아빠의 꿀팁:</b> 옛날 사람들이 불을 발견하고 문명이 시작된 이야기부터, 드론이랑 AI가 우리의 미래를 어떻게 바꿀지 아빠랑 같이 상상해보자.</p>
+                    <div class="video-header">
+                        <span class="video-title">🎥 볼수록 신기한 과학실험 모음</span>
+                        <a href="https://www.youtube.com/watch?v=qUE93HOI1bM" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 맛있는 라면을 끓이는 방법을 알려주듯이, '물양, 스프양은 똑같이 하고 면의 종류만 바꿔보면 어떤 라면이 제일 맛있을까?'처럼 무엇을 같게 하고 무엇을 다르게 해야 하는지 재미있게 설명해 줘요.</div>
                 </div>
             
                 <div class="video-card">
-                    <a href="[https://www.youtube.com/watch?v=](https://www.youtube.com/watch?v=)Nlasb2PTzts" class="video-title" target="_blank">🎥 [중1 과학] 1. 과학과 인류의 지속가능한 삶 - 첨단 과학 기술과 미래 사회 변화</a>
-                    <p class="daddy-tip">👨‍🏫 <b>아빠의 꿀팁:</b> 지구가 아프지 않고 우리 모두 행복하게 살아가려면 어떻게 해야 할까? 멋진 과학 기술과 우리들의 작은 노력이 얼마나 중요한지 아빠가 얘기해줄게.</p>
+                    <div class="video-header">
+                        <span class="video-title">🎥 [중① 1단원] 2강. 과학과 인류 문명👩🏻‍🔬┃지속 가능한 발전☀️</span>
+                        <a href="https://www.youtube.com/watch?v=qyIfPLMJi5U" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 옛날이야기를 해주듯이, 불을 사용했던 조상부터 지금의 스마트폰, 자율주행차까지 과학기술이 어떻게 우리 삶을 바꿔왔는지 흥미로운 스토리텔링으로 설명해 줘요.</div>
+                </div>
+            
+                <div class="video-card">
+                    <div class="video-header">
+                        <span class="video-title">🎥 사회를 변화시키는 기술의 발달 | 미래의 기술과 직업변화 | 한보희</span>
+                        <a href="https://www.youtube.com/watch?v=kOnO77CjTew" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 '네가 어른이 되면 어떤 직업이 생길까?' 질문하며 드론 전문가, AI 개발자 등 미래에 사라질 직업과 새롭게 생겨날 직업들에 대해 대화하듯이 설명해요.</div>
+                </div>
+            
+                <div class="video-card">
+                    <div class="video-header">
+                        <span class="video-title">🎥 [중1 과학] 1. 과학과 인류의 지속가능한 삶 - 인류의 지속가능한 삶</span>
+                        <a href="https://www.youtube.com/watch?v=SpxDy_tPGZc" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 지구가 아프지 않게 하는 방법을 함께 고민하듯이, 기후 변화, 쓰레기 문제 해결에 태양광, 수소 에너지 같은 과학기술이 어떻게 도움을 주는지 희망적으로 설명해 줘요.</div>
+                </div>
+            
+                <div class="video-card">
+                    <div class="video-header">
+                        <span class="video-title">🎥 광고 대상 받은 환경부의 공익 광고</span>
+                        <a href="https://www.youtube.com/watch?v=0TV52PIFonk" class="youtube-btn" target="_blank">▶ 영상보기</a>
+                    </div>
+                    <div class="daddy-tip">아빠가 다니엘에게 '우리 가족부터 환경을 위해 무엇을 할 수 있을까?' 하고 함께 분리수거, 일회용품 줄이기 같은 작은 실천들이 지구에 어떤 좋은 영향을 주는지 이야기하며 공감을 이끌어내듯이 설명해 줘요.</div>
                 </div>
             
             </div>
-            <p style="text-align:center; margin-top:40px; color:#bdc3c7;">❤️ 아빠가 다니엘을 위해 정성껏 만들었단다!</p>
+
+            <div class="quiz-section">
+                <h2>📝 학습 체크! 미니 퀴즈</h2>
+                
+                <div class="quiz-card">
+                    <p><b>Q1. (OX문제) 실험에서 결과를 정확하게 확인하려면 조작 변인을 여러 개 설정해야 한다?</b></p>
+                    <button class="quiz-btn" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">정답: X (조작 변인은 반드시 '하나'만 설정해야 결과가 명확해져!)</div>
+                </div>
+
+                <div class="quiz-card">
+                    <p><b>Q2. (객관식) 다음 중 지속 가능한 삶을 위한 과학 기술의 역할로 적절하지 않은 것은?</b></p>
+                    <p>1) 태양광 에너지 개발 <br> 2) 플라스틱 분해 미생물 연구 <br> 3) 무분별한 자원 채굴 확대 <br> 4) 오염 물질 회수 로봇 제작</p>
+                    <button class="quiz-btn" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">정답: 3번 (자원을 아껴 쓰고 순환시키는 것이 지속 가능한 삶의 핵심이야!)</div>
+                </div>
+            </div>
+
+            <p style="text-align:center; margin-top:40px; color:#bdc3c7;">❤️ 아빠가 다니엘을 위해 정성껏 만들었단다! 화이팅!</p>
         </div>
     </body>
     </html>

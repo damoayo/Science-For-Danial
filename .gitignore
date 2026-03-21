@@ -1,0 +1,27 @@
+# 환경변수 (비밀번호 포함)
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Chrome
+chrome-profile/
+pdf_download_tmp/
+downloads/**
+Downloads/**
+**/downloads/
+**/Downloads/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 로그
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

@@ -108,4 +108,4 @@ try:
     print("🎉 [축성공] 모든 파일 생성 완료! 이제 git push 하러 가자!")
 
 except Exception as e:
-    print(f"❌ 최후의 수단 에러: {e}")
+    print(f"❌ 최후의수단 에러: {e}")

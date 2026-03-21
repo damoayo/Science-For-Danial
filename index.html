@@ -5,189 +5,142 @@
         <meta charset="UTF-8">
         <title>다니엘의 스마트 과학실</title>
         <style>
-            :root { --primary: #3498db; --secondary: #2ecc71; --accent: #e67e22; --bg: #f8f9fa; }
-            body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: var(--bg); color: #333; margin: 0; padding: 20px; }
-            .main-container { max-width: 900px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-            .header { background: linear-gradient(135deg, var(--primary), #8e44ad); color: white; padding: 60px 20px; text-align: center; }
+            :root { --primary: #3498db; --secondary: #2ecc71; --accent: #e67e22; --bg: #f4f7f6; }
+            body { font-family: 'Malgun Gothic', sans-serif; background: var(--bg); color: #333; line-height: 1.6; padding: 20px; }
+            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+            .header { background: linear-gradient(135deg, var(--primary), #8e44ad); color: white; padding: 50px 20px; text-align: center; }
             .section { padding: 40px; border-bottom: 1px solid #eee; }
-            .card { background: #fff; border: 1px solid #eef2f7; border-radius: 20px; padding: 25px; margin-bottom: 20px; transition: 0.3s; }
-            .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-            .summary-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; }
-            .summary-number { background: var(--primary); color: white; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
-            .lab-banner { background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80') center/cover; height: 250px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; }
-            .lab-btn { background: rgba(230, 126, 34, 0.9); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; backdrop-filter: blur(5px); }
-            .youtube-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-            .yt-card { border: 1px solid #eee; border-radius: 15px; overflow: hidden; }
-            .yt-btn { display: block; background: #ff0000; color: white; text-align: center; padding: 10px; text-decoration: none; font-weight: bold; }
-            .quiz-container { background: #fdf2e9; border-radius: 20px; padding: 30px; }
-            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid var(--secondary); }
-            .btn-check { background: #34495e; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
+            .study-card { background: #f9fbfd; border-radius: 20px; padding: 25px; border-left: 8px solid var(--primary); }
+            .summary-item { margin-bottom: 20px; }
+            .lab-banner { background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80') center/cover; height: 250px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; }
+            .lab-btn { background: rgba(230, 126, 34, 0.95); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2em; backdrop-filter: blur(5px); transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.05); background: var(--accent); }
+            .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+            .yt-card { border: 1px solid #eee; border-radius: 15px; overflow: hidden; background: #fff; }
+            .yt-btn { display: block; background: #ff0000; color: white; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; }
+            .quiz-container { background: #fff4e5; border-radius: 20px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid var(--secondary); font-weight: bold; }
+            .check-btn { background: #34495e; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
         </style>
         <script>
-            function showAns(id) { 
-                const el = document.getElementById(id);
-                el.style.display = el.style.display === 'block' ? 'none' : 'block';
+            function toggleAns(id) {
+                var x = document.getElementById(id);
+                x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
             }
         </script>
     </head>
     <body>
-        <div class="main-container">
+        <div class="container">
             <div class="header">
-                <h1 style="margin:0;">🧪 다니엘의 스마트 과학 리포트</h1>
-                <p style="opacity:0.9;">교과서 핵심 요약부터 퀴즈까지 한 번에!</p>
+                <h1>🧪 다니엘의 스마트 과학 정복 리포트</h1>
+                <p>아빠와 함께하는 즐거운 과학 시간!</p>
             </div>
 
             <div class="section">
-                <h2>📖 아빠가 정리한 핵심 노트</h2>
+                <h2>📖 이번 주 핵심 요약 (아빠의 비밀 노트)</h2>
                 <div class="study-card">
-                    <div class="summary-item"><div class="summary-number">1</div><div>**1. 과학 탐구, 궁금증을 해결하는 멋진 방법!**
-다니엘, 우리는 살면서 "왜 그럴까?" 하는 궁금증을 많이 가지잖아? 과학 탐구는 이런 궁금증을 체계적으로 해결하는 과정이야. 문제 인식(궁금한 점 발견) → 가설 설정(잠정적인 답 예상) → 탐구 설계(계획 세우기) → 탐구 수행(실험하기) → 결과 해석 및 결론 도출(결과 정리 및 최종 결론). 여기서 가장 중요한 단계 중 하나는 **공정한 실험을 위해 똑같이 맞출 조건**이야. 예를 들어, '음료수 종류에 따라 얼음이 녹는 시간 비교' 실험을 한다면, 음료수의 양, 얼음의 크기, 주변 온도 등은 모두 같게 하고, 오직 '음료수의 종류'만 다르게 해서 비교하는 거지. 그래야 어떤 음료수 때문에 얼음이 빨리 녹는지 정확히 알 수 있어!</div></div><div class="summary-item"><div class="summary-number">2</div><div>**2. 과학 발전, 인류의 삶을 확 바꿔 놓았어! (옛날부터 지금까지)**
-과학은 아주 옛날부터 우리 삶을 편리하게 만들어줬어. 옛날에는 불을 사용해서 추위를 이기고 음식을 익혀 먹거나, 돌도끼 같은 도구를 만들어서 사냥하고 집을 지었어. 이런 기본적인 기술들이 인류가 문명을 발전시키는 데 큰 역할을 했지. 최근에는 더 놀라운 과학 기술들이 등장하고 있어. 하늘을 나는 **드론**은 택배를 배달하거나 농사를 돕고, 스스로 운전하는 **자율주행차**는 우리의 이동을 편리하게 해줄 거야. 사람처럼 생각하고 배우는 **인공지능(AI)**은 복잡한 문제 해결을 돕고, **사물 인터넷(IoT)**은 집 안의 냉장고나 전등 같은 물건들이 서로 연결되어 스마트폰으로 조종할 수 있게 해줘. 이런 기술들은 앞으로 우리의 삶을 더욱 풍요롭게 만들고, 새로운 직업들도 많이 생겨나게 할 거야.</div></div><div class="summary-item"><div class="summary-number">3</div><div>**3. 지구는 지금 아파요! 우리가 함께 해결해야 할 문제들.**
-과학 기술이 발전하면서 우리 삶은 편해졌지만, 지구에는 아픈 문제가 생겼어. 첫째, **자원 고갈**은 석유, 석탄, 금속처럼 땅속에서 캐내는 자원들이 한정되어 있어 계속 쓰다 보면 언젠가는 바닥난다는 문제야. 둘째, **기후 변화**는 공장에서 나오는 연기나 자동차 배기가스 때문에 이산화탄소가 너무 많아져 지구가 점점 뜨거워지고, 이로 인해 극지방의 얼음이 녹고 홍수나 가뭄 같은 이상 기후가 더 자주 일어나는 것을 말해. 셋째, **수질 오염**은 공장 폐수나 가정의 생활 하수 때문에 강이나 바다가 더러워져 물고기들이 살기 어렵고 우리도 깨끗한 물을 마시기 힘들어지는 문제야. 이런 환경 문제들은 우리 모두의 삶과 미래에 아주 중요한 영향을 미치기 때문에 꼭 해결해야 해.</div></div><div class="summary-item"><div class="summary-number">4</div><div>**4. 과학 기술로 지구를 건강하게 만들어요!**
-지구의 아픈 문제를 해결하는 데에도 과학 기술이 아주 중요한 역할을 해. 환경을 오염시키지 않는 깨끗한 에너지 기술이 발전하고 있는데, 예를 들어 물에서 얻는 **수소 에너지**나 햇빛을 이용하는 **태양광 에너지**처럼 자연의 힘을 이용해서 전기를 만드는 기술들이 있어. 이런 에너지는 자원 고갈 문제도 줄여주고, 이산화탄소도 거의 나오지 않아서 기후 변화를 막는 데 도움을 줘. 또한, 환경 오염을 직접적으로 해결하는 기술들도 개발되고 있어. 바다에 버려진 플라스틱 쓰레기를 스스로 찾아다니며 치우는 **로봇**이나, 공장 굴뚝에서 나오는 오염 물질을 깨끗하게 걸러주는 장치 같은 기술들이 환경을 보호하고 우리가 더 깨끗한 환경에서 살 수 있게 도와주고 있지.</div></div><div class="summary-item"><div class="summary-number">5</div><div>**5. 우리 모두의 작은 실천이 지구를 살려요!**
-과학 기술의 도움도 중요하지만, 다니엘처럼 우리 각자가 실천하는 것도 아주 중요해. 첫째, **자원 순환 (재활용)**을 생활화해야 해. 버려지는 유리병, 플라스틱, 종이 같은 것들을 잘 분리수거해서 다시 새로운 물건으로 만드는 '재활용'을 통해 자원을 아끼고 쓰레기를 줄일 수 있어. 둘째, **일회용품 줄이기**는 한번 쓰고 버리는 플라스틱 컵이나 비닐봉투 대신 텀블러나 장바구니를 사용하는 습관을 들이는 거야. 이런 습관은 환경 오염을 크게 줄일 수 있어. 셋째, **에너지 절약**도 중요해. 안 쓰는 전등은 끄고, 대중교통을 이용하는 등 작은 습관들이 모여 지구를 살리는 큰 힘이 될 수 있어. 이처럼 우리 한 명 한 명의 작은 노력이 모이면 인류가 지구에서 오래오래 행복하게 살아갈 수 있는 '지속가능한 삶'을 만들 수 있단다!</div></div>
+                    <div class="summary-item"><b>1. </b> **궁금증 해결사, 과학 탐구! (과학적 탐구 방법)**: 다니엘, 혹시 '왜 이 음료수는 얼음이 빨리 녹지?' 같은 궁금증 가져본 적 있어? 과학자들은 이런 궁금증을 해결하려고 특별한 방법을 써. 그걸 '과학 탐구'라고 해. 먼저 '문제를 발견'하고, 그다음 '가설'이라는 '아마도 그럴 거야!' 하는 예상을 해보는 거지. 그리고 가장 중요한 단계! 실험을 설계할 때 '공정한 실험을 위해 똑같이 맞출 조건'과 '우리가 다르게 해볼 조건'을 정하는 거야. 예를 들어, 음료수 종류에 따라 얼음이 녹는 시간을 비교할 때는 음료수 종류만 '다르게 할 조건'으로 하고, 얼음 크기, 컵 모양, 온도 같은 건 전부 '똑같이 맞출 조건'으로 해야 결과가 정확하겠지? 이걸 잘해야 진짜 믿을 수 있는 결과를 얻을 수 있단다. 그 다음엔 실험을 하고, 결과를 꼼꼼히 기록해서 마지막으로 '결론'을 내리는 거야. 어때, 멋지지?</div><div class="summary-item"><b>2. </b> **불에서 시작된 놀라운 변화! (과학 발전과 인류 문명 - 과거)**: 아주 옛날 사람들이 불을 발견하기 전에는 밤이 무섭고, 날것을 먹어야 해서 힘들었대. 그런데 불을 사용하면서 따뜻하게 지내고, 어둠을 밝히고, 맛있는 음식을 익혀 먹을 수 있게 됐어! 맹수로부터 자신을 지킬 수도 있었지. 이 작은 불의 발견이 인류 문명을 발전시키는 아주 큰 첫걸음이 되었단다. 과학은 이렇게 우리 삶을 처음부터 바꿔왔어.</div><div class="summary-item"><b>3. </b> **두근두근 미래! 첨단 과학기술과 우리의 삶 (과학 발전과 인류 문명 - 현재/미래)**: 옛날 불의 발견처럼, 지금도 과학은 계속 발전해서 우리 삶을 놀랍게 바꾸고 있어. 하늘을 날아다니는 '드론'으로 택배를 배달하거나 멋진 영상을 찍고, '자율주행차'는 혼자 운전해서 우리가 더 안전하고 편하게 이동하도록 도와줘. '인공지능(AI)'은 똑똑하게 우리 말을 알아듣고 도와주며, '사물인터넷(IoT)'은 집 안의 불이나 냉장고가 똑똑해져서 서로 대화하고 우리 생활을 더 편리하게 해준단다. 이런 기술들 덕분에 우리의 미래 직업도 많이 달라질 거야. 과학은 이렇게 우리의 삶과 세상을 끊임없이 변화시키고 있어.</div><div class="summary-item"><b>4. </b> **아픈 지구를 살리는 과학의 힘! (인류의 지속가능한 삶을 위한 노력 - 환경 문제와 과학기술의 역할)**: 하지만 과학 발전만 좋은 건 아니야. 우리가 쓰는 에너지나 물건 때문에 '자원 고갈', '기후 변화', '수질 오염' 같은 심각한 환경 문제가 생겼어. 지구가 아파하고 있는 거지. 이 문제를 해결하기 위해 과학자들이 밤낮없이 노력하고 있어! 환경을 오염시키지 않는 '수소 에너지'나 햇빛으로 전기를 만드는 '태양광 에너지' 같은 깨끗한 에너지를 개발하고, 바다에 버려진 쓰레기를 치우는 '오염 물질 회수 로봇' 같은 멋진 기술들도 만들고 있단다. 과학은 우리가 만든 문제를 해결하고, 더 나은 환경을 만들기 위한 중요한 열쇠가 될 수 있어.</div><div class="summary-item"><b>5. </b> **우리 모두 지구 지킴이! (인류의 지속가능한 삶을 위한 노력 - 개인적/사회적 실천 방안)**: 과학기술만으로 지구를 살릴 수는 없어. 우리 다니엘을 포함한 모두의 노력이 필요해! 사용한 물건을 다시 쓸 수 있게 하는 '자원 순환' (예: 분리수거를 잘하는 것)을 생활화하고, 필요 없는 '일회용품' 사용을 줄이는 작은 습관들이 정말 중요하단다. 개인의 작은 실천들이 모이고, 과학 기술이 함께 발전하면 우리 인류는 지구에서 오랫동안 행복하게 살아갈 수 있을 거야. 우리 함께 노력해볼까?</div>
                 </div>
                 <div class="lab-banner">
-                    <a href="./danial_lab.html" class="lab-btn">🔬 나만의 온라인 실험실 입장하기</a>
+                    <a href="./danial_lab.html" class="lab-btn">🔬 나만의 온라인 실험실 입장하기 (클릭!)</a>
                 </div>
             </div>
 
             <div class="section">
-                <h2>📺 아빠 추천 영상 학습</h2>
-                <div class="youtube-grid">
+                <h2>📺 추천 영상 학습</h2>
+                <div class="yt-grid">
     
                 <div class="yt-card">
-                    <div style="padding:15px; min-height:80px;"><b>[중1 과학 안현정] 과학적 탐구 방법 - 온리원중등...</b></div>
-                    <a href="https://www.youtube.com/watch?v=Z9xsx0y123o" target="_blank" class="yt-btn">▶ 영상 보기</a>
+                    <div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">물,콜라,쥬스의 얼음이 녹는 속도가 다른 이유 (신비한 과학실험실) #과학 #science</div>
+                    <a href="https://www.youtube.com/watch?v=_WiTINaXmd4" target="_blank" class="yt-btn">▶ 영상 보기</a>
                 </div>
             
                 <div class="yt-card">
-                    <div style="padding:15px; min-height:80px;"><b>미래에는 로봇을 훈련시키는 직업이 각광받는다? / YTN 사이언스...</b></div>
-                    <a href="https://www.youtube.com/watch?v=5zgGj0JE3K0" target="_blank" class="yt-btn">▶ 영상 보기</a>
-                </div>
-            
-                <div class="yt-card">
-                    <div style="padding:15px; min-height:80px;"><b>이것만 있으면 지구온난화 해결 가능합니다...</b></div>
-                    <a href="https://www.youtube.com/watch?v=lcsrt5wAVrk" target="_blank" class="yt-btn">▶ 영상 보기</a>
-                </div>
-            
-                <div class="yt-card">
-                    <div style="padding:15px; min-height:80px;"><b>발전과 신재생 에너지 | 신 에너지 조...</b></div>
-                    <a href="https://www.youtube.com/watch?v=JPdfax3bMLk" target="_blank" class="yt-btn">▶ 영상 보기</a>
+                    <div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">중1  -  01 과학과 인류의 지속 가능한 삶 1 ( 2022개정 )</div>
+                    <a href="https://www.youtube.com/watch?v=6_AkTPmUhHo" target="_blank" class="yt-btn">▶ 영상 보기</a>
                 </div>
             
                 </div>
             </div>
 
             <div class="section">
-                <h2>📝 실력 쑥쑥! 미니 테스트 (10문제)</h2>
+                <h2>📝 실력 확인! 미니 테스트 (10문제)</h2>
                 <div class="quiz-container">
     
-            <div class="card">
-                <p><b>Q1. 과학 탐구에서 가설 설정은 '이런 결과가 나올 거야!' 하고 미리 예상해보는 단계이다.</b></p>
+            <div class="q-card">
+                <p><b>Q1. 과학 탐구를 할 때 '공정한 실험을 위해 똑같이 맞출 조건'은 우리가 비교하고 싶은 것 외에는 모두 같게 해야 한다.</b></p>
                 
-                <button class="btn-check" onclick="showAns('ans0')">정답 및 해설 확인</button>
-                <div id="ans0" class="ans-box">
-                    <b>정답: O</b><br>
-                    <small>💡 가설은 아직 확정되지 않은 잠정적인 답을 예상해보는 단계로, 실험을 통해 맞는지 틀리는지 확인해야 해요.</small>
-                </div>
+                <button class="check-btn" onclick="toggleAns('ans0')">정답 확인</button>
+                <div id="ans0" class="ans-box">정답: O <br><small>💡 그래야 우리가 다르게 한 조건 때문에 결과가 달라졌다는 것을 확실하게 알 수 있어.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q2. '음료수 종류에 따라 얼음이 녹는 시간 비교' 실험에서, 음료수의 양은 다르게 하고 얼음의 크기는 같게 해야 공정한 실험이다.</b></p>
+            <div class="q-card">
+                <p><b>Q2. 불의 발견은 인류 문명 발전에 아무런 영향을 주지 않았다.</b></p>
                 
-                <button class="btn-check" onclick="showAns('ans1')">정답 및 해설 확인</button>
-                <div id="ans1" class="ans-box">
-                    <b>정답: X</b><br>
-                    <small>💡 공정한 실험을 위해서는 '다르게 할 조건'인 음료수 종류를 제외한 다른 조건들(음료수의 양, 얼음의 크기, 주변 온도 등)은 모두 '똑같이 맞출 조건'으로 같게 해야 해요.</small>
-                </div>
+                <button class="check-btn" onclick="toggleAns('ans1')">정답 확인</button>
+                <div id="ans1" class="ans-box">정답: X <br><small>💡 불은 따뜻함, 음식 조리, 어둠 해소 등 인류 문명 발전에 엄청난 영향을 주었단다.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q3. 인류가 불을 사용한 것은 과학 기술 발전과는 관련이 없다.</b></p>
+            <div class="q-card">
+                <p><b>Q3. 드론, 자율주행차, 인공지능(AI)은 모두 첨단 과학기술이며 우리 삶을 더 편리하게 해줄 수 있다.</b></p>
                 
-                <button class="btn-check" onclick="showAns('ans2')">정답 및 해설 확인</button>
-                <div id="ans2" class="ans-box">
-                    <b>정답: X</b><br>
-                    <small>💡 불의 사용은 인류가 추위로부터 몸을 보호하고 음식을 익혀 먹을 수 있게 한 중요한 과학 기술 발전의 시작이었어요.</small>
-                </div>
+                <button class="check-btn" onclick="toggleAns('ans2')">정답 확인</button>
+                <div id="ans2" class="ans-box">정답: O <br><small>💡 이 기술들은 우리 생활의 많은 부분을 변화시키고 더 편리하게 만들어 줄 거야.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q4. 수소 에너지나 태양광 에너지는 이산화탄소 배출이 적어 기후 변화 문제를 해결하는 데 도움이 된다.</b></p>
+            <div class="q-card">
+                <p><b>Q4. 자원 고갈, 기후 변화, 수질 오염과 같은 환경 문제는 과학기술만으로도 완벽하게 해결할 수 있다.</b></p>
                 
-                <button class="btn-check" onclick="showAns('ans3')">정답 및 해설 확인</button>
-                <div id="ans3" class="ans-box">
-                    <b>정답: O</b><br>
-                    <small>💡 수소 에너지나 태양광 에너지는 화석 연료와 달리 연소 시 이산화탄소 발생량이 매우 적거나 없어서 지구 온난화를 막는 데 큰 역할을 합니다.</small>
-                </div>
+                <button class="check-btn" onclick="toggleAns('ans3')">정답 확인</button>
+                <div id="ans3" class="ans-box">정답: X <br><small>💡 과학기술이 중요한 역할을 하지만, 우리 모두의 개인적, 사회적 노력이 함께 필요해.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q5. 일회용품 사용을 줄이는 개인적인 실천은 인류의 지속가능한 삶에 큰 영향을 주지 못한다.</b></p>
+            <div class="q-card">
+                <p><b>Q5. 환경 보호를 위해 일회용품 사용을 줄이는 것은 지속가능한 삶을 위한 개인적인 실천 방안 중 하나이다.</b></p>
                 
-                <button class="btn-check" onclick="showAns('ans4')">정답 및 해설 확인</button>
-                <div id="ans4" class="ans-box">
-                    <b>정답: X</b><br>
-                    <small>💡 우리 각자의 작은 실천들이 모여 환경 오염을 줄이고 자원을 아끼는 큰 힘이 되므로, 지속가능한 삶에 아주 중요한 영향을 줍니다.</small>
-                </div>
+                <button class="check-btn" onclick="toggleAns('ans4')">정답 확인</button>
+                <div id="ans4" class="ans-box">정답: O <br><small>💡 맞아! 작은 실천이 모여 큰 변화를 만들 수 있어.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q6. 다음 중 과학적 탐구 과정의 순서가 바르게 연결된 것은?</b></p>
-                <ul><li>① 가설 설정 → 문제 인식 → 탐구 수행 → 결과 해석 및 결론 도출</li><li>② 문제 인식 → 가설 설정 → 탐구 설계 → 탐구 수행 → 결과 해석 및 결론 도출</li><li>③ 탐구 설계 → 문제 인식 → 가설 설정 → 탐구 수행 → 결과 해석 및 결론 도출</li><li>④ 문제 인식 → 탐구 수행 → 가설 설정 → 탐구 설계 → 결과 해석 및 결론 도출</li></ul>
-                <button class="btn-check" onclick="showAns('ans5')">정답 및 해설 확인</button>
-                <div id="ans5" class="ans-box">
-                    <b>정답: 2</b><br>
-                    <small>💡 과학 탐구는 궁금한 점을 발견하는 '문제 인식'부터 시작해서 잠정적인 답인 '가설 설정', 어떻게 실험할지 계획하는 '탐구 설계', 직접 실험하는 '탐구 수행', 그리고 결과를 정리하는 '결과 해석 및 결론 도출' 순서로 진행돼요.</small>
-                </div>
+            <div class="q-card">
+                <p><b>Q6. 음료수 종류에 따라 얼음이 녹는 시간을 비교하는 실험에서 '다르게 할 조건'은 무엇일까?</b></p>
+                <ul style="list-style:none; padding:0;"><li>얼음의 크기</li><li>음료수가 담긴 컵의 모양</li><li>음료수의 종류</li><li>실험을 하는 방의 온도</li></ul>
+                <button class="check-btn" onclick="toggleAns('ans5')">정답 확인</button>
+                <div id="ans5" class="ans-box">정답: 3 <br><small>💡 우리가 비교하고 싶은 것이 '음료수 종류'이므로, 이것만 다르게 하고 나머지는 '공정한 실험을 위해 똑같이 맞출 조건'으로 해야 해.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q7. 다음 중 현대 과학기술이 우리의 삶과 직업에 미치는 영향으로 가장 거리가 먼 것은?</b></p>
-                <ul><li>① 드론을 활용한 택배 배송이 가능해진다.</li><li>② 인공지능이 복잡한 데이터를 분석하여 새로운 직업을 창출한다.</li><li>③ 사물 인터넷으로 집 안의 가전제품들을 스마트폰으로 제어할 수 있다.</li><li>④ 인류가 지구의 자원 고갈 문제를 무시하고 계속 소비하게 한다.</li></ul>
-                <button class="btn-check" onclick="showAns('ans6')">정답 및 해설 확인</button>
-                <div id="ans6" class="ans-box">
-                    <b>정답: 4</b><br>
-                    <small>💡 현대 과학기술은 삶을 편리하게 하고 새로운 직업을 만들지만, 자원 고갈 문제를 무시하고 소비하게 하는 것은 과학 기술의 긍정적인 영향이라기보다는 잘못된 사용이나 인류의 윤리적 문제와 관련이 깊습니다. 오히려 과학은 자원 고갈 문제를 해결하는 데 기여하려고 노력해요.</small>
-                </div>
+            <div class="q-card">
+                <p><b>Q7. 다음 중 인류의 초기 문명 발전에 가장 큰 영향을 주었던 과학적 발견으로 볼 수 있는 것은?</b></p>
+                <ul style="list-style:none; padding:0;"><li>드론의 발명</li><li>자율주행차 개발</li><li>불의 사용</li><li>인공지능 개발</li></ul>
+                <button class="check-btn" onclick="toggleAns('ans6')">정답 확인</button>
+                <div id="ans6" class="ans-box">정답: 3 <br><small>💡 불의 사용은 인류에게 따뜻함, 음식 조리, 안전 등 생존에 필수적인 요소를 제공하여 문명 발전에 결정적인 역할을 했어.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q8. 다음 중 지구의 '기후 변화' 문제에 해당하는 현상은?</b></p>
-                <ul><li>① 석유, 석탄과 같은 에너지 자원이 바닥나는 것</li><li>② 공장 폐수와 생활 하수로 강과 바다가 오염되는 것</li><li>③ 온실가스 증가로 지구의 평균 기온이 상승하고 이상 기후가 발생하는 것</li><li>④ 플라스틱 쓰레기가 바다에 쌓여 해양 생물이 피해를 입는 것</li></ul>
-                <button class="btn-check" onclick="showAns('ans7')">정답 및 해설 확인</button>
-                <div id="ans7" class="ans-box">
-                    <b>정답: 3</b><br>
-                    <small>💡 기후 변화는 이산화탄소와 같은 온실가스가 많아져서 지구의 온도가 올라가고, 이로 인해 극지방 빙하가 녹거나 가뭄, 홍수 같은 이상 기후 현상이 심해지는 것을 말해요.</small>
-                </div>
+            <div class="q-card">
+                <p><b>Q8. 다음 첨단 과학기술과 그 예시가 바르게 연결되지 않은 것은?</b></p>
+                <ul style="list-style:none; padding:0;"><li>드론 - 택배 배달, 영상 촬영</li><li>자율주행차 - 운전자가 직접 운전하는 차</li><li>인공지능(AI) - 사람의 말을 알아듣고 도와주는 비서</li><li>사물인터넷(IoT) - 집 안 기기들이 서로 연결되어 편리하게 작동</li></ul>
+                <button class="check-btn" onclick="toggleAns('ans7')">정답 확인</button>
+                <div id="ans7" class="ans-box">정답: 2 <br><small>💡 자율주행차는 운전자가 직접 운전하는 것이 아니라, 스스로 주변을 인식하고 판단하여 운전하는 차를 말해.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q9. 환경 문제를 해결하기 위한 과학기술의 노력으로 볼 수 없는 것은?</b></p>
-                <ul><li>① 태양광 발전을 통해 깨끗한 에너지 생산</li><li>② 오염 물질을 회수하는 로봇 개발</li><li>③ 수소 에너지를 이용한 친환경 자동차 개발</li><li>④ 화석 연료의 무분별한 사용을 장려하여 경제 발전 도모</li></ul>
-                <button class="btn-check" onclick="showAns('ans8')">정답 및 해설 확인</button>
-                <div id="ans8" class="ans-box">
-                    <b>정답: 4</b><br>
-                    <small>💡 화석 연료의 무분별한 사용은 환경 오염과 자원 고갈을 심화시키므로, 환경 문제를 해결하기 위한 과학기술의 노력과는 반대되는 행동입니다. 과학기술은 오히려 화석 연료를 대체할 방법을 찾고 있어요.</small>
-                </div>
+            <div class="q-card">
+                <p><b>Q9. 다음 중 인류의 지속가능한 삶을 위협하는 환경 문제가 아닌 것은?</b></p>
+                <ul style="list-style:none; padding:0;"><li>자원 고갈</li><li>기후 변화</li><li>수질 오염</li><li>깨끗한 공기 확보</li></ul>
+                <button class="check-btn" onclick="toggleAns('ans8')">정답 확인</button>
+                <div id="ans8" class="ans-box">정답: 4 <br><small>💡 깨끗한 공기 확보는 환경 문제가 아니라, 우리가 지향해야 할 목표이자 해결책 중 하나야. 자원 고갈, 기후 변화, 수질 오염은 심각한 환경 문제들이지.</small></div>
             </div>
         
-            <div class="card">
-                <p><b>Q10. 인류의 지속가능한 삶을 위해 우리가 실천할 수 있는 가장 적절한 방법은?</b></p>
-                <ul><li>① 일회용품을 많이 사용하여 편의를 추구한다.</li><li>② 사용하지 않는 전기 제품은 켜두어 언제든 사용할 수 있게 한다.</li><li>③ 재활용이 가능한 물품은 분리수거를 철저히 하고 개인 컵을 사용한다.</li><li>④ 먼 거리를 이동할 때는 항상 자가용만 이용한다.</li></ul>
-                <button class="btn-check" onclick="showAns('ans9')">정답 및 해설 확인</button>
-                <div id="ans9" class="ans-box">
-                    <b>정답: 3</b><br>
-                    <small>💡 재활용과 일회용품 줄이기는 자원 낭비를 막고 환경 오염을 줄이는 가장 대표적이고 효과적인 개인 실천 방안입니다. 나머지는 환경에 해로운 행동이에요.</small>
-                </div>
+            <div class="q-card">
+                <p><b>Q10. 지속가능한 삶을 위한 개인적인 실천 방안으로 가장 적절한 것은?</b></p>
+                <ul style="list-style:none; padding:0;"><li>새로운 전자제품을 자주 구매한다.</li><li>분리수거를 철저히 하여 자원 순환을 돕는다.</li><li>에너지를 절약하지 않고 마음껏 사용한다.</li><li>환경 오염 물질을 아무 곳에나 버린다.</li></ul>
+                <button class="check-btn" onclick="toggleAns('ans9')">정답 확인</button>
+                <div id="ans9" class="ans-box">정답: 2 <br><small>💡 분리수거를 잘하는 것은 자원을 다시 사용하여 쓰레기를 줄이는 아주 중요한 실천 방법이야.</small></div>
             </div>
         
                 </div>
             </div>
-            <div style="text-align:center; padding:40px; color:#999;">
-                ❤️ 아빠가 다니엘을 위해 정성껏 만들었어. 화이팅!
-            </div>
+            <div style="text-align:center; padding:40px; color:#bdc3c7;">❤️ 아빠가 다니엘을 위해 정성껏 만들었어. 화이팅!</div>
         </div>
     </body>
     </html>

@@ -1,298 +1,51 @@
-<div id="simulator-container">
-    <h2>변인 통제 실험 시뮬레이터: 얼음 녹는 시간 비교</h2>
-    <p>어떤 조건이 얼음 녹는 시간에 영향을 미치는지 알아볼까요? 실험을 직접 설계해 보세요!</p>
 
-    <div class="experiment-design">
-        <h3>1. 무엇이 얼음 녹는 시간에 영향을 미치는지 탐구할까요? (독립 변인 선택)</h3>
-        <select id="independentVar">
-            <option value="drinkType">음료수 종류</option>
-            <option value="cupMaterial">컵 재질</option>
-            <option value="roomTemp">실내 온도</option>
-        </select>
-        <p class="instruction-text">선택한 조건만 다르게 하고, 나머지는 모두 같게 해야 정확한 결과를 얻을 수 있어요!</p>
-    </div>
-
-    <div class="experiment-conditions">
-        <h3>2. 두 가지 실험 조건을 설정해 보세요.</h3>
-
-        <div class="exp-group">
-            <h4>실험 A</h4>
-            <label for="drinkA">음료수:</label>
-            <select id="drinkA">
-                <option value="water">물</option>
-                <option value="cola">콜라</option>
-                <option value="juice">주스</option>
-            </select><br>
-
-            <label for="cupA">컵 재질:</label>
-            <select id="cupA">
-                <option value="glass">유리</option>
-                <option value="plastic">플라스틱</option>
-                <option value="metal">금속</option>
-            </select><br>
-
-            <label for="tempA">실내 온도:</label>
-            <select id="tempA">
-                <option value="cold">차가운 곳</option>
-                <option value="room">상온</option>
-                <option value="warm">따뜻한 곳</option>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>다니엘의 얼음 실험실</title>
+        <style>
+            body { font-family: 'Malgun Gothic', sans-serif; background: #eef2f3; text-align: center; padding: 20px; }
+            .lab-box { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+            .ice { width: 120px; height: 120px; background: linear-gradient(135deg, #fff, #00d2ff); margin: 30px auto; border-radius: 15px; transition: 0.5s; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+            .btn { background: #e67e22; color: white; border: none; padding: 15px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; }
+            #timer { font-size: 2.5em; color: #e74c3c; margin: 10px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="lab-box">
+            <h2>🔬 얼음 녹이기 실험</h2>
+            <p>공정한 실험을 위해 <b>조건을 똑같이</b> 맞춰보자!</p>
+            <div id="iceBlock" class="ice">얼음</div>
+            <div id="timer">00:00</div>
+            <select id="drink" style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px;">
+                <option value="15">그냥 물 (제일 빨리 녹음)</option>
+                <option value="30">오렌지 주스 (조금 느림)</option>
+                <option value="50">설탕물 (가장 느림)</option>
             </select>
+            <button class="btn" onclick="start()">실험 시작!</button>
+            <p id="msg" style="margin-top:20px; color:#34495e;">음료수를 선택하고 버튼을 눌러!</p>
+            <a href="./index.html" style="display:block; margin-top:20px; color:#3498db;">← 리포트로 돌아가기</a>
         </div>
-
-        <div class="exp-group">
-            <h4>실험 B</h4>
-            <label for="drinkB">음료수:</label>
-            <select id="drinkB">
-                <option value="water">물</option>
-                <option value="cola">콜라</option>
-                <option value="juice">주스</option>
-            </select><br>
-
-            <label for="cupB">컵 재질:</label>
-            <select id="cupB">
-                <option value="glass">유리</option>
-                <option value="plastic">플라스틱</option>
-                <option value="metal">금속</option>
-            </select><br>
-
-            <label for="tempB">실내 온도:</label>
-            <select id="tempB">
-                <option value="cold">차가운 곳</option>
-                <option value="room">상온</option>
-                <option value="warm">따뜻한 곳</option>
-            </select>
-        </div>
-    </div>
-
-    <button onclick="runExperiment()">실험 시작!</button>
-
-    <div id="results">
-        <h3>실험 결과 및 피드백</h3>
-        <p id="feedbackText">여기에 결과가 나타납니다.</p>
-        <p id="meltingTimeA" style="display:none;"></p>
-        <p id="meltingTimeB" style="display:none;"></p>
-        <p class="explanation" style="display:none;"></p>
-    </div>
-</div>
-
-<style>
-    #simulator-container {
-        font-family: 'Malgun Gothic', 'Arial', sans-serif;
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        background-color: #f9f9f9;
-        color: #333;
-    }
-    h2, h3 {
-        color: #0056b3;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    .experiment-design, .experiment-conditions {
-        margin-bottom: 25px;
-        padding: 15px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        background-color: #fff;
-    }
-    .instruction-text {
-        font-size: 0.9em;
-        color: #666;
-        margin-top: 5px;
-        text-align: center;
-    }
-    select, button {
-        padding: 8px 12px;
-        margin: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
-        cursor: pointer;
-        box-sizing: border-box;
-    }
-    button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        display: block;
-        margin: 20px auto;
-        transition: background-color 0.3s ease;
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    .exp-group {
-        display: inline-block;
-        vertical-align: top;
-        width: 48%;
-        padding: 10px;
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        margin: 1%;
-        box-sizing: border-box;
-    }
-    .exp-group h4 {
-        margin-top: 0;
-        color: #007bff;
-        text-align: center;
-    }
-    .exp-group label {
-        display: inline-block;
-        width: 80px;
-        margin-bottom: 8px;
-        font-weight: bold;
-    }
-    .exp-group select {
-        width: calc(100% - 90px);
-        margin-left: 0;
-    }
-    #results {
-        margin-top: 30px;
-        padding: 20px;
-        border: 1px solid #d4edda;
-        background-color: #e6ffe6;
-        border-radius: 8px;
-        color: #0c6731;
-        display: none; /* Hidden by default */
-    }
-    #results h3 {
-        color: #0c6731;
-    }
-    #results.error {
-        border-color: #f5c6cb;
-        background-color: #ffe6e6;
-        color: #721c24;
-    }
-    #results.error h3 {
-        color: #721c24;
-    }
-    .explanation {
-        font-style: italic;
-        margin-top: 10px;
-        line-height: 1.5;
-    }
-</style>
-
-<script>
-    function getExperimentConditions(suffix) {
-        return {
-            drinkType: document.getElementById('drink' + suffix).value,
-            cupMaterial: document.getElementById('cup' + suffix).value,
-            roomTemp: document.getElementById('temp' + suffix).value
-        };
-    }
-
-    function calculateMeltingTime(conditions) {
-        let time = 60; // Base melting time in minutes
-
-        // Drink type effect (Water melts fastest, Cola/Juice slightly slower due to solutes)
-        // Simplified: water has melting point 0C, impurities lower freezing point but could slow overall melting if heat transfer is less efficient
-        // For 1st grader: water ~ fastest, sugary drinks ~ slightly slower
-        if (conditions.drinkType === 'cola' || conditions.drinkType === 'juice') {
-            time += 5; 
-        }
-
-        // Cup material effect (Metal conducts heat fastest, plastic slowest)
-        if (conditions.cupMaterial === 'metal') {
-            time -= 10;
-        } else if (conditions.cupMaterial === 'plastic') {
-            time += 5;
-        }
-
-        // Room temperature effect
-        if (conditions.roomTemp === 'warm') {
-            time -= 15;
-        } else if (conditions.roomTemp === 'cold') {
-            time += 10;
-        }
-        return Math.max(10, time); // Minimum melting time to avoid negative or too quick results
-    }
-
-    function runExperiment() {
-        const independentVar = document.getElementById('independentVar').value;
-        const expA = getExperimentConditions('A');
-        const expB = getExperimentConditions('B');
-
-        let feedbackText = '';
-        let isCorrectDesign = true;
-        let explanation = '';
-        const resultsDiv = document.getElementById('results');
-        const feedbackElem = document.getElementById('feedbackText');
-        const meltingTimeAElem = document.getElementById('meltingTimeA');
-        const meltingTimeBElem = document.getElementById('meltingTimeB');
-        const explanationElem = document.querySelector('.explanation');
-
-        resultsDiv.style.display = 'block';
-        resultsDiv.classList.remove('error');
-        resultsDiv.style.backgroundColor = ''; // Reset background
-        resultsDiv.style.borderColor = ''; // Reset border
-        resultsDiv.style.color = ''; // Reset color
-        meltingTimeAElem.style.display = 'none';
-        meltingTimeBElem.style.display = 'none';
-        explanationElem.style.display = 'none';
-
-        // Check for controlled variables
-        const controlledVars = ['drinkType', 'cupMaterial', 'roomTemp'].filter(v => v !== independentVar);
-
-        for (const cv of controlledVars) {
-            if (expA[cv] !== expB[cv]) {
-                isCorrectDesign = false;
-                explanation += `<br>- <strong>'${independentVar}'</strong>의 영향을 알아보고 싶다면, <strong>'${getVarName(cv)}'</strong>은(는) 실험 A와 실험 B에서 <strong>같게</strong> 해야 합니다. 현재는 다르게 설정되어 있어요.`;
-            } else {
-                explanation += `<br>- <strong>'${getVarName(cv)}'</strong>은(는) 실험 A와 실험 B에서 <strong>같게</strong> 설정하여 잘 통제되었습니다.`;
+        <script>
+            let t = 0, timer = null;
+            function start() {
+                const ice = document.getElementById('iceBlock');
+                const target = parseInt(document.getElementById('drink').value);
+                t = 0; if(timer) clearInterval(timer);
+                ice.style.transform = "scale(1)"; ice.style.opacity = "1";
+                timer = setInterval(() => {
+                    t++;
+                    document.getElementById('timer').innerText = `00:${String(t).padStart(2, '0')}`;
+                    let s = 1 - (t / target); ice.style.transform = `scale(${s})`; ice.style.opacity = s;
+                    if(t >= target) {
+                        clearInterval(timer);
+                        document.getElementById('msg').innerHTML = `✅ <b>${target}초</b> 만에 녹았어! 조건을 잘 맞췄나봐!`;
+                        ice.style.transform = "scale(0)";
+                    }
+                }, 100);
             }
-        }
-
-        // Check independent variable
-        if (expA[independentVar] === expB[independentVar]) {
-            isCorrectDesign = false;
-            explanation += `<br>- <strong>'${getVarName(independentVar)}'</strong>의 영향을 탐구하고 싶다면, 실험 A와 실험 B에서 <strong>다르게</strong> 설정해야 합니다. 현재는 같게 설정되어 있어요.`;
-        } else {
-            explanation += `<br>- <strong>'${getVarName(independentVar)}'</strong>은(는) 실험 A와 실험 B에서 <strong>다르게</strong> 설정하여, 무엇을 탐구하는지 명확합니다.`;
-        }
-
-        if (isCorrectDesign) {
-            feedbackText = "⭐ 훌륭해요! 변인 통제를 정확하게 설계했어요! ⭐";
-            resultsDiv.style.backgroundColor = '#e6ffe6'; // Light green
-            resultsDiv.style.borderColor = '#4CAF50';
-            resultsDiv.style.color = '#1b5e20';
-            explanationElem.style.display = 'block';
-
-            const timeA = calculateMeltingTime(expA);
-            const timeB = calculateMelculatingMeltingTime(expB);
-
-            meltingTimeAElem.textContent = `실험 A (얼음 녹는 시간): 약 ${timeA}분`;
-            meltingTimeBElem.textContent = `실험 B (얼음 녹는 시간): 약 ${timeB}분`;
-            
-            meltingTimeAElem.style.display = 'block';
-            meltingTimeBElem.style.display = 'block';
-
-            explanation += `<br><br><strong>결론 도출:</strong> 위의 결과들을 통해 '${getVarName(independentVar)}'이(가) 얼음 녹는 시간에 어떤 영향을 미치는지 알 수 있습니다. (예: 물의 종류에 따라 얼음이 녹는 시간에 차이가 있다면, 물의 종류가 얼음 녹는 시간에 영향을 준다고 할 수 있습니다.)`;
-
-        } else {
-            feedbackText = "⚠️ 다시 한번 변인 통제를 확인해 보세요! ⚠️";
-            resultsDiv.classList.add('error');
-            resultsDiv.style.backgroundColor = '#ffe6e6'; // Light red
-            resultsDiv.style.borderColor = '#F44336';
-            resultsDiv.style.color = '#721c24';
-            explanationElem.style.display = 'block';
-            explanation += `<br><br>정확한 탐구를 위해서는 '다르게 할 조건' (독립 변인)은 하나만, '같게 할 조건' (통제 변인)은 모두 같게 설정해야 합니다.`;
-        }
-
-        feedbackElem.innerHTML = feedbackText;
-        explanationElem.innerHTML = "<h4><br>변인 통제 설계 평가:</h4>" + explanation;
-    }
-
-    function getVarName(varId) {
-        switch(varId) {
-            case 'drinkType': return '음료수 종류';
-            case 'cupMaterial': return '컵 재질';
-            case 'roomTemp': return '실내 온도';
-            default: return varId;
-        }
-    }
-</script>
+        </script>
+    </body>
+    </html>
+    

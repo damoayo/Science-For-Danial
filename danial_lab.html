@@ -6,44 +6,36 @@
         <title>다니엘의 얼음 실험실</title>
         <style>
             body { font-family: 'Malgun Gothic', sans-serif; background: #eef2f3; text-align: center; padding: 20px; }
-            .lab-box { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-            .ice { width: 120px; height: 120px; background: linear-gradient(135deg, #fff, #00d2ff); margin: 30px auto; border-radius: 15px; transition: 0.5s; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-            .btn { background: #e67e22; color: white; border: none; padding: 15px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; }
-            #timer { font-size: 2.5em; color: #e74c3c; margin: 10px 0; }
+            .lab-box { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+            .ice-container { height: 180px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: #f9fbfd; border-radius: 15px; position: relative; }
+            .ice { width: 100px; height: 100px; background: linear-gradient(135deg, #fff, #abdfff); border-radius: 15px; transition: transform 0.1s; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #3498db; }
+            .btn { background: #e67e22; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; }
+            #timer { font-size: 2.5em; color: #e74c3c; font-weight: bold; }
         </style>
     </head>
     <body>
         <div class="lab-box">
             <h2>🔬 얼음 녹이기 실험</h2>
-            <p>공정한 실험을 위해 <b>조건을 똑같이</b> 맞춰보자!</p>
-            <div id="iceBlock" class="ice">얼음</div>
+            <p>공정한 실험을 위해 <b>똑같은 조건</b>을 맞춰보자!</p>
             <div id="timer">00:00</div>
+            <div class="ice-container"><div id="iceBlock" class="ice">ICE</div></div>
             <select id="drink" style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px;">
-                <option value="15">그냥 물 (제일 빨리 녹음)</option>
-                <option value="30">오렌지 주스 (조금 느림)</option>
-                <option value="50">설탕물 (가장 느림)</option>
+                <option value="15">물 (빨름)</option><option value="35">주스 (중간)</option><option value="55">설탕물 (느림)</option>
             </select>
             <button class="btn" onclick="start()">실험 시작!</button>
-            <p id="msg" style="margin-top:20px; color:#34495e;">음료수를 선택하고 버튼을 눌러!</p>
-            <a href="./index.html" style="display:block; margin-top:20px; color:#3498db;">← 리포트로 돌아가기</a>
+            <p id="msg" style="margin-top:20px; font-weight:bold;"></p>
+            <a href="./index.html" style="color:#3498db; text-decoration:none;">← 돌아가기</a>
         </div>
         <script>
-            let t = 0, timer = null;
-            function start() {
-                const ice = document.getElementById('iceBlock');
-                const target = parseInt(document.getElementById('drink').value);
-                t = 0; if(timer) clearInterval(timer);
-                ice.style.transform = "scale(1)"; ice.style.opacity = "1";
-                timer = setInterval(() => {
-                    t++;
-                    document.getElementById('timer').innerText = `00:${String(t).padStart(2, '0')}`;
-                    let s = 1 - (t / target); ice.style.transform = `scale(${s})`; ice.style.opacity = s;
-                    if(t >= target) {
-                        clearInterval(timer);
-                        document.getElementById('msg').innerHTML = `✅ <b>${target}초</b> 만에 녹았어! 조건을 잘 맞췄나봐!`;
-                        ice.style.transform = "scale(0)";
-                    }
-                }, 100);
+            let t=0, timer=null;
+            function start(){
+                const ice=document.getElementById('iceBlock'), target=parseInt(document.getElementById('drink').value);
+                t=0; if(timer) clearInterval(timer);
+                timer=setInterval(()=>{
+                    t++; document.getElementById('timer').innerText=`00:${String(t).padStart(2,'0')}`;
+                    let s=1-(t/target); ice.style.transform=`scale(${s})`; ice.style.opacity=s;
+                    if(t>=target){ clearInterval(timer); document.getElementById('msg').innerText="✅ 다 녹았다! 조건에 따라 속도가 다르지?"; ice.style.transform="scale(0)"; }
+                },100);
             }
         </script>
     </body>

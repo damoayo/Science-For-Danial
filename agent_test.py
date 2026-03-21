@@ -50,7 +50,10 @@ prompt = f"""
 # 4. API 호출 (모델명과 형식을 최신 규격으로 수정!)
 try:
     response = ai_client.models.generate_content(
-        model='gemini-1.5-flash-latest', # 'models/gemini-1.5-flash' 대신 이렇게만 써봐!
+        model='gemini-2.0-flash-latest', # 'models/gemini-1.5-flash' 대신 이렇게만 써봐!
+        # model='gemini-1.5-flash', #(이미 해봤다면 패스)
+        # model='models/gemini-1.5-flash', #(앞에 models/ 추가)
+        # model='gemini-1.5-flash-001', #(버전 숫자까지 명시)
         contents=prompt,
         config=types.GenerateContentConfig(
             temperature=0.1,

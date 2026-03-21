@@ -2,9 +2,9 @@ name: Danial Science Report Update
 
 on:
   schedule:
-    - cron: '0 0 * * 6' # 한국 시간 매주 토요일 오전 9시
+    - cron: "0 0 * * 6" # 한국 시간 매주 토요일 오전 9시
   push:
-    branches: [ main ] # 메인 브랜치에 올릴 때마다 테스트로 자동 실행
+    branches: [main] # 메인 브랜치에 올릴 때마다 테스트로 자동 실행
   workflow_dispatch: # 버튼 눌러서 수동으로도 실행 가능하게 함
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -34,5 +34,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: . # 현재 폴더 전체를 배포
-          branch: gh-pages # 결과물을 모아둘 브랜치 이름
+          folder: . # 현재 폴더 전체를 올리겠다!
+          branch: gh-pages
+          clean: true # 예전 파일은 싹 지우고 새로 올리기

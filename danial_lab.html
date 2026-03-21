@@ -1,189 +1,45 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>변인 통제 실험 시뮬레이터</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f4f7f6; color: #333; }
-        .container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); padding: 30px; margin-bottom: 30px; width: 90%; max-width: 800px; }
-        h2 { color: #2c3e50; text-align: center; margin-bottom: 25px; }
-        .experiment-setup { display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 25px; }
-        .experiment-column { flex: 1; min-width: 280px; margin: 10px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #fcfcfc; }
-        .experiment-column h3 { color: #34495e; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
-        select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; font-size: 1rem; }
-        .common-conditions { background-color: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin-top: 20px; }
-        .common-conditions h3 { color: #2e7d32; }
-        button { background-color: #4CAF50; color: white; padding: 12px 25px; border: none; border-radius: 7px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: background-color 0.3s ease; display: block; margin: 20px auto 0; }
-        button:hover { background-color: #45a049; }
-        .results, .feedback { margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.1rem; line-height: 1.6; }
-        .results { background-color: #e3f2fd; border: 1px solid #90caf9; color: #1565c0; }
-        .feedback { background-color: #fffde7; border: 1px solid #ffe082; color: #f9a825; }
-        .feedback.error { background-color: #ffebee; border: 1px solid #ef9a9a; color: #c62828; }
-        .feedback.success { background-color: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>얼음 녹는 시간 비교 실험 🧊</h2>
-        <p style="text-align: center; font-size: 1.05rem; color: #666;">어떤 요인이 얼음이 녹는 시간에 영향을 미칠까? 실험을 설계하고 변인 통제의 중요성을 직접 느껴보세요!</p>
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+    <h2 style="color: #2c3e50; text-align: center;">변인 통제 실험 시뮬레이터: 얼음 녹이기 🧊</h2>
+    <p style="font-size: 1.1em; line-height: 1.6; text-align: center;">어떤 조건이 얼음이 녹는 시간에 영향을 미칠까? 공정한 실험을 위해 <b>변인 통제</b>가 얼마나 중요한지 시뮬레이터로 경험해보세요!</p>
 
-        <div class="experiment-setup">
-            <div class="experiment-column">
-                <h3>🧪 실험 그룹 A</h3>
-                <label for="liquidA">액체 종류:</label>
-                <select id="liquidA">
-                    <option value="물">물</option>
-                    <option value="탄산음료">탄산음료</option>
-                    <option value="주스">주스</option>
-                    <option value="우유">우유</option>
-                </select>
-
-                <label for="containerA">용기 종류:</label>
-                <select id="containerA">
-                    <option value="유리컵">유리컵</option>
-                    <option value="플라스틱컵">플라스틱컵</option>
-                    <option value="스티로폼컵">스티로폼컵</option>
-                </select>
-
-                <label for="iceSizeA">얼음 크기:</label>
-                <select id="iceSizeA">
-                    <option value="작음">작음</option>
-                    <option value="보통">보통</option>
-                    <option value="큼">큼</option>
-                </select>
-            </div>
-
-            <div class="experiment-column">
-                <h3>🧪 실험 그룹 B</h3>
-                <label for="liquidB">액체 종류:</label>
-                <select id="liquidB">
-                    <option value="물">물</option>
-                    <option value="탄산음료">탄산음료</option>
-                    <option value="주스">주스</option>
-                    <option value="우유">우유</option>
-                </select>
-
-                <label for="containerB">용기 종류:</label>
-                <select id="containerB">
-                    <option value="유리컵">유리컵</option>
-                    <option value="플라스틱컵">플라스틱컵</option>
-                    <option value="스티로폼컵">스티로폼컵</option>
-                </select>
-
-                <label for="iceSizeB">얼음 크기:</label>
-                <select id="iceSizeB">
-                    <option value="작음">작음</option>
-                    <option value="보통">보통</option>
-                    <option value="큼">큼</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="common-conditions">
-            <h3>🌡️ 공통 조건 (통제 변인)</h3>
-            <label for="roomTemp">실험실 온도:</label>
-            <select id="roomTemp">
-                <option value="20">20°C</option>
-                <option value="25">25°C</option>
-                <option value="30">30°C</option>
-            </select>
-            <p style="font-size: 0.95rem; color: #4CAF50;">이 값은 두 실험 그룹 모두에게 똑같이 적용됩니다.</p>
-        </div>
-
-        <button onclick="startExperiment()">실험 시작!</button>
-
-        <div class="results" id="results"></div>
-        <div class="feedback" id="feedback">실험 조건을 선택하고 '실험 시작!' 버튼을 눌러보세요.</div>
+    <h3 style="color: #34495e; border-bottom: 1px solid #eee; padding-bottom: 5px;">1. 다르게 할 조건 (독립 변인): 음료수 종류 선택</h3>
+    <div id="beverage-selection" style="margin-bottom: 20px; display: flex; justify-content: space-around;">
+        <label style="margin-right: 15px; font-size: 1.05em;"><input type="radio" name="beverage" value="물" checked> 물</label>
+        <label style="margin-right: 15px; font-size: 1.05em;"><input type="radio" name="beverage" value="콜라"> 콜라</label>
+        <label style="font-size: 1.05em;"><input type="radio" name="beverage" value="오렌지 주스"> 오렌지 주스</label>
     </div>
 
-    <script>
-        function calculateMeltingTime(liquid, container, iceSize, roomTemp) {
-            let baseTime = 15; // 물, 유리컵, 보통 얼음, 20도 기준 시간 (분)
+    <h3 style="color: #34495e; border-bottom: 1px solid #eee; padding-bottom: 5px;">2. 같게 할 조건 (통제 변인):</h3>
+    <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.5;">
+        <li><b>얼음 크기:</b> 2cm x 2cm x 2cm 정육면체 (동일)</li>
+        <li><b>음료수 양:</b> 200ml (동일)</li>
+        <li><b>음료수 초기 온도:</b> 20°C (동일)</li>
+        <li><b>컵 종류:</b> 유리컵 (동일)</li>
+        <li><b>주변 온도:</b> 25°C (동일)</li>
+    </ul>
 
-            // 액체 종류에 따른 영향 (대략적인 값)
-            const liquidEffects = {
-                '물': 0,
-                '탄산음료': -3, // 설탕, 산성으로 인해 살짝 빠름
-                '주스': -2,    // 설탕으로 인해 살짝 빠름
-                '우유': 1     // 지방 등으로 인해 살짝 느림
-            };
+    <button id="start-experiment" style="display: block; width: 80%; padding: 12px 20px; margin: 30px auto 20px auto; background-color: #27ae60; color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; transition: background-color 0.3s ease;">실험 시작!</button>
+    <style> #start-experiment:hover { background-color: #2ecc71; } </style>
 
-            // 용기 종류에 따른 영향 (단열 효과)
-            const containerEffects = {
-                '유리컵': 0,
-                '플라스틱컵': 1, // 유리보다 단열이 아주 살짝 좋음
-                '스티로폼컵': 3  // 단열 효과가 좋아서 느림
-            };
+    <h3 style="color: #34495e; border-bottom: 1px solid #eee; padding-bottom: 5px;">3. 결과 (종속 변인): 얼음이 녹는 시간</h3>
+    <div id="results" style="margin-top: 15px; padding: 15px; border: 1px solid #eee; background-color: #ecf0f1; border-radius: 5px; min-height: 80px;">
+        <p style="text-align: center; color: #555;">실험을 시작하면 결과가 여기에 표시됩니다.</p>
+    </div>
 
-            // 얼음 크기에 따른 영향
-            const iceSizeEffects = {
-                '작음': -2,
-                '보통': 0,
-                '큼': 2
-            };
+    <p style="font-size: 1em; margin-top: 30px; padding: 10px; background-color: #f0f8ff; border-left: 5px solid #3498db; color: #333;"><b>💡 핵심:</b> 음료수 종류에 따른 얼음 녹는 시간 변화를 정확히 알기 위해서는 다른 모든 조건(얼음 크기, 음료수 양 등)을 <b>똑같이</b> 유지해야 해요. 이것이 바로 <b>변인 통제</b>입니다!</p>
+</div>
 
-            // 실내 온도에 따른 영향
-            const tempEffects = {
-                '20': 0,
-                '25': -3,
-                '30': -6
-            };
+<script>
+    const meltingTimes = {
+        "물": "약 15분",
+        "콜라": "약 12분",
+        "오렌지 주스": "약 13분"
+    };
 
-            let time = baseTime;
-            time += liquidEffects[liquid];
-            time += containerEffects[container];
-            time += iceSizeEffects[iceSize];
-            time += tempEffects[roomTemp];
+    document.getElementById('start-experiment').addEventListener('click', function() {
+        const selectedBeverage = document.querySelector('input[name="beverage"]:checked').value;
+        const resultDiv = document.getElementById('results');
 
-            return Math.max(5, Math.round(time)); // 최소 5분 보장
-        }
-
-        function startExperiment() {
-            const liquidA = document.getElementById('liquidA').value;
-            const containerA = document.getElementById('containerA').value;
-            const iceSizeA = document.getElementById('iceSizeA').value;
-
-            const liquidB = document.getElementById('liquidB').value;
-            const containerB = document.getElementById('containerB').value;
-            const iceSizeB = document.getElementById('iceSizeB').value;
-
-            const roomTemp = document.getElementById('roomTemp').value; // 공통 통제 변인
-
-            const resultsDiv = document.getElementById('results');
-            const feedbackDiv = document.getElementById('feedback');
-            resultsDiv.innerHTML = '';
-            feedbackDiv.className = 'feedback';
-
-            // 변인 통제 여부 확인
-            let changedVariables = [];
-            if (liquidA !== liquidB) changedVariables.push('액체 종류');
-            if (containerA !== containerB) changedVariables.push('용기 종류');
-            if (iceSizeA !== iceSizeB) changedVariables.push('얼음 크기');
-
-            if (changedVariables.length === 0) {
-                feedbackDiv.innerHTML = "🤔 모든 조건이 똑같으면 뭘 비교할 수 있을까? 실험 그룹 A와 B 중에 딱 <strong>한 가지 조건만</strong> 다르게 해봐야 해!";
-                feedbackDiv.classList.add('error');
-                return;
-            } else if (changedVariables.length > 1) {
-                feedbackDiv.innerHTML = `🧐 이런! <strong>${changedVariables.join(', ')}</strong> 이렇게 여러 조건이 동시에 다르네? 뭐가 얼음 녹는 시간에 영향을 줬는지 정확히 알기 어렵겠는걸? 한 가지 조건만 다르게 해보자!`;
-                feedbackDiv.classList.add('error');
-                return;
-            } else { // 딱 한 가지 변인만 다름
-                feedbackDiv.innerHTML = `👍 잘했어! <strong>'${changedVariables[0]}'</strong>만 다르게 하고 다른 조건은 모두 똑같게 유지했네! 이렇게 해야 정확한 결과를 얻을 수 있어.`;
-                feedbackDiv.classList.add('success');
-            }
-
-            // 실험 결과 계산
-            const timeA = calculateMeltingTime(liquidA, containerA, iceSizeA, roomTemp);
-            const timeB = calculateMeltingTime(liquidB, containerB, iceSizeB, roomTemp);
-
-            resultsDiv.innerHTML = 
-                `<h3>실험 결과</h3>` +
-                `<p>그룹 A (${liquidA}, ${containerA}, ${iceSizeA} 얼음): <strong>${timeA}분</strong> 만에 얼음이 녹았습니다.</p>` +
-                `<p>그룹 B (${liquidB}, ${containerB}, ${iceSizeB} 얼음): <strong>${timeB}분</strong> 만에 얼음이 녹았습니다.</p>`;
-        }
-    </script>
-</body>
-</html>
+        resultDiv.innerHTML = `<p style="text-align: center; font-size: 1.1em;">선택된 음료수: <b>${selectedBeverage}</b></p>\n                               <p style="text-align: center; font-size: 1.3em; font-weight: bold; color: #e74c3c;">얼음이 녹는 시간: ${meltingTimes[selectedBeverage]}</p>\n                               <p style="text-align: center; font-size: 0.9em; color: #7f8c8d;"><i>(다른 조건들은 모두 똑같이 유지되었기 때문에, 오직 <b>음료수 종류</b>의 영향만을 알 수 있어요!)</i></p>`;
+    });
+</script>

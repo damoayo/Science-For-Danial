@@ -58,7 +58,7 @@ github_url = f"https://damoayo.github.io/Science-For-Danial/{report_file}"
 # (이 아래 부분을 index.html 저장 코드가 끝난 맨 마지막에 추가해!)
 # 3. 노션 데이터베이스에 자동 기록하기
 # ==========================================
-def save_to_notion(week_num, title_text, date_str, report_url):
+def save_to_notion(week_num, title_text, date_str, report_url, summary_data):
     if not NOTION_TOKEN or not NOTION_DATABASE_ID:
         print("⚠️ 노션 토큰이나 ID가 없어서 노션 기록은 건너뜁니다.")
         return
@@ -70,26 +70,74 @@ def save_to_notion(week_num, title_text, date_str, report_url):
         "Notion-Version": "2022-06-28"
     }
     
-    # 노션 표(Database) 속성에 맞춰서 데이터 조립
+    # 1. 노션 페이지 내부를 구성할 '블록'들 만들기
+    children_blocks = [
+        {
+            "object": "block",
+            "type": "callout",
+            "callout": {
+                "rich_text": [{"text": {"content": f"이번 주 주제는 [{title_text}] 입니다. 아빠가 정리한 내용을 확인해봐!"}}],
+                "icon": {"emoji": "💡"},
+                "color": "blue_background"
+            }
+        },
+        {"object": "block", "type": "heading_2", "heading_2": {"rich_text": [{"text": {"content": "📖 핵심 요약 노트"}}]}}
+    ]
+
+    # 핵심 요약 5포인트를 콜아웃으로 추가
+    for i, point in enumerate(summary_data['summary_points']):
+        children_blocks.append({
+            "object": "block",
+            "type": "callout",
+            "callout": {
+                "rich_text": [{"text": {"content": point}}],
+                "icon": {"emoji": f"{i+1}️⃣"},
+                "color": "gray_background"
+            }
+        })
+
+    # 퀴즈는 '토글'로 만들어서 클릭해야 정답이 보이게!
+    children_blocks.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": [{"text": {"content": "📝 학습 체크 퀴즈"}}]}})
+    
+    for i, q in enumerate(summary_data['quizzes']):
+        children_blocks.append({
+            "object": "block",
+            "type": "toggle",
+            "toggle": {
+                "rich_text": [{"text": {"content": f"Q{i+1}. {q['q']}"}}],
+                "children": [
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "paragraph": {"rich_text": [{"text": {"content": f"✅ 정답: {q['a']}\n💡 해설: {q['ex']}"}, "annotations": {"bold": True}}]}
+                    }
+                ]
+            }
+        })
+
+    # 2. 전체 데이터 조립
     data = {
         "parent": {"database_id": NOTION_DATABASE_ID},
+        "icon": {"emoji": "🧪"}, # 페이지 아이콘 자동 설정
         "properties": {
             "주제": {"title": [{"text": {"content": title_text}}]},
             "주차": {"number": week_num},
             "날짜": {"date": {"start": date_str}},
             "링크": {"url": report_url}
-        }
+        },
+        "children": children_blocks # 이 부분이 페이지 안의 내용을 채워줌!
     }
     
     try:
         response = requests.post(url, headers=headers, json=data)
         if response.status_code == 200:
-            print("✅ 노션 데이터베이스에 성공적으로 기록됐어!")
+            print("✅ 노션 데이터베이스와 상세 페이지까지 성공적으로 기록됐어!")
         else:
             print(f"❌ 노션 기록 실패: {response.text}")
     except Exception as e:
         print(f"❌ 노션 통신 에러: {e}")
 
-# 노션 기록 함수 실행!
-save_to_notion(current_week, target_content, iso_date, github_url)
+# [중요!] 함수 호출할 때 생성된 데이터(data)를 같이 넘겨줘야 해!
+# 기존 코드의 맨 마지막 줄 부근을 이렇게 수정해줘:
+save_to_notion(current_week, target_content, iso_date, github_url, data)
 print("🎉 모든 작업(HTML 생성 + 깃허브 저장 + 노션 기록) 완료!")

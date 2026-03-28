@@ -10,41 +10,100 @@
             body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
             .container { max-width: 800px; margin: auto; }
             .header { text-align: center; margin-bottom: 40px; }
-            .header h1 { color: #2c3e50; font-size: 2.5em; }
-            .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
-            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; }
+            .header h1 { color: #2c3e50; font-size: 2.2em; }
+            .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; line-height: 1.6; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
             .tag-review { background: #e74c3c; }
             .tag-preview { background: #3498db; }
-            .comment { background: #fff3cd; padding: 15px; border-left: 5px solid #f1c40f; border-radius: 0 10px 10px 0; margin-top: 15px; }
+            .comment { background: #fff9e6; padding: 15px; border-left: 5px solid #f1c40f; border-radius: 0 10px 10px 0; margin-top: 15px; }
+            
+            /* 영작 게임 디자인 */
+            .word-block { display: inline-block; padding: 10px 18px; margin: 5px; background: white; border: 2px solid #3498db; border-radius: 12px; cursor: pointer; font-weight: bold; color: #2980b9; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); user-select: none; }
+            .word-block:hover { transform: translateY(-2px); background: #ebf5fb; }
+            #sentence-zone { min-height: 60px; padding: 20px; background: #ecf0f1; border-radius: 15px; margin-bottom: 20px; display: flex; flex-wrap: wrap; align-items: center; border: 2px dashed #bdc3c7; }
+            #word-bank { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+            .btn-check { display: block; width: 100%; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: 0.3s; }
+            .btn-check:hover { background: #27ae60; }
+            #result-msg { text-align: center; font-weight: bold; margin-top: 15px; font-size: 1.1em; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <h1>📚 다니엘의 10분 영어 스낵</h1>
-                <p>2026년 03월 28일 | Lesson 2: Spending Time with Grandparents</p>
+                <p>2026년 03월 28일 | 2: Spending Time with Grandparents</p>
             </div>
 
             <div class="card">
                 <span class="tag tag-review">Part 1. 오답 노트</span>
                 <h2 style="margin-top:0;">어제 놓친 문장, 오늘 완벽하게!</h2>
-                <p>👉 <b>{'Original': 'Three years ago.', 'Better': 'I started this hobby three years ago.', '아빠의 다정한 조언': "다니엘, '3년 전'이라고 짧게 말하는 것보다 '나는 이 취미를 3년 전에 시작했어.'처럼 주어와 동사를 갖춘 완전한 문장으로 말하면 훨씬 자연스럽고 정확한 영어 표현이 된단다! 다음 수업 때는 꼭 이렇게 문장으로 말해보자!"}</b></p>
+                <p style="color: #7f8c8d; text-decoration: line-through;">Original: Three years ago.</p>
+                <p style="font-size: 1.3em; font-weight: bold; color: #2c3e50;">✨ Better: I started this hobby three years ago.</p>
+                <p style="background: #f8d7da; padding: 10px; border-radius: 8px;">👨‍🏫 아빠의 조언: 다니엘, 'Three years ago.' 대신 'I started this hobby three years ago.'처럼 말하면 훨씬 자연스러워! 문장을 완성하는 연습을 계속해 보자!</p>
             </div>
 
             <div class="card">
                 <span class="tag tag-preview">Part 2. 다음 수업 치트키</span>
                 <h2 style="margin-top:0;">선생님을 깜짝 놀라게 할 한마디!</h2>
                 <div class="comment">
-                    <p style="font-size: 1.2em; font-weight: bold; color: #2980b9;">"{'english': 'I usually visit my grandparents on weekends.', 'korean': '저는 보통 주말에 할머니 댁을 방문해요.'}"</p>
+                    <p style="font-size: 1.3em; font-weight: bold; color: #2980b9; margin-bottom: 5px;">"I usually spend time with my grandparents on weekends."</p>
+                    <p style="color: #7f8c8d; margin-top: 0;">뜻: 나는 주로 주말에 할머니, 할아버지와 시간을 보내.</p>
                 </div>
             </div>
 
             <div class="card">
                 <h2>🎮 Part 3. 오늘의 영작 짐(Gym)</h2>
-                <p>배운 문장을 직접 조립해 봐!</p>
-                <script type="application/json">{"component": "LlmGeneratedComponent", "props": {"height": "500px", "prompt": "Create an interactive English Sentence Builder widget. Initial state: Show a Korean sentence: '\uc800\ub294 \ubcf4\ud1b5 \uc8fc\ub9d0\uc5d0 \ud560\uba38\ub2c8 \ub301\uc744 \ubc29\ubb38\ud574\uc694.' and draggable/clickable English word blocks scattered randomly: ['grandparents', 'on', 'weekends', 'I', 'usually', 'visit', 'my', '.']. UI: Clean, playful, modern interface. Include an empty drop zone with slots for the words. The user clicks or drags blocks into the slots. Include a 'Check Answer' button. If the exact order 'I usually visit my grandparents on weekends.' is achieved, show a bright green success message ('Perfect!'). If wrong, highlight incorrect blocks in red and provide a hint. Smooth animations."}}</script>
+                <p>아래 단어들을 클릭해서 올바른 순서로 문장을 완성해 봐!</p>
+                <p style="font-weight: bold; text-align: center; color: #e67e22;">목표: "나는 3년 전에 이 취미를 시작했어."</p>
+                
+                <div id="sentence-zone"></div>
+                <div id="word-bank"></div>
+                
+                <button class="btn-check" onclick="checkAnswer()">정답 확인하기</button>
+                <p id="result-msg"></p>
             </div>
         </div>
+
+        <script>
+            // 파이썬이 생성한 단어 리스트와 정답을 자바스크립트로 전달!
+            const words = ["I", "started", "this", "hobby", "three", "years", "ago."];
+            const correctAnswer = "I started this hobby three years ago.";
+            
+            const bank = document.getElementById('word-bank');
+            const zone = document.getElementById('sentence-zone');
+            const msg = document.getElementById('result-msg');
+
+            // 단어 버튼 생성
+            words.forEach(word => {
+                let btn = document.createElement('div');
+                btn.className = 'word-block';
+                btn.innerText = word;
+                btn.onclick = () => moveWord(btn);
+                bank.appendChild(btn);
+            });
+
+            // 단어 클릭 시 이동 (은행 <-> 문장 영역)
+            function moveWord(btn) {
+                if (btn.parentElement === bank) {
+                    zone.appendChild(btn);
+                } else {
+                    bank.appendChild(btn);
+                }
+                msg.innerText = ""; // 이동할 때 메시지 초기화
+            }
+
+            // 정답 확인 로직
+            function checkAnswer() {
+                let currentSentence = Array.from(zone.children).map(b => b.innerText).join(' ');
+                if (currentSentence === correctAnswer) {
+                    msg.style.color = '#2ecc71';
+                    msg.innerText = "🎉 완벽해! 정답이야! (Perfect!)";
+                } else {
+                    msg.style.color = '#e74c3c';
+                    msg.innerText = "🤔 앗, 순서가 조금 틀린 것 같아. 다시 시도해 봐!";
+                }
+            }
+        </script>
     </body>
     </html>
     

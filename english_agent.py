@@ -46,7 +46,7 @@ current_info = curriculum_db.get(current_lesson_key, curriculum_db["Lesson 2"])
 
 phone_english_patterns = "".join([f"<li style='margin-bottom: 5px;'>{p}</li>" for p in current_info['key_patterns']])
 
-# 3. 🤖 Gemini 프롬프트 (오류 방지 강력 지시)
+# 3. 🤖 Gemini 프롬프트 (학교 교재 원문 출력 + 작문 2문제 분리 지시)
 prompt = f"""
 너는 중학교 1학년 다니엘의 영어 코치야.
 아래 데이터(issue_body)에는 '화상영어 대화록'과 '학교 교과서 요약본'이 섞여 있어.
@@ -59,7 +59,7 @@ prompt = f"""
   "review_original": "대화록에서 다니엘이 틀리거나 어색하게 말한 문장 1개",
   "review_better": "선생님이 교정해준 완벽한 문장",
   "review_advice": "다니엘, [Original] 대신 [Better]처럼 말해보자! 형식의 짧은 아빠 조언",
-  "school_summary": "입력 데이터 중 '학교 교과서' 내용을 <ul>과 <li> 태그만 사용해서 요약해줘.",
+  "school_summary": "입력 데이터 중 '학교 교과서' 내용을 절대 요약하거나 설명하지 마. 교과서의 '단어', '문법', '예문'을 있는 그대로 <ul>과 <li> 태그를 써서 예쁘게 출력해.",
   "daily_voca": [
     {{
       "word": "단어 (학교교재+화상영어 단어 총 5~8개)",
@@ -69,19 +69,19 @@ prompt = f"""
       "ko_example": "예문 한국어 해석"
     }}
   ],
-  "quizzes": [
-    {{"q": "부가의문문 영작이나 빈칸 채우기 문제 (총 10문제 꽉 채워)", "hint": "힌트 단어", "a": "정답"}}
+  "voca_quizzes": [
+    {{"q": "단어 뜻 맞추기나 빈칸 채우기 문제 (총 8문제 꽉 채워)", "hint": "힌트", "a": "정답"}}
+  ],
+  "writing_quizzes": [
+    {{"q": "학교 문법이나 전화영어 패턴을 활용한 한국어 문장 (이것을 영어로 작문하세요)", "hint": "핵심 단어 힌트", "a": "완벽한 영어 작문 정답"}}
   ]
 }}
 """
 
 try:
     res = model.generate_content(prompt)
-    print("=== [Gemini 원본 응답 확인용] ===")
-    print(res.text)
-    print("================================")
     
-    # 철벽 방어: JSON 텍스트만 정확하게 파낼 수 있도록 조치
+    # JSON 텍스트만 추출
     json_str = res.text
     if "```json" in json_str:
         json_str = json_str.split("```json")[1].split("```")[0]
@@ -89,7 +89,9 @@ try:
         json_str = json_str.split("```")[1].split("```")[0]
         
     data = json.loads(json_str.strip())
-    js_quizzes = json.dumps(data.get('quizzes', []))
+    
+    js_voca_quizzes = json.dumps(data.get('voca_quizzes', []))
+    js_writing_quizzes = json.dumps(data.get('writing_quizzes', [])[:2]) # 무조건 2문제만 자르기
 
     # 🔤 클릭형 단어장 HTML 조립
     voca_html = ""
@@ -173,8 +175,14 @@ try:
             </div>
 
             <div class="card">
-                <span class="tag" style="background: #f39c12;">Part 4. 실전 10문제 훈련</span>
-                <div id="quiz-container"></div>
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 단어 퀴즈 (8문제)</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 5. 핵심 영작 훈련 (2문제)</span>
+                <h2 style="margin-top: 0; text-align: center;">오늘 배운 표현으로 직접 영작해 보세요!</h2>
+                <div id="writing-container"></div>
             </div>
         </div>
 
@@ -193,26 +201,26 @@ try:
                 }}
             }}
 
-            const quizzes = {js_quizzes};
-            const container = document.getElementById('quiz-container');
+            function renderQuizzes(quizzes, containerId, prefix) {{
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {{
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
+                            <input type="text" id="input_${{prefix}}_${{index}}" class="quiz-input" placeholder="여기에 정답을 입력하세요">
+                            <button class="btn-action" onclick="document.getElementById('hint_${{prefix}}_${{index}}').style.display='block'">힌트 보기</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${{prefix}}_${{index}}', '${{quiz.a.replace(/'/g, "\\'")}}')">정답 확인</button>
+                            <div id="hint_${{prefix}}_${{index}}" style="display:none; color:#e67e22; margin-top:10px; font-weight:bold;">💡 힌트: ${{quiz.hint}}</div>
+                            <div id="result_${{prefix}}_${{index}}" style="display:none; margin-top:15px; font-weight:bold; font-size:1.1em;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                }});
+            }}
 
-            quizzes.forEach((quiz, index) => {{
-                const html = `
-                    <div class="quiz-box">
-                        <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
-                        <input type="text" id="input_${{index}}" class="quiz-input" placeholder="여기에 정답을 입력하세요">
-                        <button class="btn-action" onclick="document.getElementById('hint_${{index}}').style.display='block'">힌트 보기</button>
-                        <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz(${{index}}, '${{quiz.a.replace(/'/g, "\\'")}}')">정답 확인</button>
-                        <div id="hint_${{index}}" style="display:none; color:#e67e22; margin-top:10px; font-weight:bold;">💡 힌트: ${{quiz.hint}}</div>
-                        <div id="result_${{index}}" style="display:none; margin-top:15px; font-weight:bold; font-size:1.1em;"></div>
-                    </div>
-                `;
-                container.innerHTML += html;
-            }});
-
-            function checkQuiz(index, correctAnswer) {{
-                const userAnswer = document.getElementById(`input_${{index}}`).value.trim();
-                const resultDiv = document.getElementById(`result_${{index}}`);
+            function checkQuiz(id, correctAnswer) {{
+                const userAnswer = document.getElementById(`input_${{id}}`).value.trim();
+                const resultDiv = document.getElementById(`result_${{id}}`);
                 resultDiv.style.display = 'block';
                 
                 const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
@@ -226,6 +234,9 @@ try:
                     resultDiv.innerHTML = `🤔 아쉽네요. 정답은 <b>${{correctAnswer}}</b> 입니다.`;
                 }}
             }}
+
+            renderQuizzes({js_voca_quizzes}, 'voca-container', 'voca');
+            renderQuizzes({js_writing_quizzes}, 'writing-container', 'write');
         </script>
     </body>
     </html>
@@ -235,15 +246,6 @@ try:
         f.write(html_content)
     print(f"✅ {html_filename} 생성 완료!")
 
-    discord_url = os.getenv("DISCORD_WEBHOOK")
-    if discord_url:
-        import requests
-        report_link = f"https://damoayo.github.io/Science-For-Danial/{html_filename}"
-        discord_msg = {{
-            "content": f"📣 **[다니엘의 종합 영어 스낵 도착!]**\n아빠가 만들어준 학교 영어 + 전화 영어 통합 리포트가 준비됐어!\n\n📝 **오늘의 진도:** {current_lesson_key} & 학교 내신\n🎮 **오늘의 미션:** 마법 단어장 & 실전 10문제 풀기\n👉 **숙제하러 가기:** {report_link}"
-        }}
-        requests.post(discord_url, json=discord_msg)
-
 except Exception as e:
     print(f"❌ 에러 발생: {e}")
-    sys.exit(1) # 🚨 에러 시 깃허브 액션을 강제 중단하여 빨간불(❌)을 띄우게 만듭니다!
+    sys.exit(1)

@@ -12,101 +12,70 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 issue_title = os.getenv("ISSUE_TITLE", "Lesson 2")
 issue_body = os.getenv("ISSUE_BODY", "No data")
 
-today_str = datetime.date.today().strftime("%Y년 %m월 %d일")
-html_filename = f"english_{datetime.date.today().strftime('%Y%m%d')}.html"
+today = datetime.date.today()
+today_str = today.strftime("%Y년 %m월 %d일")
+html_filename = f"english_{today.strftime('%Y%m%d')}.html"
 
-# 2. 📚 진짜 PDF 교재 내용 100% 데이터베이스 (AI가 함부로 바꾸지 못하게 고정!)
+# 📅 요일 감지 로직 (0:월, 1:화, 2:수, 3:목, 4:금, 5:토, 6:일)
+weekday = today.weekday()
+is_early_week = weekday < 3 # 월, 화, 수
+week_phase_text = "주 초반(월~수)" if is_early_week else "주 후반(목~일)"
+
+# 2. 진짜 PDF 교재 기반 지식 창고
 curriculum_db = {
     "Lesson 2": {
         "title": "Such an Awesome Guitarist!",
         "grammar": "부가의문문 (isn't it?, don't you?)",
-        "key_patterns": [
-            "Do you exercise regularly? (너는 운동을 규칙적으로 하니?)",
-            "Does he want to go to the concert? (그는 그 콘서트에 가고 싶어 하나요?)",
-            "Do they play the piano often? (그들은 피아노를 자주 치나요?)",
-            "You are from South Korea, aren't you? (너 한국에서 왔어, 그렇지 않아?)",
-            "Playing basketball is fun, isn't it? (농구를 하는 건 재미있어, 그렇지 않아?)",
-            "We have class in the afternoon, don't we? (우리 오후에 수업 있어, 그렇지 않아?)"
-        ],
-        "dialogue": [
-            "Jordan: Do you play any musical instruments, Jimin?",
-            "Jimin: Yes, I play the guitar, Jordan.",
-            "Jordan: That's awesome! Playing the guitar must be fun, isn't it?",
-            "Jimin: It is! I play in a small band with my friends. You're in a band too, aren't you?",
-            "Jordan: No, I'm not. But playing in a band sounds fun! It must be exciting to perform together."
-        ],
-        "authentic": "Do you have time? (시간 여유 있어?) vs Do you have the time? (지금 몇 시야?) vs Do you have a moment? (잠깐 시간 돼?)"
+        "key_patterns": ["Do you exercise regularly?", "You are from South Korea, aren't you?", "Playing basketball is fun, isn't it?"],
+        "vocabulary": ["musical", "awesome", "guitar", "perform", "band", "exciting", "regularly", "instrument"]
     },
     "Lesson 3": {
         "title": "Spending Time with Grandparents",
         "grammar": "빈도부사 (usually, often, sometimes, rarely, never)",
-        "key_patterns": [
-            "What do you usually do after school? (너는 방과 후에 주로 무엇을 하니?)",
-            "I stay at home and do homework. (나는 집에 머물고 숙제를 해.)",
-            "How often do you go shopping? (얼마나 자주 쇼핑을 하니?)",
-            "I often go to shopping malls. (나는 종종 쇼핑몰에 가요.)",
-            "I am spending time with my grandparents. (나는 조부모님들과 시간을 보내고 있어.)"
-        ],
-        "dialogue": [
-            "Jack: Sue, what do you usually do on the weekend?",
-            "Sue: I visit my grandparents and read books with them.",
-            "Jack: Oh, that's great! What are you reading these days?",
-            "Sue: I'm reading a novel called Almond. How often do you read books?",
-            "Jack: I rarely read novels, but this sounds quite interesting."
-        ],
-        "authentic": "usually (보통, 대개 - 거의 항상 일어남) vs often (자주 - usually 보다는 빈도가 낮음)"
+        "key_patterns": ["What do you usually do after school?", "I often go to shopping malls.", "I rarely read novels."],
+        "vocabulary": ["weekend", "trouble", "grandparents", "novel", "often", "rarely", "visit", "never", "understand", "skip", "interesting"]
     }
 }
 
-# 타임머신 로직
 match = re.search(r'\d+', issue_title)
 current_lesson_num = int(match.group()) if match else 2
-next_lesson_num = current_lesson_num + 1
-
 current_lesson_key = f"Lesson {current_lesson_num}"
-next_lesson_key = f"Lesson {next_lesson_num}"
-
 current_info = curriculum_db.get(current_lesson_key, curriculum_db["Lesson 2"])
-next_info = curriculum_db.get(next_lesson_key, curriculum_db["Lesson 3"])
 
-# 교재 HTML 변환 함수
-def make_textbook_html(info):
-    patterns = "".join([f"<li style='margin-bottom: 5px;'>{p}</li>" for p in info['key_patterns']])
-    dialogues = "".join([f"<p style='margin: 5px 0;'><strong>{d.split(': ')[0]}:</strong> {d.split(': ')[1]}</p>" if ': ' in d else f"<p>{d}</p>" for d in info['dialogue']])
-    
-    return f"""
-    <div style="background: #f8fafd; padding: 20px; border-radius: 12px; border: 1px solid #e1e8ed;">
-        <h3 style="color: #2980b9; margin-top: 0;">✨ 핵심 패턴 (Key Patterns)</h3>
-        <ul style="color: #34495e; font-weight: bold;">{patterns}</ul>
-        
-        <h3 style="color: #27ae60; margin-top: 20px;">🗣️ 대화 연습 (Let's Speak)</h3>
-        <div style="background: #fff; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
-            {dialogues}
-        </div>
-        
-        <h3 style="color: #e67e22; margin-top: 20px;">💡 현지 표현 (Authentic Expressions)</h3>
-        <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">{info['authentic']}</p>
-    </div>
-    """
+# 단어장 학습 스타일 지시
+if is_early_week:
+    voca_instruction = "오늘은 주 초반입니다. 영어 단어와 '직관적인 한국어 뜻'을 1:1로 매칭해서 제공하세요. 예문은 한국어로 아주 짧게 주세요."
+else:
+    voca_instruction = "오늘은 주 후반입니다. 한국어 뜻 대신, 중학교 1학년 수준의 아주 쉬운 '영영 사전식 풀이(영어)'와 문맥을 파악할 수 있는 '쉬운 영어 예문'을 제공하세요."
 
-# 3. Gemini 프롬프트 (AI는 오직 피드백 정리와 10문제 퀴즈 생성만 담당!)
+# 3. Gemini 프롬프트 (단어 집중 + 영작 최소화)
 prompt = f"""
 너는 중학교 1학년 다니엘의 1:1 영어 코치야.
-방금 끝난 수업({current_lesson_key})의 복습을 위한 자료를 만들어야 해.
+오늘은 {today_str} ({week_phase_text})이야.
 
-[방금 끝난 수업 : {current_lesson_key}]
+[오늘의 학습 진도 : {current_lesson_key}]
 - 주제: {current_info['title']}
-- 핵심 문법: {current_info['grammar']}
-- 대화록 및 선생님 피드백: {issue_body}
+- 핵심 단어: {current_info['vocabulary']}
+- 핵심 패턴: {current_info['key_patterns']}
+- 대화록 및 피드백: {issue_body}
 
 반드시 아래 JSON 형식에 맞춰서 응답해.
-'custom_quizzes' 배열은 방금 끝난 수업({current_lesson_key})의 교재 내용과 대화록을 바탕으로 영작/순서배열 문제 10개를 무조건 꽉 채워서 만들어!
+1. 'daily_voca'는 {voca_instruction}에 맞춰서 핵심 단어들을 설명해줘.
+2. 'voca_quizzes'는 단어의 뜻을 맞추거나 빈칸을 채우는 퀴즈로 5~8문제 출제해.
+3. 'writing_quizzes'는 아빠의 요청대로 피로도를 줄이기 위해 딱 2문제만 출제해.
+
 {{
-  "review_original": "선생님 피드백에서 다니엘이 틀린 문장 (예: Three years ago.)",
-  "review_better": "선생님이 교정해준 완벽한 문장 (예: I started this hobby three years ago.)",
-  "review_advice": "다니엘, [Original] 대신 [Better]처럼 말하면 자연스러워! 형식의 아빠 조언",
-  "custom_quizzes": [
-    {{"q": "그는 취미에 많은 시간을 보낸다 (영작해 보세요)", "hint": "spend / pursuing", "a": "He spends a lot of time pursuing his hobby."}}
+  "review_original": "대화록에서 다니엘이 틀렸거나 어색하게 말한 문장 1개",
+  "review_better": "선생님이 교정해준 완벽한 문장",
+  "review_advice": "다니엘, [Original] 대신 [Better]처럼 말해보자! 형식의 짧은 아빠 조언",
+  "daily_voca": [
+    {{"word": "단어", "meaning": "한국어 뜻(주초반) 또는 영영풀이(주후반)", "example": "짧은 예문"}}
+  ],
+  "voca_quizzes": [
+    {{"q": "다음 단어의 뜻은? (또는 빈칸에 알맞은 단어는?)", "hint": "힌트", "a": "정답"}}
+  ],
+  "writing_quizzes": [
+    {{"q": "나는 종종 쇼핑몰에 간다 (영작해 보세요)", "hint": "often / go shopping", "a": "I often go to shopping malls."}}
   ]
 }}
 """
@@ -116,9 +85,21 @@ try:
     clean_text = res.text.replace('```json', '').replace('```', '').strip()
     data = json.loads(clean_text)
 
-    js_quizzes = json.dumps(data.get('custom_quizzes', []))
+    js_voca_quizzes = json.dumps(data.get('voca_quizzes', []))
+    js_writing_quizzes = json.dumps(data.get('writing_quizzes', []))
 
-    # 4. 최종 HTML 조합
+    # 단어장 HTML 조립
+    voca_html = ""
+    for v in data.get('daily_voca', []):
+        voca_html += f"""
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">{v['word']}</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">{v['meaning']}</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 {v['example']}</div>
+        </div>
+        """
+
+    # 4. 최종 HTML 웹페이지 생성
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -128,99 +109,89 @@ try:
         <title>다니엘의 Daily English</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
-            body {{ font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }}
+            body {{ font-family: 'Nanum Square Round', sans-serif; background: #f8fafd; color: #333; margin: 0; padding: 20px; line-height: 1.6; }}
             .container {{ max-width: 800px; margin: auto; }}
             .header {{ text-align: center; margin-bottom: 30px; }}
-            .card {{ background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }}
-            .tag {{ display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 10px; font-size: 0.9em; }}
-            .tag-review {{ background: #e74c3c; }} .tag-preview {{ background: #3498db; }} .tag-quiz {{ background: #9b59b6; }}
+            .card {{ background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }}
+            .tag {{ display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }}
             
-            /* 타이핑 퀴즈 UI */
-            .quiz-box {{ border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }}
-            .quiz-q {{ font-weight: 800; font-size: 1.1em; text-align: center; margin-bottom: 15px; color: #2c3e50; }}
-            .quiz-input {{ width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }}
-            .quiz-input:focus {{ border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }}
-            .quiz-hint-box {{ display: none; background: #f1f2f6; padding: 10px; border-left: 4px solid #e74c3c; margin-bottom: 15px; font-weight: bold; color: #555; }}
-            .btn-group {{ display: flex; justify-content: center; gap: 10px; }}
-            .btn-action {{ padding: 10px 20px; border: 1px solid #999; background: white; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }}
-            .btn-action:hover {{ background: #eee; }}
-            .quiz-result {{ display: none; text-align: center; margin-top: 15px; font-weight: bold; font-size: 1.1em; }}
+            .quiz-box {{ border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-bottom: 15px; background: #fafafa; }}
+            .quiz-q {{ font-weight: 800; font-size: 1.1em; margin-bottom: 10px; color: #2c3e50; }}
+            .quiz-input {{ width: 100%; padding: 12px; font-size: 1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; }}
+            .quiz-input:focus {{ border-color: #3498db; outline: none; }}
+            .btn-action {{ padding: 8px 15px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }}
+            .btn-action:hover {{ background: #95a5a6; color: white; }}
+            .quiz-result {{ display: none; margin-top: 10px; font-weight: bold; }}
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1 style="color: #2c3e50;">📚 다니엘의 10분 영어 스낵</h1>
-                <p>{today_str} | 복습: {current_lesson_key} / 예습: {next_lesson_key}</p>
+                <h1 style="color: #2c3e50; margin-bottom: 5px;">📚 다니엘의 10분 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">{today_str} | {week_phase_text} 맞춤형 학습</p>
             </div>
 
             <div class="card">
-                <span class="tag tag-review">Part 1. 오늘의 오답 노트</span>
-                <p style="color: #7f8c8d; text-decoration: line-through; margin-bottom: 5px;">❌ {data['review_original']}</p>
-                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71; margin-top: 0;">✅ {data['review_better']}</p>
-                <p style="background: #f8d7da; padding: 10px; border-radius: 8px; margin-bottom: 0;">👨‍🏫 아빠의 조언: {data['review_advice']}</p>
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 한 문장</span>
+                <p style="color: #95a5a6; text-decoration: line-through; margin: 5px 0;">❌ {data['review_original']}</p>
+                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71; margin: 0 0 10px 0;">✅ {data['review_better']}</p>
+                <p style="background: #f8d7da; padding: 10px; border-radius: 8px; margin: 0; font-size: 0.9em;">👨‍🏫 {data['review_advice']}</p>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 오늘의 단어장</span>
+                <h3 style="margin-top: 0; color: #2980b9;">{week_phase_text} 미션: 단어 씹어먹기!</h3>
+                {voca_html}
             </div>
 
             <div class="card">
-                <span class="tag tag-review">Part 2. 교과서 완벽 복습 ({current_lesson_key})</span>
-                <h2>📖 {current_info['title']}</h2>
-                {make_textbook_html(current_info)}
+                <span class="tag" style="background: #f39c12;">Part 3. 스피드 단어 퀴즈</span>
+                <div id="voca-container"></div>
             </div>
 
             <div class="card">
-                <span class="tag tag-preview">Part 3. 다음 수업 엿보기 ({next_lesson_key})</span>
-                <h2>🔭 {next_info['title']}</h2>
-                {make_textbook_html(next_info)}
-            </div>
-
-            <div class="card">
-                <span class="tag tag-quiz">Part 4. 오늘의 영작 훈련</span>
-                <h2 style="text-align: center;">방금 배운 표현을 활용하여 영작해 보세요.</h2>
-                <div id="quiz-container"></div>
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 (2문제)</span>
+                <div id="writing-container"></div>
             </div>
         </div>
 
         <script>
-            const quizzes = {js_quizzes};
-            const container = document.getElementById('quiz-container');
-
-            quizzes.forEach((quiz, index) => {{
-                const html = `
-                    <div class="quiz-box">
-                        <div class="quiz-q">${{quiz.q}}</div>
-                        <input type="text" id="input_${{index}}" class="quiz-input" placeholder="여기에 영어로 적어보세요">
-                        
-                        <div id="hint_${{index}}" class="quiz-hint-box">
-                            📢 힌트: ${{quiz.hint}}
+            function createQuizzes(quizzes, containerId, prefix) {{
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {{
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
+                            <input type="text" id="input_${{prefix}}_${{index}}" class="quiz-input" placeholder="정답을 입력하세요">
+                            <button class="btn-action" onclick="document.getElementById('hint_${{prefix}}_${{index}}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${{prefix}}_${{index}}', '${{quiz.a.replace(/'/g, "\\'")}}')">확인</button>
+                            <div id="hint_${{prefix}}_${{index}}" style="display:none; color:#e67e22; margin-top:5px; font-weight:bold;">💡 힌트: ${{quiz.hint}}</div>
+                            <div id="result_${{prefix}}_${{index}}" class="quiz-result"></div>
                         </div>
-                        
-                        <div class="btn-group">
-                            <button class="btn-action" onclick="document.getElementById('hint_${{index}}').style.display='block'">힌트보기</button>
-                            <button class="btn-action" onclick="checkQuiz(${{index}}, '${{quiz.a.replace(/'/g, "\\'")}}')">정답확인</button>
-                        </div>
-                        
-                        <div id="result_${{index}}" class="quiz-result"></div>
-                    </div>
-                `;
-                container.innerHTML += html;
-            }});
+                    `;
+                    container.innerHTML += html;
+                }});
+            }}
 
-            function checkQuiz(index, correctAnswer) {{
-                const userAnswer = document.getElementById(`input_${{index}}`).value.trim();
-                const resultDiv = document.getElementById(`result_${{index}}`);
-                
+            function checkQuiz(id, correctAnswer) {{
+                const userAnswer = document.getElementById(`input_${{id}}`).value.trim();
+                const resultDiv = document.getElementById(`result_${{id}}`);
                 resultDiv.style.display = 'block';
-                const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '');
-                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '');
                 
-                if (cleanUser === cleanCorrect) {{
+                const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                
+                if (cleanUser === cleanCorrect || cleanUser.includes(cleanCorrect)) {{
                     resultDiv.style.color = '#2ecc71';
-                    resultDiv.innerHTML = "🎉 완벽해! 정답이야!";
+                    resultDiv.innerHTML = "🎉 정답!";
                 }} else {{
                     resultDiv.style.color = '#e74c3c';
-                    resultDiv.innerHTML = `🤔 아쉽네. 정답은 <b>${{correctAnswer}}</b> 이야!`;
+                    resultDiv.innerHTML = `🤔 아쉽네요. 정답은 <b>${{correctAnswer}}</b> 입니다.`;
                 }}
             }}
+
+            createQuizzes({js_voca_quizzes}, 'voca-container', 'v');
+            createQuizzes({js_writing_quizzes}, 'writing-container', 'w');
         </script>
     </body>
     </html>
@@ -229,6 +200,16 @@ try:
     with open(html_filename, "w", encoding="utf-8") as f:
         f.write(html_content)
     print(f"✅ {html_filename} 생성 완료!")
+    
+    # 디스코드 알림
+    discord_url = os.getenv("DISCORD_WEBHOOK")
+    if discord_url:
+        import requests
+        report_link = f"https://damoayo.github.io/Science-For-Danial/{html_filename}"
+        discord_msg = {{
+            "content": f"📣 **[다니엘의 데일리 영어 도착!]**\n{week_phase_text} 맞춤 단어장과 퀴즈가 준비되었어!\n\n📝 **오늘의 학습:** {current_lesson_key} 단어 집중공략\n👉 **숙제하러 가기:** {report_link}"
+        }}
+        requests.post(discord_url, json=discord_msg)
 
 except Exception as e:
     print(f"❌ 에러 발생: {e}")

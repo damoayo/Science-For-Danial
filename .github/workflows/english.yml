@@ -1,50 +1,39 @@
-name: Danial English Auto-Generator
+name: Danial Daily English
 
 on:
-  issues:
-    types: [opened] # 이슈(게시판 글)가 새로 열릴 때만 작동!
+  schedule:
+    - cron: "0 7 * * *" # 매일 한국시간 오후 4시(UTC 07:00)에 완전 자동 실행!
+  workflow_dispatch: # 아빠가 원할 때 언제든 '수동 실행 버튼'을 누를 수 있는 기능!
+
+permissions:
+  contents: write
 
 jobs:
-  build_english_report:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write # 이슈를 닫을 권한
-
     steps:
-      - name: 📥 코드 가져오기
-        uses: actions/checkout@v4
+      - name: 소스코드 가져오기
+        uses: actions/checkout@v3
 
-      - name: 🐍 파이썬 설치
+      - name: 파이썬 설치
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: 📦 필요 프로그램 설치
-        run: pip install google-generativeai requests python-dotenv
+      - name: AI 및 디스코드 배달부(requests) 설치
+        run: |
+          pip install google-generativeai requests
 
-      - name: 🤖 영어 로봇 실행!
+      - name: 🤖 데일리 영어 로봇 자동 실행!
         env:
           SCIENCE_KEY: ${{ secrets.SCIENCE_KEY }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: python english_agent.py
 
-      - name: 🧹 작업 완료된 이슈 닫기
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              state: 'closed'
-            })
-
-      - name: 🚀 깃허브에 완성된 웹사이트 올리기
+      - name: 만들어진 리포트 깃허브에 자동 저장
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add english_*.html
-          git commit -m "🎉 오늘의 영어 리포트 자동 생성 완료!" || echo "No changes to commit"
+          git commit -m "오늘의 데일리 영어 생성 완료" || echo "변화 없음"
           git push

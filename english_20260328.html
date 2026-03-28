@@ -7,17 +7,18 @@
         <title>다니엘의 Daily English</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
-            body { font-family: 'Nanum Square Round', sans-serif; background: #f8fafd; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
             .container { max-width: 800px; margin: auto; }
             .header { text-align: center; margin-bottom: 30px; }
             .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
             .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 10px; font-size: 0.9em; }
             .tag-review { background: #e74c3c; } .tag-preview { background: #3498db; } .tag-quiz { background: #9b59b6; }
             
-            /* 타이핑 퀴즈 UI 디자인 (아빠가 주신 이미지 스타일 적용!) */
+            /* 타이핑 퀴즈 UI */
             .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
             .quiz-q { font-weight: 800; font-size: 1.1em; text-align: center; margin-bottom: 15px; color: #2c3e50; }
-            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .quiz-input:focus { border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
             .quiz-hint-box { display: none; background: #f1f2f6; padding: 10px; border-left: 4px solid #e74c3c; margin-bottom: 15px; font-weight: bold; color: #555; }
             .btn-group { display: flex; justify-content: center; gap: 10px; }
             .btn-action { padding: 10px 20px; border: 1px solid #999; background: white; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
@@ -33,46 +34,73 @@
             </div>
 
             <div class="card">
-                <span class="tag tag-review">Part 1. 오답 노트 (Lesson 2)</span>
-                <h2>어제 놓친 문장, 오늘 완벽하게!</h2>
-                <p style="color: #7f8c8d; text-decoration: line-through;">❌ Three years ago.</p>
-                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71;">✅ I started this hobby three years ago.</p>
-                <p style="background: #f8d7da; padding: 10px; border-radius: 8px;">👨‍🏫 아빠의 조언: 다니엘, 'Three years ago.' 대신 'I started this hobby three years ago.'처럼 주어와 동사를 넣어 완전한 문장으로 말하면 더 자연스러워! 문장을 완성하면 네 말이 더 명확해진단다.</p>
+                <span class="tag tag-review">Part 1. 오늘의 오답 노트</span>
+                <p style="color: #7f8c8d; text-decoration: line-through; margin-bottom: 5px;">❌ Three years ago.</p>
+                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71; margin-top: 0;">✅ I started this hobby three years ago.</p>
+                <p style="background: #f8d7da; padding: 10px; border-radius: 8px; margin-bottom: 0;">👨‍🏫 아빠의 조언: 다니엘, 'Three years ago.' 대신 'I started this hobby three years ago.'처럼 말하면 언제 취미를 시작했는지 주어(I)와 동사(started)를 사용해서 더 명확하고 완전한 문장으로 말할 수 있어! 완벽한 문장으로 말하는 연습을 꾸준히 해보자!</p>
             </div>
 
             <div class="card">
-                <span class="tag tag-preview">Part 2. 다음 수업 치트키 (Lesson 3)</span>
-                <h2>선생님을 깜짝 놀라게 할 한마디! (Spending Time with Grandparents)</h2>
-                <div style="background: #fff9e6; padding: 15px; border-left: 5px solid #f1c40f; border-radius: 8px;">
-                    <p style="font-size: 1.3em; font-weight: bold; color: #2980b9;">"What do you usually do on the weekend?"</p>
-                    <p style="color: #7f8c8d; margin-top: 0;">뜻: 너는 주말에 보통 뭐 하니?</p>
-                </div>
+                <span class="tag tag-review">Part 2. 교과서 완벽 복습 (Lesson 2)</span>
+                <h2>📖 Such an Awesome Guitarist!</h2>
+                
+    <div style="background: #f8fafd; padding: 20px; border-radius: 12px; border: 1px solid #e1e8ed;">
+        <h3 style="color: #2980b9; margin-top: 0;">✨ 핵심 패턴 (Key Patterns)</h3>
+        <ul style="color: #34495e; font-weight: bold;"><li style='margin-bottom: 5px;'>Do you exercise regularly? (너는 운동을 규칙적으로 하니?)</li><li style='margin-bottom: 5px;'>Does he want to go to the concert? (그는 그 콘서트에 가고 싶어 하나요?)</li><li style='margin-bottom: 5px;'>Do they play the piano often? (그들은 피아노를 자주 치나요?)</li><li style='margin-bottom: 5px;'>You are from South Korea, aren't you? (너 한국에서 왔어, 그렇지 않아?)</li><li style='margin-bottom: 5px;'>Playing basketball is fun, isn't it? (농구를 하는 건 재미있어, 그렇지 않아?)</li><li style='margin-bottom: 5px;'>We have class in the afternoon, don't we? (우리 오후에 수업 있어, 그렇지 않아?)</li></ul>
+        
+        <h3 style="color: #27ae60; margin-top: 20px;">🗣️ 대화 연습 (Let's Speak)</h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <p style='margin: 5px 0;'><strong>Jordan:</strong> Do you play any musical instruments, Jimin?</p><p style='margin: 5px 0;'><strong>Jimin:</strong> Yes, I play the guitar, Jordan.</p><p style='margin: 5px 0;'><strong>Jordan:</strong> That's awesome! Playing the guitar must be fun, isn't it?</p><p style='margin: 5px 0;'><strong>Jimin:</strong> It is! I play in a small band with my friends. You're in a band too, aren't you?</p><p style='margin: 5px 0;'><strong>Jordan:</strong> No, I'm not. But playing in a band sounds fun! It must be exciting to perform together.</p>
+        </div>
+        
+        <h3 style="color: #e67e22; margin-top: 20px;">💡 현지 표현 (Authentic Expressions)</h3>
+        <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">Do you have time? (시간 여유 있어?) vs Do you have the time? (지금 몇 시야?) vs Do you have a moment? (잠깐 시간 돼?)</p>
+    </div>
+    
             </div>
 
             <div class="card">
-                <span class="tag tag-quiz">Part 3. 오늘의 영작 훈련</span>
-                <h2 style="text-align: center;">오늘의 주요표현을 활용하여 영작해 보세요.</h2>
+                <span class="tag tag-preview">Part 3. 다음 수업 엿보기 (Lesson 3)</span>
+                <h2>🔭 Spending Time with Grandparents</h2>
+                
+    <div style="background: #f8fafd; padding: 20px; border-radius: 12px; border: 1px solid #e1e8ed;">
+        <h3 style="color: #2980b9; margin-top: 0;">✨ 핵심 패턴 (Key Patterns)</h3>
+        <ul style="color: #34495e; font-weight: bold;"><li style='margin-bottom: 5px;'>What do you usually do after school? (너는 방과 후에 주로 무엇을 하니?)</li><li style='margin-bottom: 5px;'>I stay at home and do homework. (나는 집에 머물고 숙제를 해.)</li><li style='margin-bottom: 5px;'>How often do you go shopping? (얼마나 자주 쇼핑을 하니?)</li><li style='margin-bottom: 5px;'>I often go to shopping malls. (나는 종종 쇼핑몰에 가요.)</li><li style='margin-bottom: 5px;'>I am spending time with my grandparents. (나는 조부모님들과 시간을 보내고 있어.)</li></ul>
+        
+        <h3 style="color: #27ae60; margin-top: 20px;">🗣️ 대화 연습 (Let's Speak)</h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <p style='margin: 5px 0;'><strong>Jack:</strong> Sue, what do you usually do on the weekend?</p><p style='margin: 5px 0;'><strong>Sue:</strong> I visit my grandparents and read books with them.</p><p style='margin: 5px 0;'><strong>Jack:</strong> Oh, that's great! What are you reading these days?</p><p style='margin: 5px 0;'><strong>Sue:</strong> I'm reading a novel called Almond. How often do you read books?</p><p style='margin: 5px 0;'><strong>Jack:</strong> I rarely read novels, but this sounds quite interesting.</p>
+        </div>
+        
+        <h3 style="color: #e67e22; margin-top: 20px;">💡 현지 표현 (Authentic Expressions)</h3>
+        <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">usually (보통, 대개 - 거의 항상 일어남) vs often (자주 - usually 보다는 빈도가 낮음)</p>
+    </div>
+    
+            </div>
+
+            <div class="card">
+                <span class="tag tag-quiz">Part 4. 오늘의 영작 훈련</span>
+                <h2 style="text-align: center;">방금 배운 표현을 활용하여 영작해 보세요.</h2>
                 <div id="quiz-container"></div>
             </div>
         </div>
 
         <script>
-            const quizzes = [{"q": "\uadf8\ub294 \ucde8\ubbf8\uc5d0 \ub9ce\uc740 \uc2dc\uac04\uc744 \ubcf4\ub0b8\ub2e4 (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "spend / pursuing", "a": "He spends a lot of time pursuing his hobby."}, {"q": "He likes singing, _______ he?", "a": "doesn't"}, {"q": "The weather is beautiful, _______ it?", "a": "isn't"}, {"q": "\ub108\ub294 \ud53c\uc790\ub97c \uc88b\uc544\ud574, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "like / don't you", "a": "You like pizza, don't you?"}, {"q": "\ub0b4\uc77c \uc218\ud559 \ud559\uc6d0\uc5d0 \uac08 \uac70\uc57c. (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "I / will go to / tomorrow", "a": "I will go to Math academy tomorrow."}, {"q": "\ud560\uc544\ubc84\uc9c0 \ud560\uba38\ub2c8\uac00 \uac00\uae4c\uc774 \uc0ac\uc2dc\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "Do / your / close by", "a": "Do your grandparents live close by?"}, {"q": "James\ub294 \ube60\ub97c \uc218 \uc788\uc5b4, \uadf8\ub807\uc9c0 \uc54a\uc544? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "can be / isn't he", "a": "James can be fast, isn't he?"}, {"q": "Do you have time to watch a _______? (\uc601\ud654 \ud55c \ud3b8 \ubcfc \uc2dc\uac04 \uc788\uc5b4?)", "a": "movie"}, {"q": "What kind of _______ do you play? (\uc5b4\ub5a4 \uc885\ub958\uc758 \uc6b4\ub3d9\uc744 \ud558\ub2c8?)", "a": "sports"}, {"q": "Do you have a _______ to help me out? (\ub098\ub97c \ub3c4\uc640\uc904 \uc7a0\uae50\uc758 \uc2dc\uac04 \uc788\ub2c8?)", "a": "moment"}];
+            const quizzes = [{"q": "\uadf8\ub294 \ucde8\ubbf8\uc5d0 \ub9ce\uc740 \uc2dc\uac04\uc744 \ubcf4\ub0b8\ub2e4 (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "spend / pursuing", "a": "He spends a lot of time pursuing his hobby."}, {"q": "\uadf8\ub294 \ub178\ub798\ud558\ub294 \uac83\uc744 \uc88b\uc544\ud574, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "like / singing / doesn't he", "a": "He likes singing, doesn't he?"}, {"q": "\ub0a0\uc528\uac00 \uc544\ub984\ub2e4\uc6cc, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "weather / beautiful / isn't it", "a": "The weather is beautiful, isn't it?"}, {"q": "\uc81c\uc784\uc2a4\ub294 \ube60\ub97c \uc218 \uc788\uc5b4, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "can be fast / is he not", "a": "James can be fast, is he not?"}, {"q": "\ub098\ub294 3\ub144 \uc804\uc5d0 \uc774 \ucde8\ubbf8\ub97c \uc2dc\uc791\ud588\uc5b4. (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "start / hobby / ago", "a": "I started this hobby three years ago."}, {"q": "\ud560\uc544\ubc84\uc9c0 \ud560\uba38\ub2c8\uac00 \uac00\uae4c\uc774\uc5d0 \uc0ac\uc2dc\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "grandparents / live / close by", "a": "Do your grandparents live close by?"}, {"q": "\uc601\ud654 \ubcfc \uc2dc\uac04 \uc788\uc5b4? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "have / time / watch", "a": "Do you have time to watch a movie?"}, {"q": "\ub108\uc758 \uac00\uc7a5 \uc88b\uc544\ud558\ub294 \ucde8\ubbf8\ub294 \ubb34\uc5c7\uc774\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "favorite / hobby", "a": "What is your favorite hobby?"}, {"q": "\ub108\ub294 \ubcf4\ud1b5 \ube44\ub514\uc624 \uac8c\uc784\uc744 \ud558\ub294\ub370 \uba87 \uc2dc\uac04\uc744 \ubcf4\ub0b4\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "how many / spend / playing", "a": "How many hours do you usually spend playing video games?"}, {"q": "\ub098\ub294 \ub0b4\uc77c \uc218\ud559 \ud559\uc6d0\uc5d0 \uac08 \uac70\uc57c. (\ub2e4\uc74c \ub2e8\uc5b4\ub4e4\uc744 \ubc14\ub974\uac8c \ubc30\uc5f4\ud558\uc138\uc694: go / Math academy / I / tomorrow / will / to)", "hint": "\uc8fc\uc5b4\ubd80\ud130 \uc2dc\uc791\ud558\uace0 \uc870\ub3d9\uc0ac will\uc744 \uc0ac\uc6a9\ud574\ubd10.", "a": "I will go to Math academy tomorrow."}];
             const container = document.getElementById('quiz-container');
 
             quizzes.forEach((quiz, index) => {
-                // 각 퀴즈마다 HTML 박스 생성
                 const html = `
                     <div class="quiz-box">
                         <div class="quiz-q">${quiz.q}</div>
-                        <input type="text" id="input_${index}" class="quiz-input" placeholder="your text here">
+                        <input type="text" id="input_${index}" class="quiz-input" placeholder="여기에 영어로 적어보세요">
                         
                         <div id="hint_${index}" class="quiz-hint-box">
                             📢 힌트: ${quiz.hint}
                         </div>
                         
                         <div class="btn-group">
-                            <button class="btn-action" onclick="document.getElementById('hint_${index}').style.display='block'">힌트듣기</button>
+                            <button class="btn-action" onclick="document.getElementById('hint_${index}').style.display='block'">힌트보기</button>
                             <button class="btn-action" onclick="checkQuiz(${index}, '${quiz.a.replace(/'/g, "\'")}')">정답확인</button>
                         </div>
                         
@@ -82,13 +110,11 @@
                 container.innerHTML += html;
             });
 
-            // 정답 체크 함수
             function checkQuiz(index, correctAnswer) {
                 const userAnswer = document.getElementById(`input_${index}`).value.trim();
                 const resultDiv = document.getElementById(`result_${index}`);
                 
                 resultDiv.style.display = 'block';
-                // 소문자, 마침표 등 무시하고 대략 맞는지 검사
                 const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '');
                 const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '');
                 

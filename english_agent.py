@@ -13,9 +13,12 @@ today = datetime.date.today()
 today_str = today.strftime("%Y년 %m월 %d일")
 html_filename = f"english_{today.strftime('%Y%m%d')}.html"
 
-# 📅 1년 52주를 순환하며 매주 다른 단원을 자동으로 선택합니다.
-week_number = today.isocalendar()[1]
-current_unit_index = (week_number % 8) + 1  # 1단원 ~ 8단원 로테이션
+# 📅 다니엘 맞춤형 진도 자동 계산 (매주 월요일마다 진도 1씩 자동 증가)
+start_date = datetime.date(2026, 3, 23) # 기준일: 이번 주 월요일 날짜
+start_unit = 2 # 이번 주 진도: 2단원부터 시작! (수정 가능)
+
+weeks_passed = (today - start_date).days // 7
+current_unit_index = ((start_unit - 1 + weeks_passed) % 8) + 1
 
 # 2. 📚 [완전 자동화 DB] 전화영어 + 학교 교과서(사진 8장 추출본)
 study_db = {

@@ -3,49 +3,146 @@
     <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>중학교 1학년 과학: 1. 과학과 인류의 지속가능한 삶</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 과학 도서관</title>
         <style>
-            :root { --primary: #3498db; --secondary: #2ecc71; --accent: #e67e22; --bg: #f4f7f6; }
-            body { font-family: 'Malgun Gothic', sans-serif; background: var(--bg); color: #333; padding: 20px; }
-            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-            .header { background: linear-gradient(135deg, var(--primary), #8e44ad); color: white; padding: 40px 20px; text-align: center; position: relative; }
-            .back-link { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-weight: bold; background: rgba(0,0,0,0.2); padding: 8px 15px; border-radius: 10px; }
-            .section { padding: 40px; border-bottom: 1px solid #eee; }
-            .study-card { background: #f9fbfd; border-radius: 20px; padding: 25px; border-left: 8px solid var(--primary); }
-            .lab-banner { background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80') center/cover; height: 200px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; }
-            .lab-btn { background: rgba(230, 126, 34, 0.95); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2em; }
-            .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-            .yt-card { border: 1px solid #eee; border-radius: 15px; overflow: hidden; background: #fff; }
-            .yt-btn { display: block; background: #ff0000; color: white; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; }
-            .quiz-container { background: #fff4e5; border-radius: 20px; padding: 30px; }
-            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; }
-            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid var(--secondary); font-weight: bold; }
-            .check-btn { background: #34495e; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            :root { --main: #3498db; --point: #e67e22; --bg: #f8fafd; --text: #2c3e50; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+            .header { background: linear-gradient(135deg, #6dd5ed, #2193b0); color: white; padding: 60px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+            .container { max-width: 800px; margin: -50px auto 50px; padding: 0 20px; }
+            .card { background: white; border-radius: 25px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eff3f6; }
+            .point-box { border-left: 6px solid var(--main); background: #f0f7ff; padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 25px; position: relative; }
+            .point-num { position: absolute; left: -15px; top: -15px; background: var(--main); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 4px solid white; }
+            .img-deco { width: 100%; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+            .quiz-zone { background: #fff9f2; border: 2px dashed #ffdebd; border-radius: 25px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+            .btn-ans { background: var(--text); color: white; border: none; padding: 8px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9em; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid #2ecc71; }
+            .lab-btn { display: block; text-align: center; background: var(--point); color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2em; transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(230,126,34,0.3); }
         </style>
-        <script>
-            function toggleAns(id) {
-                var x = document.getElementById(id);
-                x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
-            }
-        </script>
+        <script>function toggleAns(id){ var x=document.getElementById(id); x.style.display=(x.style.display==='none'||x.style.display==='')?'block':'none'; }</script>
     </head>
     <body>
+        <div class="header">
+            <h1 style="margin:0; font-size:2.2em;">🔬 다니엘의 스마트 과학 리포트</h1>
+            <p style="opacity:0.9; font-weight:700; margin-top:10px;">중학교 1학년 과학: 1. 과학과 인류의 지속가능한 삶</p>
+        </div>
         <div class="container">
-            <div class="header">
-                <a href="index.html" class="back-link">← 전체 목차로 가기</a>
-                <h1 style="margin:0; padding-top:20px;">중학교 1학년 과학: 1. 과학과 인류의 지속가능한 삶</h1>
-                <p style="margin-top:10px; opacity:0.9;">아빠가 직접 코딩해서 만든 이번 주 학습지!</p>
-            </div>
-            <div class="section">
-                <h2>📖 핵심 요약 노트</h2>
-                <div class="study-card">
-                    <p style="margin-bottom:15px; line-height:1.7;"><b>1. </b> 과학은 우리 주변의 궁금증을 해결하는 멋진 모험이야! 우리가 눈으로 자세히 관찰하고, 왜 그럴까 상상하고, 직접 실험해서 답을 찾아보는 과정이 바로 '과학'이야. 마치 탐정이 사건의 단서를 모아 범인을 찾는 것처럼, 과학자들은 세상의 비밀을 하나하나 밝혀내지. 우리가 배우는 과학은 우리를 호기심 가득한 탐험가로 만들어줄 거야!</p><p style="margin-bottom:15px; line-height:1.7;"><b>2. </b> 과학은 우리 일상생활 곳곳에 숨어있는 마법과도 같아! 아침에 알람 소리에 깨어나 스마트폰으로 시간을 확인하고, 맛있는 빵을 오븐에 데워 먹고, 깨끗한 물로 샤워하고 학교에 가는 모든 과정에 과학이 숨어 있어. 우리가 타고 다니는 자동차나 버스, 아플 때 먹는 약, 밤을 밝혀주는 전구까지, 이 모든 것이 과학 덕분에 만들어지고 발전한 것들이야. 과학 덕분에 우리는 더 편리하고, 건강하고, 즐거운 삶을 살 수 있게 되었단다.</p><p style="margin-bottom:15px; line-height:1.7;"><b>3. </b> 지구는 소중한 우리 집, 과학은 지구를 지키는 슈퍼히어로! 우리가 살고 있는 지구에는 물, 공기, 흙, 그리고 에너지 같은 아주 소중한 자원들이 있어. 그런데 이 자원들은 무한정 있는 게 아니라 언젠가는 바닥날 수도 있대. 과학은 이 자원들을 아껴 쓰고, 더 효율적으로 사용하며, 새로운 자원을 찾아내거나 만들 수 있는 방법을 알려줘. 예를 들면, 햇빛이나 바람으로 전기를 만드는 '친환경 에너지' 기술이나, 버려진 물건을 다시 쓰는 '재활용' 기술 같은 것들이 바로 과학의 선물이지. 과학 덕분에 우리는 지구를 오염시키지 않고 깨끗하게 유지하며 살아갈 수 있어.</p><p style="margin-bottom:15px; line-height:1.7;"><b>4. </b> '지속가능한 삶'은 오늘 잘 살고, 미래 친구들도 잘 살게 해주는 약속이야! 다니엘, 혹시 나중에 네 자녀가 살 세상은 어땠으면 좋겠어? 지금 우리가 지구의 자원을 마구 쓴다면, 미래의 친구들은 사용할 자원이 없어서 힘들게 살아야 할 수도 있어. '지속가능한 삶'이라는 건 바로 이런 거야. 우리 세대가 필요한 것을 사용하되, 미래 세대가 살아가는 데 필요한 자원과 환경을 망치지 않고 잘 보존해 주는 것. 즉, '오늘도 잘 살고, 내일도 잘 살 수 있도록' 지구를 잘 가꾸며 살아가는 방법을 배우고 실천하는 것이지.</p><p style="margin-bottom:15px; line-height:1.7;"><b>5. </b> 과학과 우리가 함께 힘을 모으면 더 멋진 미래를 만들 수 있어! 과학은 우리에게 지구를 더 잘 이해하고, 문제들을 해결할 수 있는 강력한 도구를 선물해 줬어. 하지만 이 도구를 어떻게 사용할지는 바로 우리에게 달려 있어. 과학적인 지식을 바탕으로 현명하게 생각하고 행동하면, 에너지 부족, 환경 오염, 질병 같은 다양한 문제들을 해결하고 모두가 행복하게 살아갈 수 있는 더 좋은 세상을 만들 수 있을 거야. 다니엘도 작은 실천 하나하나로 더 나은 미래를 만드는 데 동참할 수 있단다!</p>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80" class="img-deco">
+                <h2 style="color:var(--main); margin-bottom:30px;">📖 아빠의 핵심 요약 노트</h2>
+    
+                <div class="point-box">
+                    <div class="point-num">1</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">안녕, 다니엘! 과학은 말이야, 우리 주변의 모든 것들, 이를테면 왜 하늘이 파란지, 스마트폰은 어떻게 작동하는지 같은 '왜?'라는 질문에서 시작해. 이런 궁금증을 풀기 위해 자연 현상을 자세히 관찰하고, 실험하고, 규칙을 찾아내는 활동이 바로 과학이란다. 과학은 그냥 책에 있는 지식을 외우는 게 아니라, 우리 주변 세상을 이해하는 아주 신나고 즐거운 탐험과도 같아!</p>
                 </div>
-                <div class="lab-banner">
-                    <a href="./lab_w12.html" class="lab-btn">🔬 나만의 애니메이션 실험실 가기</a>
+        
+                <div class="point-box">
+                    <div class="point-num">2</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">과학자들은 궁금증을 풀 때 마치 명탐정처럼 체계적으로 조사를 해! 이걸 '과학적 탐구 과정'이라고 부르는데, 크게 5단계로 나눌 수 있어.
+1.  **관찰 및 문제 인식:** 먼저 무언가를 자세히 보고 '왜 이럴까?' 하고 궁금해 해.
+2.  **가설 설정:** 그 궁금증에 대해 '아마 이럴 거야!' 하고 임시적인 답을 생각해봐. (예: '식물은 햇빛이 있어야 더 잘 자랄 거야!')
+3.  **탐구 설계 및 수행:** 가설이 맞는지 확인하기 위해 실험을 계획하고 실행하는데, 이때 아주 중요한 게 있어! 바로 **'공정한 실험을 위해 똑같이 맞출 조건'** 이란다. 예를 들어, 햇빛이 식물 성장에 미치는 영향을 보려면, 다른 조건들(물 양, 온도, 흙 종류)은 다 똑같이 해주고, 오직 '햇빛의 유무'만 다르게 해야 해. 그래야 햇빛 때문에 식물이 달라졌다고 정확하게 말할 수 있겠지? 여기서 내가 바꾸는 조건(햇빛 유무)을 '조작 변인', 그 결과 바뀌는 것(식물 성장)을 '종속 변인'이라고 해.
+4.  **결과 정리 및 해석:** 실험으로 얻은 결과를 표나 그래프로 만들어서 어떤 의미인지 생각해봐.
+5.  **결론 도출:** 실험 결과가 가설과 맞는지 확인하고, 새로운 사실을 알게 되는 거지.</p>
                 </div>
+        
+                <div class="point-box">
+                    <div class="point-num">3</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">과학과 기술은 아주 친한 친구 같아! 과학은 자연 현상을 '이해하는 것'에 관심이 있어. 예를 들어, '전기가 무엇이고 어떻게 흐르는지'를 알아내는 게 과학의 역할이지. 반면에 기술은 그 과학적 지식을 이용해서 우리 삶에 '유용한 것을 만드는 것'이야. 전기가 흐르는 원리를 이용해 전구, 스마트폰, 컴퓨터 같은 편리한 물건들을 만드는 게 바로 기술이란다. 과학이 없었다면 이렇게 멋진 기술들도 나올 수 없었겠지? 과학이 원리를 알려주면, 기술은 그걸 현실로 만들어주는 역할을 해!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">4</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">과학과 기술 덕분에 우리 인류의 삶은 정말 상상할 수 없을 만큼 발전했어. 옛날에는 치료하기 어려웠던 병들도 지금은 약이나 수술로 고칠 수 있게 됐고 (의료 기술), 멀리 떨어진 사람과도 영상 통화를 할 수 있고 (통신 기술), 위험한 일을 로봇이 대신해 주기도 해 (로봇 기술). 또 맛있는 음식을 안전하게 보관하고 (식품 과학), 더 빠르고 편하게 이동할 수 있게 된 것도 다 과학 덕분이란다. 과학이 없었다면 지금처럼 편안하고 풍요로운 삶은 어려웠을 거야.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">5</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">과학은 우리 삶을 풍요롭게 해주었지만, 한편으로는 환경 오염, 자원 고갈 같은 새로운 문제들을 만들기도 했어. 하지만 걱정 마! 과학은 이런 문제들을 해결하는 데도 큰 역할을 한단다. 예를 들어, 쓰레기를 줄이고 재활용하는 방법, 오염된 물을 깨끗하게 만드는 기술, 햇빛이나 바람처럼 고갈되지 않는 에너지를 개발하는 일 (태양광, 풍력 발전), 그리고 새로운 친환경 재료를 만드는 것까지! 이렇게 우리와 미래 세대가 계속해서 지구에서 행복하게 살아갈 수 있도록 하는 것을 **'지속가능한 삶'**이라고 하는데, 과학이 바로 이 지속가능한 삶을 위한 해결책을 찾아주는 가장 중요한 열쇠란다.</p>
+                </div>
+        
+                <a href="./lab_w12.html" class="lab-btn">🧪 나만의 애니메이션 실험실 가기 →</a>
             </div>
-            <div class="section">
-                <h2>📺 추천 영상</h2>
-                <div class="yt-grid">
-    <div class="yt-card"><div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">1분만에 납득 못하면 책임집니다</div><a href="https://www.youtube.com/watch?v=fGw_OY_QSnA" target="_blank" class="yt-btn">▶ 영상 보기</a></div><div class="yt-card"><div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">[중1과학]Ⅴ.물질의 상태 변화 - 3.상태 변화와 열에너지</div><a href="https://www.youtube.com/watch?v=Bi8fidWIvoU" target="_blank" class="yt-btn">▶ 영상 보기</a></div><div class="yt-card"><div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">지구 복사평형과 온실효과</div><a href="https://www.youtube.com/watch?v=bGo0LmV7hz0" target="_blank" class="yt-btn">▶ 영상 보기</a></div><div class="yt-card"><div style="padding:15px; font-weight:bold; height:50px; overflow:hidden;">올바른 쓰레기 분리배출 하는법🙋‍♂️ 재활용은 되나요? 강원도 쓰줍하다 발견한 쓰레기 😭(나무젓가락,종이컵,캔 편)</div><a href="https://www.youtube.com/watch?v=Xl3beS8b6ow" target="_blank" class="yt-btn">▶ 영상 보기</a></div></div></div><div class="section"><h2>📝 학습 체크 퀴즈 (10문제)</h2><div class="quiz-container"><div class="q-card"><p><b>Q1. 과학은 우리 주변의 현상에 대해 '왜 그럴까?' 하고 궁금해하는 마음에서 시작된다.</b></p><button class="check-btn" onclick="toggleAns('ans0')">정답 확인</button><div id="ans0" class="ans-box">정답: O <br><small>💡 맞아! 과학은 다니엘처럼 호기심 많은 친구들의 '왜?'라는 질문에서부터 시작된단다.</small></div></div><div class="q-card"><p><b>Q2. 과학은 복잡한 실험실에서만 이루어지고, 우리 일상생활과는 전혀 관련이 없다.</b></p><button class="check-btn" onclick="toggleAns('ans1')">정답 확인</button><div id="ans1" class="ans-box">정답: X <br><small>💡 아니야! 과학은 스마트폰, 컴퓨터, 컵라면처럼 우리 주변의 모든 것에 숨어 있어. 과학 덕분에 우리가 더 편리하게 살 수 있지!</small></div></div><div class="q-card"><p><b>Q3. 지구의 물, 공기, 에너지 같은 자원은 너무 많아서 아무리 써도 고갈되지 않는다.</b></p><button class="check-btn" onclick="toggleAns('ans2')">정답 확인</button><div id="ans2" class="ans-box">정답: X <br><small>💡 안타깝게도 아니야. 지구의 자원은 한정되어 있어서 우리가 아껴 쓰지 않으면 언젠가는 바닥날 수 있단다.</small></div></div><div class="q-card"><p><b>Q4. '지속가능한 삶'은 미래 세대의 불편함은 생각하지 않고 현재 우리 세대만 잘사는 것을 목표로 한다.</b></p><button class="check-btn" onclick="toggleAns('ans3')">정답 확인</button><div id="ans3" class="ans-box">정답: X <br><small>💡 틀렸어. '지속가능한 삶'은 오늘 우리도 잘살고, 미래의 친구들도 걱정 없이 잘 살 수 있도록 지구를 지키는 것을 말해.</small></div></div><div class="q-card"><p><b>Q5. 과학은 환경 오염이나 에너지 부족과 같은 지구의 문제들을 해결하는 데 도움을 줄 수 있다.</b></p><button class="check-btn" onclick="toggleAns('ans4')">정답 확인</button><div id="ans4" class="ans-box">정답: O <br><small>💡 물론이지! 과학은 새로운 에너지원을 개발하고 오염을 줄이는 방법을 찾는 등 지구의 문제를 해결하는 데 아주 중요한 역할을 한단다.</small></div></div><div class="q-card"><p><b>Q6. 다음 중 과학이 시작되는 가장 기본적인 마음가짐은 무엇일까?</b></p><ul style="list-style:none; padding-left:10px;"><li style='margin-bottom:5px;'>1. 무조건 믿는 마음</li><li style='margin-bottom:5px;'>2. 결과만 보고 싶은 마음</li><li style='margin-bottom:5px;'>3. 궁금해하고 탐구하려는 마음</li><li style='margin-bottom:5px;'>4. 아무 생각 없이 받아들이는 마음</li></ul><button class="check-btn" onclick="toggleAns('ans5')">정답 확인</button><div id="ans5" class="ans-box">정답: 3 <br><small>💡 정답! 과학은 '왜 그럴까?' '어떻게 된 걸까?' 하고 궁금해하며 답을 찾아가는 과정이야.</small></div></div><div class="q-card"><p><b>Q7. 다음 중 우리 일상생활에서 과학 기술 덕분에 편리해진 예시가 아닌 것은 무엇일까?</b></p><ul style="list-style:none; padding-left:10px;"><li style='margin-bottom:5px;'>1. 스마트폰으로 친구와 영상 통화하기</li><li style='margin-bottom:5px;'>2. 맑은 날 해가 뜨고 지는 현상</li><li style='margin-bottom:5px;'>3. 냉장고에 음식을 신선하게 보관하기</li><li style='margin-bottom:5px;'>4. 자동차를 타고 먼 거리를 빠르게 이동하기</li></ul><button class="check-btn" onclick="toggleAns('ans6')">정답 확인</button><div id="ans6" class="ans-box">정답: 2 <br><small>💡 해가 뜨고 지는 현상은 자연 현상이고, 나머지는 과학 기술 덕분에 편리해진 우리 생활의 모습이지!</small></div></div><div class="q-card"><p><b>Q8. '지속가능한 삶'을 위해 우리가 노력해야 할 가장 중요한 태도는 무엇일까?</b></p><ul style="list-style:none; padding-left:10px;"><li style='margin-bottom:5px;'>1. 필요한 모든 자원을 지금 다 사용하기</li><li style='margin-bottom:5px;'>2. 오직 현재 세대만을 위한 개발에 집중하기</li><li style='margin-bottom:5px;'>3. 미래 세대가 살아갈 환경을 고려하며 자원을 아껴 사용하기</li><li style='margin-bottom:5px;'>4. 과학 기술의 발전만 믿고 환경 문제에 무관심하기</li></ul><button class="check-btn" onclick="toggleAns('ans7')">정답 확인</button><div id="ans7" class="ans-box">정답: 3 <br><small>💡 맞아! 미래 세대도 행복하게 살 수 있도록 지금부터 지구의 자원을 소중히 다루는 마음이 가장 중요해.</small></div></div><div class="q-card"><p><b>Q9. 다음 중 고갈될 걱정 없이 계속 사용할 수 있는 '지속가능한 에너지'에 해당하는 것은 무엇일까?</b></p><ul style="list-style:none; padding-left:10px;"><li style='margin-bottom:5px;'>1. 석탄</li><li style='margin-bottom:5px;'>2. 석유</li><li style='margin-bottom:5px;'>3. 태양광</li><li style='margin-bottom:5px;'>4. 천연가스</li></ul><button class="check-btn" onclick="toggleAns('ans8')">정답 확인</button><div id="ans8" class="ans-box">정답: 3 <br><small>💡 태양광은 햇빛을 이용하는 에너지라 고갈될 걱정이 없어. 석탄, 석유, 천연가스는 땅속에 묻혀 있는 화석 연료라서 언젠가는 사라질 거야.</small></div></div><div class="q-card"><p><b>Q10. 다니엘이 '지속가능한 삶'을 위해 일상생활에서 실천할 수 있는 가장 좋은 방법은 무엇일까?</b></p><ul style="list-style:none; padding-left:10px;"><li style='margin-bottom:5px;'>1. 물을 마구 쓰고 전등을 켜둔 채 외출하기</li><li style='margin-bottom:5px;'>2. 버려지는 물건을 재활용하지 않고 일반 쓰레기로 버리기</li><li style='margin-bottom:5px;'>3. 안 쓰는 플러그 뽑기, 대중교통 이용하기 등 에너지 절약하기</li><li style='margin-bottom:5px;'>4. 나에게 필요 없는 물건은 모두 버리기</li></ul><button class="check-btn" onclick="toggleAns('ans9')">정답 확인</button><div id="ans9" class="ans-box">정답: 3 <br><small>💡 작은 실천이라도 에너지를 아껴 쓰고 환경을 생각하는 행동들이 모여서 지속가능한 삶을 만드는 데 큰 도움이 된단다!</small></div></div></div></div><div style="text-align:center; padding:40px; color:#bdc3c7;">❤️ 아빠가 다니엘을 위해 정성껏 만들었어!</div></div></body></html>
+
+            <div class="card quiz-zone">
+                <h2 style="color:var(--point); text-align:center;">📝 실력 쑥쑥! 퀴즈 타임</h2>
+    
+                <div class="q-card">
+                    <p style="font-weight:800;">Q1. 과학은 우리 주변의 자연 현상에 대한 궁금증에서 시작하여 답을 찾아가는 활동이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans0')">정답 확인</button>
+                    <div id="ans0" class="ans-box">✨ 정답: <b>O</b><br><small>과학은 '왜?'라는 호기심을 가지고 세상을 탐구하고 이해하려는 노력이에요. 다니엘도 주변에서 궁금한 것을 찾아보면 그게 바로 과학의 시작이랍니다!</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q2. 식물 성장에 미치는 빛의 영향을 알아보기 위한 실험에서, 물의 양은 다르게 하고 빛의 양만 똑같이 맞춰야 '공정한 실험을 위해 똑같이 맞출 조건'을 지킨 것이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">✨ 정답: <b>X</b><br><small>빛의 영향을 보기 위해서는 물의 양, 온도 등 다른 조건들은 '똑같이 맞추고', 빛의 양만 다르게 해야 '공정한 실험'이 됩니다. 내가 보고 싶은 한 가지 조건만 바꿔야 해요!</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q3. 과학은 자연 현상을 이해하는 학문이고, 기술은 그 과학 지식을 활용하여 유용한 것을 만드는 활동이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 과학이 '왜' 그런지 원리를 밝히면, 기술은 그 원리를 이용해 실생활에 필요한 것을 '만드는' 역할을 한답니다. 둘은 서로 뗄 수 없는 관계예요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q4. 과학과 기술의 발전은 우리 삶을 더욱 풍요롭게 만들었지만, 환경 오염이나 자원 고갈 같은 문제와는 전혀 상관이 없다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans3')">정답 확인</button>
+                    <div id="ans3" class="ans-box">✨ 정답: <b>X</b><br><small>아쉽게도 틀렸어요. 과학 기술의 발전으로 삶이 편리해진 만큼, 환경 오염이나 자원 고갈과 같은 새로운 문제들도 생겨나기도 했답니다. 그래서 과학은 이제 이런 문제들을 해결하는 데 더 집중하고 있어요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q5. '지속가능한 삶'이란 현재 우리만 편리하게 살고 미래 세대는 걱정하지 않는 것을 의미한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans4')">정답 확인</button>
+                    <div id="ans4" class="ans-box">✨ 정답: <b>X</b><br><small>'지속가능한 삶'은 현재의 필요를 채우면서도, 미래 세대가 살아갈 환경과 자원을 아끼고 보호하여 우리 모두가 함께 잘 살아갈 수 있도록 하는 것을 의미해요. 우리만의 행복이 아니라 모두의 행복을 생각하는 것이죠.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q6. 다음 중 과학적 탐구 과정의 첫 단계로 가장 알맞은 것은 무엇일까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 가설 설정</li><li>· 2. 결과 정리 및 해석</li><li>· 3. 관찰 및 문제 인식</li><li>· 4. 탐구 설계 및 수행</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans5')">정답 확인</button>
+                    <div id="ans5" class="ans-box">✨ 정답: <b>3</b><br><small>과학적 탐구는 주변을 자세히 '관찰'하고 '왜 이럴까?' 하고 궁금증을 갖는 것에서 시작해요. 호기심이 첫걸음이랍니다!</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q7. 식물의 성장과 온도 사이의 관계를 알아보기 위한 실험에서, 물의 양, 흙의 종류 등 다른 조건들은 모두 같게 하고 오직 온도만 다르게 해주었어요. 이때 '온도'는 무엇에 해당할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 종속 변인</li><li>· 2. 결과 변인</li><li>· 3. 통제 변인</li><li>· 4. 조작 변인</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans6')">정답 확인</button>
+                    <div id="ans6" class="ans-box">✨ 정답: <b>4</b><br><small>실험에서 내가 의도적으로 바꾸는 조건을 '조작 변인'이라고 해요. 온도를 다르게 했으니 온도는 조작 변인이 됩니다. 만약 식물의 성장 결과를 봤다면 그건 '종속 변인'이겠죠?</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q8. 다음 중 과학 지식을 바탕으로 만들어진 '기술'의 예시가 아닌 것은 무엇일까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 스마트폰</li><li>· 2. 전구</li><li>· 3. 비행기가 뜨는 원리</li><li>· 4. 백신</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans7')">정답 확인</button>
+                    <div id="ans7" class="ans-box">✨ 정답: <b>3</b><br><small>비행기가 뜨는 '원리'는 과학적 지식이고, 스마트폰, 전구, 백신은 그 과학 지식을 바탕으로 만들어진 '기술'로 볼 수 있어요. 원리와 기술은 다르다는 것을 기억해줘요!</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q9. 과학 기술의 발전이 인류에게 가져다준 긍정적인 변화로 보기 어려운 것은 무엇일까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 질병 치료 및 예방</li><li>· 2. 먼 거리 통신 가능</li><li>· 3. 대기 오염 및 환경 파괴</li><li>· 4. 편리한 이동 수단 개발</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans8')">정답 확인</button>
+                    <div id="ans8" class="ans-box">✨ 정답: <b>3</b><br><small>질병 치료, 통신, 이동 수단 개발은 과학 기술의 긍정적인 영향이지만, 대기 오염과 환경 파괴는 과학 기술 발전의 부정적인 영향 중 하나랍니다. 이 문제들을 해결하는 것이 지속가능한 삶을 위한 과학의 목표예요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q10. 지구 환경과 자원을 아껴 미래 세대도 풍요롭게 살아갈 수 있도록 하는 것을 무엇이라고 할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 과학 혁명</li><li>· 2. 정보 사회</li><li>· 3. 지속가능한 삶</li><li>· 4. 산업화</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans9')">정답 확인</button>
+                    <div id="ans9" class="ans-box">✨ 정답: <b>3</b><br><small>맞아요! 현재 우리 세대뿐만 아니라 미래 세대까지 모두가 행복하게 살아갈 수 있도록 환경과 자원을 아끼는 것을 '지속가능한 삶'이라고 합니다. 과학이 여기에 큰 도움을 주고 있어요!</small></div>
+                </div>
+        
+            </div>
+            <p style="text-align:center; color:#bdc3c7; margin-top:30px;">아빠가 다니엘을 위해 코드로 만든 사랑의 리포트 ❤️</p>
+        </div>
+    </body>
+    </html>
+    

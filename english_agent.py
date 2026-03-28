@@ -8,7 +8,12 @@ import google.generativeai as genai
 # 1. 환경설정
 GEMINI_KEY = os.getenv("SCIENCE_KEY")
 genai.configure(api_key=GEMINI_KEY)
-model = genai.GenerativeModel('models/gemini-2.5-flash')
+
+# 🚨 핵심 해결책: AI가 무조건 완벽한 데이터(JSON) 형식만 만들도록 시스템적으로 강제합니다!
+model = genai.GenerativeModel(
+    'models/gemini-2.5-flash',
+    generation_config={"response_mime_type": "application/json"}
+)
 
 issue_title = os.getenv("ISSUE_TITLE", "Lesson 2")
 issue_body = os.getenv("ISSUE_BODY", "No data")
@@ -46,7 +51,7 @@ current_info = curriculum_db.get(current_lesson_key, curriculum_db["Lesson 2"])
 
 phone_english_patterns = "".join([f"<li style='margin-bottom: 5px;'>{p}</li>" for p in current_info['key_patterns']])
 
-# 3. 🤖 Gemini 프롬프트 (학교 교재 원문 출력 + 작문 2문제 분리 지시)
+# 3. 🤖 Gemini 프롬프트
 prompt = f"""
 너는 중학교 1학년 다니엘의 영어 코치야.
 아래 데이터(issue_body)에는 '화상영어 대화록'과 '학교 교과서 요약본'이 섞여 있어.
@@ -54,7 +59,7 @@ prompt = f"""
 [입력 데이터]
 {issue_body}
 
-이 데이터를 바탕으로 반드시 아래 JSON 형식에 맞춰서 응답해. HTML 태그 작성 시 쌍따옴표(") 대신 홀따옴표(')를 사용해.
+반드시 아래 형식에 정확히 맞춰서 응답해.
 {{
   "review_original": "대화록에서 다니엘이 틀리거나 어색하게 말한 문장 1개",
   "review_better": "선생님이 교정해준 완벽한 문장",
@@ -81,17 +86,11 @@ prompt = f"""
 try:
     res = model.generate_content(prompt)
     
-    # JSON 텍스트만 추출
-    json_str = res.text
-    if "```json" in json_str:
-        json_str = json_str.split("```json")[1].split("```")[0]
-    elif "```" in json_str:
-        json_str = json_str.split("```")[1].split("```")[0]
-        
-    data = json.loads(json_str.strip())
+    # 이제 AI가 무조건 완벽한 형식을 주므로 에러 없이 바로 읽을 수 있습니다.
+    data = json.loads(res.text.strip())
     
     js_voca_quizzes = json.dumps(data.get('voca_quizzes', []))
-    js_writing_quizzes = json.dumps(data.get('writing_quizzes', [])[:2]) # 무조건 2문제만 자르기
+    js_writing_quizzes = json.dumps(data.get('writing_quizzes', [])[:2])
 
     # 🔤 클릭형 단어장 HTML 조립
     voca_html = ""

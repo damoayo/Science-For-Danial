@@ -1,0 +1,50 @@
+name: Danial English Auto-Generator
+
+on:
+  issues:
+    types: [opened] # 이슈(게시판 글)가 새로 열릴 때만 작동!
+
+jobs:
+  build_english_report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write # 이슈를 닫을 권한
+
+    steps:
+      - name: 📥 코드 가져오기
+        uses: actions/checkout@v4
+
+      - name: 🐍 파이썬 설치
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: 📦 필요 프로그램 설치
+        run: pip install google-generativeai requests python-dotenv
+
+      - name: 🤖 영어 로봇 실행!
+        env:
+          SCIENCE_KEY: ${{ secrets.SCIENCE_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python english_agent.py
+
+      - name: 🧹 작업 완료된 이슈 닫기
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            })
+
+      - name: 🚀 깃허브에 완성된 웹사이트 올리기
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add english_*.html
+          git commit -m "🎉 오늘의 영어 리포트 자동 생성 완료!" || echo "No changes to commit"
+          git push

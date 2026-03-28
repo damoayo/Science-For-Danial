@@ -13,14 +13,14 @@ today = datetime.date.today()
 today_str = today.strftime("%Y년 %m월 %d일")
 html_filename = f"english_{today.strftime('%Y%m%d')}.html"
 
-# 📅 다니엘 맞춤형 진도 자동 계산 (매주 월요일마다 진도 1씩 자동 증가)
-start_date = datetime.date(2026, 3, 23) # 기준일: 이번 주 월요일 날짜
-start_unit = 2 # 이번 주 진도: 2단원부터 시작! (수정 가능)
-
+# 📅 다니엘 맞춤형 진도 자동 계산
+# 2026년 3월 23일(월요일)이 있는 주간을 2단원으로 시작 (매주 월요일 진도 +1 자동 증가)
+start_date = datetime.date(2026, 3, 23)
+start_unit = 2
 weeks_passed = (today - start_date).days // 7
 current_unit_index = ((start_unit - 1 + weeks_passed) % 8) + 1
 
-# 2. 📚 [완전 자동화 DB] 전화영어 + 학교 교과서(사진 8장 추출본)
+# 2. 📚 [완전 자동화 DB] 전화영어 + 학교 교과서(사진 추출본)
 study_db = {
     1: {"phone": "Do you exercise regularly?", "school_words": ["performed", "awesome", "concert", "instrumental", "amazing"], "school_grammar": "부가의문문 (aren't they?)"},
     2: {"phone": "What do you usually do?", "school_words": ["caprese", "skewers", "tofu", "healthy", "flour"], "school_grammar": "조동사 can (can/can't)"},
@@ -34,7 +34,7 @@ study_db = {
 
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트 (데이터를 바탕으로 매일 새로운 퀴즈와 단어장 무한 생성)
+# 3. 🤖 AI 프롬프트
 prompt = f"""
 너는 중학교 1학년 다니엘의 영어 코치야. 오늘은 {today_str}이야.
 아래의 [오늘의 학습 재료]를 바탕으로 데일리 영어 리포트 데이터를 JSON 형식으로 정확히 만들어줘.
@@ -45,7 +45,7 @@ prompt = f"""
 - 학교 교과서 문법: {current_study['school_grammar']}
 
 {{
-  "intro_message": "다니엘, 오늘은 {current_unit_index}단원을 복습할 거야! 화이팅! (같은 다정한 아빠의 응원 메시지)",
+  "intro_message": "다니엘, 오늘은 {current_unit_index}단원을 복습할 거야! 화이팅!",
   "school_summary": "위 문법({current_study['school_grammar']})에 대한 간단한 설명과 예문 2개를 <ul><li> 태그로 작성해.",
   "daily_voca": [
     {{
@@ -90,7 +90,6 @@ try:
         </div>
         """
 
-    # HTML 구조 조립
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -204,13 +203,12 @@ try:
         f.write(html_content)
     print(f"✅ {html_filename} 생성 완료!")
 
-    # 🚀 디스코드 알림 발송 (단일 중괄호로 수정 완료)
     discord_url = os.getenv("DISCORD_WEBHOOK")
     if discord_url:
         import requests
         report_link = f"https://damoayo.github.io/Science-For-Danial/{html_filename}"
         discord_msg = {
-            "content": f"📣 **[다니엘의 자동 영어 스낵 도착!]**\n아빠가 준비한 오늘의 영어가 세팅됐어!\n\n📝 **오늘의 학습:** 단원 {current_unit_index} 마스터하기\n👉 **공부하러 가기:** {report_link}"
+            "content": f"📣 **[다니엘의 자동 영어 스낵 도착!]**\n오늘의 영어가 세팅됐어!\n\n📝 **오늘의 학습:** 단원 {current_unit_index} 마스터하기\n👉 **공부하러 가기:** {report_link}"
         }
         requests.post(discord_url, json=discord_msg)
         print("🔔 디스코드 전송 완료!")

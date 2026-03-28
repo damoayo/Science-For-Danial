@@ -7,125 +7,137 @@
         <title>다니엘의 Daily English</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
-            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f8fafd; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
             .container { max-width: 800px; margin: auto; }
             .header { text-align: center; margin-bottom: 30px; }
-            .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
-            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 10px; font-size: 0.9em; }
-            .tag-review { background: #e74c3c; } .tag-preview { background: #3498db; } .tag-quiz { background: #9b59b6; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
             
-            /* 타이핑 퀴즈 UI */
-            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
-            .quiz-q { font-weight: 800; font-size: 1.1em; text-align: center; margin-bottom: 15px; color: #2c3e50; }
-            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
-            .quiz-input:focus { border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
-            .quiz-hint-box { display: none; background: #f1f2f6; padding: 10px; border-left: 4px solid #e74c3c; margin-bottom: 15px; font-weight: bold; color: #555; }
-            .btn-group { display: flex; justify-content: center; gap: 10px; }
-            .btn-action { padding: 10px 20px; border: 1px solid #999; background: white; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
-            .btn-action:hover { background: #eee; }
-            .quiz-result { display: none; text-align: center; margin-top: 15px; font-weight: bold; font-size: 1.1em; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 10px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 12px; font-size: 1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; }
+            .quiz-input:focus { border-color: #3498db; outline: none; }
+            .btn-action { padding: 8px 15px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            .btn-action:hover { background: #95a5a6; color: white; }
+            .quiz-result { display: none; margin-top: 10px; font-weight: bold; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1 style="color: #2c3e50;">📚 다니엘의 10분 영어 스낵</h1>
-                <p>2026년 03월 28일 | 복습: Lesson 2 / 예습: Lesson 3</p>
+                <h1 style="color: #2c3e50; margin-bottom: 5px;">📚 다니엘의 10분 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 03월 28일 | 주 후반(목~일) 맞춤형 학습</p>
             </div>
 
             <div class="card">
-                <span class="tag tag-review">Part 1. 오늘의 오답 노트</span>
-                <p style="color: #7f8c8d; text-decoration: line-through; margin-bottom: 5px;">❌ Three years ago.</p>
-                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71; margin-top: 0;">✅ I started this hobby three years ago.</p>
-                <p style="background: #f8d7da; padding: 10px; border-radius: 8px; margin-bottom: 0;">👨‍🏫 아빠의 조언: 다니엘, 'Three years ago.' 대신 'I started this hobby three years ago.'처럼 말하면 언제 취미를 시작했는지 주어(I)와 동사(started)를 사용해서 더 명확하고 완전한 문장으로 말할 수 있어! 완벽한 문장으로 말하는 연습을 꾸준히 해보자!</p>
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 한 문장</span>
+                <p style="color: #95a5a6; text-decoration: line-through; margin: 5px 0;">❌ Do grandparents live close to you?</p>
+                <p style="font-size: 1.3em; font-weight: bold; color: #2ecc71; margin: 0 0 10px 0;">✅ Do your grandparents live close by?</p>
+                <p style="background: #f8d7da; padding: 10px; border-radius: 8px; margin: 0; font-size: 0.9em;">👨‍🏫 다니엘, 'Do grandparents live close to you?' 대신 'Do your grandparents live close by?'처럼 말해보자!</p>
             </div>
 
-            <div class="card">
-                <span class="tag tag-review">Part 2. 교과서 완벽 복습 (Lesson 2)</span>
-                <h2>📖 Such an Awesome Guitarist!</h2>
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 오늘의 단어장</span>
+                <h3 style="margin-top: 0; color: #2980b9;">주 후반(목~일) 미션: 단어 씹어먹기!</h3>
                 
-    <div style="background: #f8fafd; padding: 20px; border-radius: 12px; border: 1px solid #e1e8ed;">
-        <h3 style="color: #2980b9; margin-top: 0;">✨ 핵심 패턴 (Key Patterns)</h3>
-        <ul style="color: #34495e; font-weight: bold;"><li style='margin-bottom: 5px;'>Do you exercise regularly? (너는 운동을 규칙적으로 하니?)</li><li style='margin-bottom: 5px;'>Does he want to go to the concert? (그는 그 콘서트에 가고 싶어 하나요?)</li><li style='margin-bottom: 5px;'>Do they play the piano often? (그들은 피아노를 자주 치나요?)</li><li style='margin-bottom: 5px;'>You are from South Korea, aren't you? (너 한국에서 왔어, 그렇지 않아?)</li><li style='margin-bottom: 5px;'>Playing basketball is fun, isn't it? (농구를 하는 건 재미있어, 그렇지 않아?)</li><li style='margin-bottom: 5px;'>We have class in the afternoon, don't we? (우리 오후에 수업 있어, 그렇지 않아?)</li></ul>
-        
-        <h3 style="color: #27ae60; margin-top: 20px;">🗣️ 대화 연습 (Let's Speak)</h3>
-        <div style="background: #fff; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
-            <p style='margin: 5px 0;'><strong>Jordan:</strong> Do you play any musical instruments, Jimin?</p><p style='margin: 5px 0;'><strong>Jimin:</strong> Yes, I play the guitar, Jordan.</p><p style='margin: 5px 0;'><strong>Jordan:</strong> That's awesome! Playing the guitar must be fun, isn't it?</p><p style='margin: 5px 0;'><strong>Jimin:</strong> It is! I play in a small band with my friends. You're in a band too, aren't you?</p><p style='margin: 5px 0;'><strong>Jordan:</strong> No, I'm not. But playing in a band sounds fun! It must be exciting to perform together.</p>
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">musical</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">related to music or making music, or someone who is good at music.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 My sister is very musical and plays many instruments.</div>
         </div>
         
-        <h3 style="color: #e67e22; margin-top: 20px;">💡 현지 표현 (Authentic Expressions)</h3>
-        <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">Do you have time? (시간 여유 있어?) vs Do you have the time? (지금 몇 시야?) vs Do you have a moment? (잠깐 시간 돼?)</p>
-    </div>
-    
-            </div>
-
-            <div class="card">
-                <span class="tag tag-preview">Part 3. 다음 수업 엿보기 (Lesson 3)</span>
-                <h2>🔭 Spending Time with Grandparents</h2>
-                
-    <div style="background: #f8fafd; padding: 20px; border-radius: 12px; border: 1px solid #e1e8ed;">
-        <h3 style="color: #2980b9; margin-top: 0;">✨ 핵심 패턴 (Key Patterns)</h3>
-        <ul style="color: #34495e; font-weight: bold;"><li style='margin-bottom: 5px;'>What do you usually do after school? (너는 방과 후에 주로 무엇을 하니?)</li><li style='margin-bottom: 5px;'>I stay at home and do homework. (나는 집에 머물고 숙제를 해.)</li><li style='margin-bottom: 5px;'>How often do you go shopping? (얼마나 자주 쇼핑을 하니?)</li><li style='margin-bottom: 5px;'>I often go to shopping malls. (나는 종종 쇼핑몰에 가요.)</li><li style='margin-bottom: 5px;'>I am spending time with my grandparents. (나는 조부모님들과 시간을 보내고 있어.)</li></ul>
-        
-        <h3 style="color: #27ae60; margin-top: 20px;">🗣️ 대화 연습 (Let's Speak)</h3>
-        <div style="background: #fff; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
-            <p style='margin: 5px 0;'><strong>Jack:</strong> Sue, what do you usually do on the weekend?</p><p style='margin: 5px 0;'><strong>Sue:</strong> I visit my grandparents and read books with them.</p><p style='margin: 5px 0;'><strong>Jack:</strong> Oh, that's great! What are you reading these days?</p><p style='margin: 5px 0;'><strong>Sue:</strong> I'm reading a novel called Almond. How often do you read books?</p><p style='margin: 5px 0;'><strong>Jack:</strong> I rarely read novels, but this sounds quite interesting.</p>
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">awesome</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">very impressive, great, or wonderful.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 The concert was totally awesome!</div>
         </div>
         
-        <h3 style="color: #e67e22; margin-top: 20px;">💡 현지 표현 (Authentic Expressions)</h3>
-        <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">usually (보통, 대개 - 거의 항상 일어남) vs often (자주 - usually 보다는 빈도가 낮음)</p>
-    </div>
-    
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">guitar</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">a musical instrument with strings, played by picking or strumming.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 He learned to play the guitar when he was young.</div>
+        </div>
+        
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">perform</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">to sing, dance, or act in front of people.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 The students will perform a special dance tonight.</div>
+        </div>
+        
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">band</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">a group of people who play musical instruments together, often for concerts.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 My favorite band is playing a show next month.</div>
+        </div>
+        
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">exciting</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">making you feel very happy and interested; thrilling.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 The roller coaster ride was very exciting!</div>
+        </div>
+        
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">regularly</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">often, or at the same time each day, week, or month.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 I visit my grandparents regularly, usually every Sunday.</div>
+        </div>
+        
+        <div style="background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <div style="font-size: 1.2em; font-weight: 800; color: #2980b9; margin-bottom: 5px;">instrument</div>
+            <div style="color: #e67e22; font-weight: bold; margin-bottom: 5px;">a tool or device used for a specific purpose, especially one that makes music.</div>
+            <div style="color: #7f8c8d; font-size: 0.9em; font-style: italic;">👉 The piano is a large musical instrument.</div>
+        </div>
+        
             </div>
 
             <div class="card">
-                <span class="tag tag-quiz">Part 4. 오늘의 영작 훈련</span>
-                <h2 style="text-align: center;">방금 배운 표현을 활용하여 영작해 보세요.</h2>
-                <div id="quiz-container"></div>
+                <span class="tag" style="background: #f39c12;">Part 3. 스피드 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 (2문제)</span>
+                <div id="writing-container"></div>
             </div>
         </div>
 
         <script>
-            const quizzes = [{"q": "\uadf8\ub294 \ucde8\ubbf8\uc5d0 \ub9ce\uc740 \uc2dc\uac04\uc744 \ubcf4\ub0b8\ub2e4 (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "spend / pursuing", "a": "He spends a lot of time pursuing his hobby."}, {"q": "\uadf8\ub294 \ub178\ub798\ud558\ub294 \uac83\uc744 \uc88b\uc544\ud574, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "like / singing / doesn't he", "a": "He likes singing, doesn't he?"}, {"q": "\ub0a0\uc528\uac00 \uc544\ub984\ub2e4\uc6cc, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "weather / beautiful / isn't it", "a": "The weather is beautiful, isn't it?"}, {"q": "\uc81c\uc784\uc2a4\ub294 \ube60\ub97c \uc218 \uc788\uc5b4, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "can be fast / is he not", "a": "James can be fast, is he not?"}, {"q": "\ub098\ub294 3\ub144 \uc804\uc5d0 \uc774 \ucde8\ubbf8\ub97c \uc2dc\uc791\ud588\uc5b4. (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "start / hobby / ago", "a": "I started this hobby three years ago."}, {"q": "\ud560\uc544\ubc84\uc9c0 \ud560\uba38\ub2c8\uac00 \uac00\uae4c\uc774\uc5d0 \uc0ac\uc2dc\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "grandparents / live / close by", "a": "Do your grandparents live close by?"}, {"q": "\uc601\ud654 \ubcfc \uc2dc\uac04 \uc788\uc5b4? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "have / time / watch", "a": "Do you have time to watch a movie?"}, {"q": "\ub108\uc758 \uac00\uc7a5 \uc88b\uc544\ud558\ub294 \ucde8\ubbf8\ub294 \ubb34\uc5c7\uc774\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "favorite / hobby", "a": "What is your favorite hobby?"}, {"q": "\ub108\ub294 \ubcf4\ud1b5 \ube44\ub514\uc624 \uac8c\uc784\uc744 \ud558\ub294\ub370 \uba87 \uc2dc\uac04\uc744 \ubcf4\ub0b4\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "how many / spend / playing", "a": "How many hours do you usually spend playing video games?"}, {"q": "\ub098\ub294 \ub0b4\uc77c \uc218\ud559 \ud559\uc6d0\uc5d0 \uac08 \uac70\uc57c. (\ub2e4\uc74c \ub2e8\uc5b4\ub4e4\uc744 \ubc14\ub974\uac8c \ubc30\uc5f4\ud558\uc138\uc694: go / Math academy / I / tomorrow / will / to)", "hint": "\uc8fc\uc5b4\ubd80\ud130 \uc2dc\uc791\ud558\uace0 \uc870\ub3d9\uc0ac will\uc744 \uc0ac\uc6a9\ud574\ubd10.", "a": "I will go to Math academy tomorrow."}];
-            const container = document.getElementById('quiz-container');
-
-            quizzes.forEach((quiz, index) => {
-                const html = `
-                    <div class="quiz-box">
-                        <div class="quiz-q">${quiz.q}</div>
-                        <input type="text" id="input_${index}" class="quiz-input" placeholder="여기에 영어로 적어보세요">
-                        
-                        <div id="hint_${index}" class="quiz-hint-box">
-                            📢 힌트: ${quiz.hint}
+            function createQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답을 입력하세요">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:5px; font-weight:bold;">💡 힌트: ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" class="quiz-result"></div>
                         </div>
-                        
-                        <div class="btn-group">
-                            <button class="btn-action" onclick="document.getElementById('hint_${index}').style.display='block'">힌트보기</button>
-                            <button class="btn-action" onclick="checkQuiz(${index}, '${quiz.a.replace(/'/g, "\'")}')">정답확인</button>
-                        </div>
-                        
-                        <div id="result_${index}" class="quiz-result"></div>
-                    </div>
-                `;
-                container.innerHTML += html;
-            });
+                    `;
+                    container.innerHTML += html;
+                });
+            }
 
-            function checkQuiz(index, correctAnswer) {
-                const userAnswer = document.getElementById(`input_${index}`).value.trim();
-                const resultDiv = document.getElementById(`result_${index}`);
-                
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const resultDiv = document.getElementById(`result_${id}`);
                 resultDiv.style.display = 'block';
-                const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '');
-                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '');
                 
-                if (cleanUser === cleanCorrect) {
+                const cleanUser = userAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                
+                if (cleanUser === cleanCorrect || cleanUser.includes(cleanCorrect)) {
                     resultDiv.style.color = '#2ecc71';
-                    resultDiv.innerHTML = "🎉 완벽해! 정답이야!";
+                    resultDiv.innerHTML = "🎉 정답!";
                 } else {
                     resultDiv.style.color = '#e74c3c';
-                    resultDiv.innerHTML = `🤔 아쉽네. 정답은 <b>${correctAnswer}</b> 이야!`;
+                    resultDiv.innerHTML = `🤔 아쉽네요. 정답은 <b>${correctAnswer}</b> 입니다.`;
                 }
             }
+
+            createQuizzes([{"q": "Which word means 'very impressive, great, or wonderful'?", "hint": "It starts with 'a'.", "a": "awesome"}, {"q": "What does 'perform' mean?", "hint": "Think about what musicians or actors do.", "a": "to sing, dance, or act in front of people"}, {"q": "My brother plays the _____ in a rock band.", "hint": "It's a stringed instrument.", "a": "guitar"}, {"q": "She practices English _____ to improve her speaking skills.", "hint": "It means 'often' or 'consistently'.", "a": "regularly"}, {"q": "What is a 'band'?", "hint": "Think about a group of musicians.", "a": "a group of people who play musical instruments together"}, {"q": "The story was so _____ that I couldn't stop reading!", "hint": "It makes you feel happy and interested.", "a": "exciting"}, {"q": "Which word describes something related to music?", "hint": "Starts with 'm'.", "a": "musical"}, {"q": "A drum is a percussion _____.", "hint": "A general word for a musical object.", "a": "instrument"}], 'voca-container', 'v');
+            createQuizzes([{"q": "\ub108\ub294 \ubc30\ub4dc\ubbfc\ud134\uc744 \uaddc\uce59\uc801\uc73c\ub85c \uce58\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "badminton / regularly", "a": "Do you play badminton regularly?"}, {"q": "\uadf8 \uc601\ud654\ub294 \uc7ac\ubbf8\uc788\uc5c8\uc5b4, \uadf8\ub807\uc9c0 \uc54a\ub2c8? (\uc601\uc791\ud574 \ubcf4\uc138\uc694)", "hint": "movie / interesting / wasn't it", "a": "The movie was interesting, wasn't it?"}], 'writing-container', 'w');
         </script>
     </body>
     </html>

@@ -201,14 +201,14 @@ try:
         f.write(html_content)
     print(f"✅ {html_filename} 생성 완료!")
 
-    # 🚀 디스코드 알림 발송 (완벽 수정)
+    # 🚀 디스코드 알림 발송 (단일 중괄호로 수정 완료)
     discord_url = os.getenv("DISCORD_WEBHOOK")
     if discord_url:
         import requests
         report_link = f"https://damoayo.github.io/Science-For-Danial/{html_filename}"
-        discord_msg = {{
+        discord_msg = {
             "content": f"📣 **[다니엘의 자동 영어 스낵 도착!]**\n아빠가 준비한 오늘의 영어가 세팅됐어!\n\n📝 **오늘의 학습:** 단원 {current_unit_index} 마스터하기\n👉 **공부하러 가기:** {report_link}"
-        }}
+        }
         requests.post(discord_url, json=discord_msg)
         print("🔔 디스코드 전송 완료!")
 

@@ -35,12 +35,12 @@
 
             <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
                 <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
-                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 2026년 3월 28일이야! 오늘은 2단원을 복습하는 날이야. 지난 시간 배운 내용을 잘 기억하고 있는지 확인해 볼 좋은 기회야. 아빠가 항상 응원한다, 우리 아들 화이팅!</h3>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 2단원을 복습할 거야! 화이팅!</h3>
                 <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
                 <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
                 <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
                     <p><b>전화영어 핵심:</b> What do you usually do?</p>
-                    <ul><li>조동사 'can'은 '~할 수 있다'라는 능력을 나타낼 때 사용해요. 'can' 뒤에는 항상 동사원형이 와야 하며, 부정형은 'can't' 또는 'cannot'으로 '~할 수 없다'는 의미를 가집니다.</li><li>예시 1: I can run fast. (나는 빠르게 달릴 수 있어.)</li><li>예시 2: My cat can't talk. (우리 고양이는 말할 수 없어.)</li></ul>
+                    <ul><li>'can'은 '~할 수 있다'라는 능력이나 가능성을 나타내는 조동사예요. 동사원형 앞에 쓰여서 가능성을 나타내죠.</li><li>'can't'는 'can not'의 줄임말로, '~할 수 없다'라는 부정의 의미를 나타내요.</li><li>예문 1: I can swim very fast. (나는 아주 빠르게 수영할 수 있어.)</li><li>예문 2: She can't speak French. (그녀는 프랑스어를 말할 수 없어.)</li></ul>
                 </div>
             </div>
 
@@ -49,15 +49,43 @@
                 
         <div class="voca-card" onclick="toggleVoca(this)">
             <div class="voca-en">
+                <div class="word-title">caprese</div>
+                <div class="meaning-en">A type of simple Italian salad, traditionally made of sliced fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil.</div>
+                <div class="example-en">👉 My mom made a delicious caprese salad for dinner.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">caprese</div>
+                <div class="meaning-ko">💡 뜻: 카프레제 (이탈리아식 샐러드)</div>
+                <div class="example-ko">해석: 우리 엄마는 저녁으로 맛있는 카프레제 샐러드를 만드셨어.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
                 <div class="word-title">healthy</div>
-                <div class="meaning-en">in good physical or mental condition; not ill or injured.</div>
-                <div class="example-en">👉 Eating fruits and vegetables can help you stay healthy.</div>
+                <div class="meaning-en">In good health; well. Or, good for your health.</div>
+                <div class="example-en">👉 Eating vegetables is good for a healthy life.</div>
                 <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">healthy</div>
                 <div class="meaning-ko">💡 뜻: 건강한</div>
-                <div class="example-ko">해석: 과일과 채소를 먹는 것은 건강을 유지하는 데 도움이 될 수 있어.</div>
+                <div class="example-ko">해석: 채소를 먹는 것은 건강한 삶에 좋다.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">flour</div>
+                <div class="meaning-en">A powder made from grain, especially wheat, used for making bread, cakes, etc.</div>
+                <div class="example-en">👉 We need flour to bake a cake.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">flour</div>
+                <div class="meaning-ko">💡 뜻: 밀가루</div>
+                <div class="example-ko">해석: 우리는 케이크를 굽기 위해 밀가루가 필요해.</div>
             </div>
         </div>
         
@@ -114,8 +142,8 @@
                 }
             }
 
-            renderQuizzes([{"q": "caprese\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\uc774\ud0c8\ub9ac\uc544 \uc0d0\ub7ec\ub4dc\uc758 \ud55c \uc885\ub958", "a": "\uce74\ud504\ub808\uc138"}, {"q": "skewers\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\uaf2c\uce58 \uc694\ub9ac\uc5d0 \uc0ac\uc6a9\ub418\ub294 \uac83", "a": "\uaf2c\uce58"}, {"q": "tofu\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\ucf69\uc73c\ub85c \ub9cc\ub4e0 \ubd80\ub4dc\ub7ec\uc6b4 \uc74c\uc2dd", "a": "\ub450\ubd80"}, {"q": "healthy\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\uc544\ud504\uc9c0 \uc54a\uace0 \ud2bc\ud2bc\ud55c \uc0c1\ud0dc", "a": "\uac74\uac15\ud55c"}, {"q": "flour\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\ube75\uc774\ub098 \uacfc\uc790\ub97c \ub9cc\ub4e4 \ub54c \uc4f0\ub294 \ud770 \uac00\ub8e8", "a": "\ubc00\uac00\ub8e8"}, {"q": "\ub2e4\uc74c \uc601\ub2e8\uc5b4\uc758 \ub73b\uc744 \uace0\ub974\uc138\uc694: 'skewers' (a. \uaf2c\uce58 b. \uad6d\uc218 c. \uc811\uc2dc)", "hint": "\uc74c\uc2dd\uc744 \uaf42\ub294 \ub3c4\uad6c", "a": "a. \uaf2c\uce58"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \ub123\uc73c\uc138\uc694: \"I like to eat _______, which is made from soybeans.\" (\ub450\ubd80)", "hint": "\ucf69\uc73c\ub85c \ub9cc\ub4e0 \ubd80\ub4dc\ub7ec\uc6b4 \uc74c\uc2dd", "a": "tofu"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \ub123\uc73c\uc138\uc694: \"To bake a cake, you need some _______.\" (\ubc00\uac00\ub8e8)", "hint": "\ube75\uc758 \uc8fc\uc7ac\ub8cc", "a": "flour"}], 'voca-container', 'voca');
-            renderQuizzes([{"q": "\uce5c\uad6c\uc5d0\uac8c \uc8fc\ub9d0\uc5d0 \uc8fc\ub85c \ubb34\uc5c7\uc744 \ud558\ub294\uc9c0 \ubb3c\uc5b4\ubcf4\uace0, \uadf8 \uce5c\uad6c\uac00 \uc2a4\ucf00\uc774\ud2b8\ubcf4\ub4dc\ub97c \ud0c8 \uc218 \uc788\ub294\uc9c0 \ubb3c\uc5b4\ubcf4\ub294 \ub450 \ubb38\uc7a5\uc744 \uc5f0\uacb0\ud574\uc11c \uc368\ubcf4\uc790.", "hint": "\ud328\ud134: What do you usually do? / \ubb38\ubc95: can \ud65c\uc6a9", "a": "What do you usually do on weekends? Can you ride a skateboard?"}, {"q": "\ub124\uac00 \ubcf4\ud1b5 \uc800\ub141 \uc2dd\uc0ac \ud6c4\uc5d0 \ubb34\uc5c7\uc744 \ud558\ub294\uc9c0 \ub9d0\ud558\uace0, \ud53c\uace4\ud574\uc11c \uac8c\uc784\uc740 \ud560 \uc218 \uc5c6\ub2e4\uace0 \ub9d0\ud574\ubd10.", "hint": "\ub098\ub294 \ubcf4\ud1b5 ~\ud574. / \ub098\ub294 ~\ud560 \uc218 \uc5c6\uc5b4. (\ud53c\uace4\ud574\uc11c)", "a": "I usually do my homework after dinner. I can't play games because I'm tired."}], 'writing-container', 'write');
+            renderQuizzes([{"q": "Which word means 'A type of simple Italian salad, traditionally made of sliced fresh mozzarella, tomatoes, and sweet basil'?", "hint": "It's an Italian dish.", "a": "caprese"}, {"q": "This food is made from soybeans and is often used in vegetarian dishes. What is it?", "hint": "It's a white, soft food.", "a": "tofu"}, {"q": "What does 'healthy' mean in Korean?", "hint": "It describes someone who is not sick.", "a": "\uac74\uac15\ud55c"}, {"q": "We need to buy some ______ to make a pizza crust. (\ubc00\uac00\ub8e8)", "hint": "It's a white powder.", "a": "flour"}, {"q": "These are long, thin pieces of wood or metal used for holding small pieces of food together, typically for grilling. What are they?", "hint": "Think of shish kebab.", "a": "skewers"}, {"q": "'Tofu' is a _________ (\ub450\ubd80).", "hint": "It's a food, often white and soft.", "a": "food made from soybeans"}, {"q": "If you eat lots of fruits and vegetables, you are eating _________ food.", "hint": "Good for your body.", "a": "healthy"}, {"q": "What is the English word for '\uaf2c\uce58'?", "hint": "Used for grilling small pieces of food.", "a": "skewers"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\uc8fc\ub9d0\uc5d0 \ubcf4\ud1b5 \ubb34\uc5c7\uc744 \ud558\ub2c8? \ub098\ub294 \ubcf4\ud1b5 \uc790\uc804\uac70\ub97c \ud0c8 \uc218 \uc788\uc5b4. (\uc601\uc791)", "hint": "\ud575\uc2ec \ud328\ud134\uacfc \uc870\ub3d9\uc0ac can\uc744 \uc0ac\uc6a9\ud574 \ubcf4\uc138\uc694.", "a": "What do you usually do on weekends? I can usually ride a bike."}, {"q": "\ubc29\uacfc \ud6c4\uc5d0 \ubcf4\ud1b5 \ubb34\uc5c7\uc744 \ud558\ub2c8? \ub098\ub294 \uc219\uc81c\ub97c \ud558\uc9c0\ub9cc, \uc624\ub298\uc740 \uac8c\uc784\uc744 \ud560 \uc218 \uc5c6\uc5b4. (\uc601\uc791)", "hint": "\ud575\uc2ec \ud328\ud134\uacfc \uc870\ub3d9\uc0ac can, can't\ub97c \ubaa8\ub450 \uc0ac\uc6a9\ud574 \ubcf4\uc138\uc694.", "a": "What do you usually do after school? I usually do my homework, but I can't play games today."}], 'writing-container', 'write');
         </script>
     </body>
     </html>

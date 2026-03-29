@@ -1,0 +1,39 @@
+name: Danial Daily Science
+
+on:
+  schedule:
+    - cron: '30 7 * * *' # 매일 한국시간 오후 4시 30분(UTC 07:30)에 실행! (영어랑 안 겹치게)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 소스코드 가져오기
+        uses: actions/checkout@v3
+
+      - name: 파이썬 설치
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: AI 및 디스코드 패키지 설치
+        run: |
+          pip install google-generativeai requests
+
+      - name: 🤖 데일리 과학 로봇 자동 실행!
+        env:
+          SCIENCE_KEY: ${{ secrets.SCIENCE_KEY }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: python science_agent.py
+
+      - name: 만들어진 과학 리포트 깃허브에 자동 저장
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add science_*.html
+          git commit -m "오늘의 데일리 과학 생성 완료" || echo "변화 없음"
+          git push

@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 03월 29일 | 단원 2 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 2단원을 복습할 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> What do you usually do?</p>
+                    <ul><li>조동사 'can'은 '~할 수 있다'라는 능력이나 가능성을 나타내요. 'can' 뒤에는 항상 동사원형이 와야 한답니다.</li><li>'can't'는 'can not'의 줄임말로 '~할 수 없다'는 뜻이에요. 역시 뒤에 동사원형이 와야 해요!</li><li>예시: I can swim. (나는 수영할 수 있어.)</li><li>예시: She can't speak French. (그녀는 프랑스어를 말할 수 없어.)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">caprese</div>
+                <div class="meaning-en">A salad of fresh mozzarella, tomatoes, and basil.</div>
+                <div class="example-en">👉 We ordered a delicious caprese salad.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">caprese</div>
+                <div class="meaning-ko">💡 뜻: 카프레제 (모차렐라, 토마토, 바질 샐러드)</div>
+                <div class="example-ko">해석: 우리는 맛있는 카프레제 샐러드를 주문했어요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">healthy</div>
+                <div class="meaning-en">Good for your body; not likely to cause illness.</div>
+                <div class="example-en">👉 Eating fruits and vegetables is healthy.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">healthy</div>
+                <div class="meaning-ko">💡 뜻: 건강한</div>
+                <div class="example-ko">해석: 과일과 채소를 먹는 것은 건강에 좋아요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">flour</div>
+                <div class="meaning-en">A powder made from grain, used for making bread, cakes, etc.</div>
+                <div class="example-en">👉 You need flour to bake a cake.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">flour</div>
+                <div class="meaning-ko">💡 뜻: 밀가루</div>
+                <div class="example-ko">해석: 케이크를 구우려면 밀가루가 필요해요.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "caprese\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\uc774\ud0c8\ub9ac\uc544 \uc0d0\ub7ec\ub4dc \uc774\ub984", "a": "\uce74\ud504\ub808\uc81c (\ubaa8\ucc28\ub810\ub77c, \ud1a0\ub9c8\ud1a0, \ubc14\uc9c8 \uc0d0\ub7ec\ub4dc)"}, {"q": "skewers\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\uaf2c\uce58", "a": "\uaf2c\uce58 (\uace0\uae30\ub098 \ucc44\uc18c\ub97c \uaff0\ub294 \ub370 \uc4f0\ub294 \uac00\ub290\ub2e4\ub780 \ub9c9\ub300)"}, {"q": "tofu\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740?", "hint": "\ucf69\uc73c\ub85c \ub9cc\ub4e0 \ud558\uc580 \uc74c\uc2dd", "a": "\ub450\ubd80"}, {"q": "Eating fruits and vegetables is ______. (\uac74\uac15\ud55c)", "hint": "H\ub85c \uc2dc\uc791", "a": "healthy"}, {"q": "You need ______ to bake a cake. (\ubc00\uac00\ub8e8)", "hint": "F\ub85c \uc2dc\uc791", "a": "flour"}, {"q": "A long, thin piece of wood or metal used for holding pieces of food together, especially while cooking. \uc774 \ub2e8\uc5b4\ub294?", "hint": "\uaf2c\uce58", "a": "skewers"}, {"q": "\ub2e4\uc74c \ud55c\uad6d\uc5b4 \ub73b\uc5d0 \ub9de\ub294 \uc601\ub2e8\uc5b4\ub294? \ubaa8\ucc28\ub810\ub77c, \ud1a0\ub9c8\ud1a0, \ubc14\uc9c8 \uc0d0\ub7ec\ub4dc", "hint": "C\ub85c \uc2dc\uc791", "a": "caprese"}, {"q": "\ub2e4\uc74c \ud55c\uad6d\uc5b4 \ub73b\uc5d0 \ub9de\ub294 \uc601\ub2e8\uc5b4\ub294? \ub450\ubd80", "hint": "T\ub85c \uc2dc\uc791", "a": "tofu"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\ub108\ub294 \ubcf4\ud1b5 \uc8fc\ub9d0\uc5d0 \ubb34\uc5c7\uc744 \ud558\ub2c8? (\uc624\ub298\uc758 \ud575\uc2ec \ud328\ud134 \ud65c\uc6a9)", "hint": "What do you usually do...?", "a": "What do you usually do on weekends?"}, {"q": "\ub098\ub294 \uae30\ud0c0\ub97c \uce60 \uc218 \uc788\uc9c0\ub9cc, \ub178\ub798\ub294 \ud560 \uc218 \uc5c6\uc5b4. (\uc870\ub3d9\uc0ac can/can't \ud65c\uc6a9)", "hint": "I can... but I can't...", "a": "I can play the guitar, but I can't sing."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

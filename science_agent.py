@@ -3,9 +3,12 @@ import json
 import datetime
 import sys
 import google.generativeai as genai
+from googleapiclient.discovery import build
 
-# 1. 환경설정 및 AI 연결
+# 1. 환경설정 및 AI/유튜브 연결
 GEMINI_KEY = os.getenv("SCIENCE_KEY")
+YOUTUBE_KEY = os.getenv("YOUTUBE_KEY")
+
 genai.configure(api_key=GEMINI_KEY)
 model = genai.GenerativeModel('models/gemini-2.5-flash', generation_config={"response_mime_type": "application/json"})
 
@@ -13,13 +16,13 @@ today = datetime.date.today()
 today_str = today.strftime("%Y년 %m월 %d일")
 html_filename = f"science_{today.strftime('%Y%m%d')}.html"
 
-# 📅 진도 자동 계산 (2026년 3월 23일 주간을 1단원으로 시작)
+# 📅 진도 자동 계산
 start_date = datetime.date(2026, 3, 23)
 start_unit = 1
 weeks_passed = (today - start_date).days // 7
 current_unit_index = ((start_unit - 1 + weeks_passed) % 8) + 1
 
-# 2. 📚 [과학 완전 자동화 DB] 중학교 1학년 과학 핵심 개념
+# 2. 📚 과학 DB
 study_db = {
     1: {"topic": "지권의 변화", "concepts": ["지구계", "지각", "맨틀", "외핵", "내핵"], "focus": "지구 내부 구조의 특징"},
     2: {"topic": "여러 가지 힘", "concepts": ["중력", "탄성력", "마찰력", "부력"], "focus": "힘의 크기와 방향"},
@@ -30,33 +33,26 @@ study_db = {
     7: {"topic": "과학과 나의 미래", "concepts": ["첨단 과학", "환경 오염", "지속 가능한 발전"], "focus": "과학 기술의 발달과 우리 생활"},
     8: {"topic": "종합 복습", "concepts": ["핵심 개념 총정리", "실생활 적용"], "focus": "1~7단원 융합 문제"}
 }
-
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트
+# 3. 🤖 AI 프롬프트 (유튜브 추천 지시 추가)
 prompt = f"""
-너는 중학교 1학년 다니엘의 과학 코치야. 오늘은 {today_str}이야.
-아래의 [오늘의 학습 재료]를 바탕으로 데일리 과학 리포트 데이터를 JSON 형식으로 정확히 만들어줘.
+너는 중학교 1학년 다니엘의 과학 코치야. 
+[단원 {current_unit_index}] 주제: {current_study['topic']} / 포커스: {current_study['focus']}
 
-[오늘의 학습 재료: 단원 {current_unit_index}]
-- 핵심 주제: {current_study['topic']}
-- 주요 개념: {', '.join(current_study['concepts'])}
-- 학습 포커스: {current_study['focus']}
-
+아래 JSON 형식으로 응답해.
 {{
-  "intro_message": "다니엘, 오늘은 과학 {current_unit_index}단원 '{current_study['topic']}'에 대해 알아볼 거야!",
-  "science_summary": "오늘의 학습 포커스({current_study['focus']})에 대한 핵심 원리를 중학생 눈높이에 맞춰서 <ul><li> 태그로 재미있게 요약해줘.",
+  "intro_message": "다니엘, 오늘은 {current_unit_index}단원 '{current_study['topic']}'에 대해 알아볼 거야!",
+  "science_summary": "오늘의 학습 포커스를 <ul><li> 태그로 재미있게 요약해.",
+  "youtube_keyword": "{current_study['topic']} EBS 중학과학",
+  "youtube_tip": "이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!",
   "concept_cards": [
-    {{
-      "keyword": "주요 개념 중 1개",
-      "definition": "과학적 정의",
-      "example": "실생활 예시 (예: 중력 - 사과가 떨어지는 현상)"
-    }}
+    {{"keyword": "주요 개념", "definition": "과학적 정의", "example": "실생활 예시"}}
   ],
   "quizzes": [
-    {{"q": "개념에 대한 단답형이나 O/X 퀴즈 (총 5문제)", "hint": "힌트", "a": "정답"}}
+    {{"q": "개념 퀴즈 (총 5문제)", "hint": "힌트", "a": "정답"}}
   ],
-  "thought_experiment": "오늘 배운 내용을 바탕으로 상상력을 자극하는 '사고 실험' 질문 1개 (예: 중력이 갑자기 절반으로 줄어든다면?)"
+  "thought_experiment": "오늘 배운 내용을 바탕으로 한 사고 실험 질문 1개"
 }}
 """
 
@@ -65,7 +61,26 @@ try:
     data = json.loads(res.text.strip())
     js_quizzes = json.dumps(data.get('quizzes', []))
 
-    # 🔤 과학 개념 카드 조립
+    # 📺 유튜브 영상 불러오기 (진짜 영상 화면을 가져옵니다!)
+    youtube_html = ""
+    if YOUTUBE_KEY and data.get("youtube_keyword"):
+        try:
+            youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
+            req = youtube.search().list(q=data["youtube_keyword"], part="snippet", maxResults=1, type="video")
+            yt_res = req.execute()
+            if yt_res['items']:
+                vid_id = yt_res['items'][0]['id']['videoId']
+                youtube_html = f"""
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 style="color: #c0392b;">{data.get("youtube_tip", "이 영상을 먼저 보면 이해가 훨씬 빠를 거야!")}</h3>
+                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/{vid_id}" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                </div>
+                """
+        except Exception as yt_e:
+            print(f"유튜브 불러오기 실패: {yt_e}")
+
+    # 🔤 개념 카드 조립
     card_html = ""
     for c in data.get('concept_cards', []):
         card_html += f"""
@@ -82,7 +97,7 @@ try:
         </div>
         """
 
-    # HTML 구조 조립
+    # HTML 조립 (유튜브 영역 추가)
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -126,21 +141,22 @@ try:
                 </div>
             </div>
 
+            {youtube_html}
+
             <div class="card">
-                <span class="tag" style="background: #2ecc71;">Part 2. 개념 뒤집기 카드</span>
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
                 <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
                 {card_html}
             </div>
 
             <div class="card">
-                <span class="tag" style="background: #f39c12;">Part 3. 실전 과학 퀴즈</span>
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
                 <div id="quiz-container"></div>
             </div>
             
             <div class="card" style="background: #fdf5e6;">
-                <span class="tag" style="background: #8e44ad;">Part 4. 아인슈타인 사고 실험</span>
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
                 <h3 style="color: #8e44ad;">🧠 {data.get('thought_experiment', '')}</h3>
-                <p style="color: #7f8c8d; font-size: 0.9em;">정답은 없어! 다니엘의 상상력을 맘껏 펼쳐봐.</p>
             </div>
         </div>
 
@@ -194,16 +210,13 @@ try:
         f.write(html_content)
     print(f"✅ {html_filename} 생성 완료!")
 
-    # 🚀 디스코드 알림 발송
+    # 디스코드 알림
     discord_url = os.getenv("DISCORD_WEBHOOK")
     if discord_url:
         import requests
         report_link = f"https://damoayo.github.io/Science-For-Danial/{html_filename}"
-        discord_msg = {
-            "content": f"📣 **[다니엘의 스파크 과학 스낵 도착!]**\n아빠가 준비한 오늘의 과학 리포트가 세팅됐어!\n\n🔭 **오늘의 주제:** {current_study['topic']}\n👉 **공부하러 가기:** {report_link}"
-        }
+        discord_msg = {"content": f"📣 **[다니엘의 스파크 과학 스낵 도착!]**\n🔭 **오늘의 주제:** {current_study['topic']}\n👉 **공부하러 가기:** {report_link}"}
         requests.post(discord_url, json=discord_msg)
-        print("🔔 디스코드 전송 완료!")
 
 except Exception as e:
     print(f"❌ 에러 발생: {e}")

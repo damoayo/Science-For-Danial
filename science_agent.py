@@ -35,7 +35,7 @@ study_db = {
 }
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트 (강력한 보기 분리 명령 적용!)
+# 3. 🤖 AI 프롬프트
 prompt = f"""
 너는 중학교 1학년 다니엘의 과학 코치야. 
 [단원 {current_unit_index}] 주제: {current_study['topic']} / 포커스: {current_study['focus']}
@@ -52,7 +52,7 @@ prompt = f"""
   "quizzes": [
     {{
       "q": "개념에 대한 객관식 퀴즈 (총 5문제). 주의: 절대 (1), (2) 같은 보기 기호와 보기 내용을 문제 텍스트(q) 안에 포함시키지 마! 문제 텍스트는 순수한 문제 글자만 적어야 해.",
-      "options": ["보기 1번 내용", "보기 2번 내용", "보기 3번 내용", "보기 4번 내용 (필요시 더 추가)"],
+      "options": ["보기 1번 내용", "보기 2번 내용", "보기 3번 내용", "보기 4번 내용"],
       "hint": "힌트", 
       "a": "정답 번호 (예: 2)"
     }}
@@ -78,7 +78,7 @@ try:
                 youtube_html = f"""
                 <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
                     <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
-                    <h3 style="color: #c0392b; class="content-text"">{data.get("youtube_tip", "이 영상들을 보면 이해가 훨씬 빠를 거야!")}</h3>
+                    <h3 class="content-text" style="color: #c0392b;">{data.get("youtube_tip", "이 영상들을 보면 이해가 훨씬 빠를 거야!")}</h3>
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                 """
                 for item in yt_res['items']:
@@ -140,19 +140,13 @@ try:
             .btn-action {{ padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }}
             
             p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {{
-                word-break: keep-all; /* 단어 단위로 끊어지게 해서 가독성 상승! */
-                line-height: 1.7; /* 줄 간격을 넓혀서 답답함 해소! */
-                text-align: justify; /* 양쪽 정렬 */
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
             }}
-            .content-text {{
-                text-indent: 10px; /* 문단 첫 줄 들여쓰기 */
-            }}
-            ul {{
-                padding-left: 20px;
-            }}
-            li {{
-                margin-bottom: 8px;
-            }}
+            .content-text {{ text-indent: 10px; }}
+            ul {{ padding-left: 20px; }}
+            li {{ margin-bottom: 8px; }}
         </style>
     </head>
     <body>
@@ -205,26 +199,25 @@ try:
 
             function renderQuizzes(quizzes, containerId) {{
                 const container = document.getElementById(containerId);
-                quizzes.forEach((quiz, index) => {
+                quizzes.forEach((quiz, index) => {{
                     let optionsHtml = '';
-                    if (quiz.options && quiz.options.length > 0) {
+                    if (quiz.options && quiz.options.length > 0) {{
                         optionsHtml = '<div class="quiz-options-box">';
-                        // 아까 AI가 만든 ①②③ 기호 코드는 지우고, 그냥 깔끔한 숫자 보기를 직접 만듭니다.
-                        quiz.options.forEach((opt, i) => {
-                            optionsHtml += `<div class="quiz-option">${i+1}. ${opt}</div>`;
-                        });
+                        quiz.options.forEach((opt, i) => {{
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        }});
                         optionsHtml += '</div>';
-                    }
+                    }}
 
                     const html = `
                         <div class="quiz-box">
-                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
-                            ${optionsHtml}
-                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
-                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
-                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
-                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
-                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                            <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
+                            ${{optionsHtml}}
+                            <input type="text" id="input_q_${{index}}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${{index}}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${{index}}', '${{quiz.a}}')">확인</button>
+                            <div id="hint_q_${{index}}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${{quiz.hint}}</div>
+                            <div id="result_q_${{index}}" style="display:none; margin-top:15px; font-weight:bold;"></div>
                         </div>
                     `;
                     container.innerHTML += html;
@@ -232,16 +225,16 @@ try:
             }}
 
             function checkQuiz(id, correctAnswer) {{
-                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const userAnswer = document.getElementById(`input_${{id}}`).value.trim();
                 const cleanCorrect = String(correctAnswer).trim(); 
                 
-                const resultDiv = document.getElementById(`result_${id}`);
+                const resultDiv = document.getElementById(`result_${{id}}`);
                 resultDiv.style.display = 'block';
                 
                 if (userAnswer === cleanCorrect && userAnswer !== '') {{
                     resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
                 }} else {{
-                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${{correctAnswer}}번</b>`;
                 }}
             }}
 

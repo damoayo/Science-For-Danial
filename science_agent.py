@@ -35,7 +35,7 @@ study_db = {
 }
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트 (유튜브 추천 지시 추가)
+# 3. 🤖 AI 프롬프트
 prompt = f"""
 너는 중학교 1학년 다니엘의 과학 코치야. 
 [단원 {current_unit_index}] 주제: {current_study['topic']} / 포커스: {current_study['focus']}
@@ -61,20 +61,29 @@ try:
     data = json.loads(res.text.strip())
     js_quizzes = json.dumps(data.get('quizzes', []))
 
-    # 📺 유튜브 영상 불러오기 (진짜 영상 화면을 가져옵니다!)
+    # 📺 유튜브 영상 3개 불러오기
     youtube_html = ""
     if YOUTUBE_KEY and data.get("youtube_keyword"):
         try:
             youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
-            req = youtube.search().list(q=data["youtube_keyword"], part="snippet", maxResults=1, type="video")
+            # maxResults를 3으로 늘려 3개의 영상을 가져옵니다.
+            req = youtube.search().list(q=data["youtube_keyword"], part="snippet", maxResults=3, type="video")
             yt_res = req.execute()
-            if yt_res['items']:
-                vid_id = yt_res['items'][0]['id']['videoId']
+            
+            if yt_res.get('items'):
                 youtube_html = f"""
                 <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
                     <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
-                    <h3 style="color: #c0392b;">{data.get("youtube_tip", "이 영상을 먼저 보면 이해가 훨씬 빠를 거야!")}</h3>
-                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/{vid_id}" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    <h3 style="color: #c0392b;">{data.get("youtube_tip", "이 영상들을 보면 이해가 훨씬 빠를 거야!")}</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                """
+                for item in yt_res['items']:
+                    vid_id = item['id']['videoId']
+                    youtube_html += f"""
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/{vid_id}" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    """
+                youtube_html += """
+                    </div>
                 </div>
                 """
         except Exception as yt_e:
@@ -97,7 +106,7 @@ try:
         </div>
         """
 
-    # HTML 조립 (유튜브 영역 추가)
+    # HTML 조립
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">

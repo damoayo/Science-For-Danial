@@ -35,14 +35,14 @@ study_db = {
 }
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트 (객관식 보기 옵션 분리 명령 추가!)
+# 3. 🤖 AI 프롬프트 (강력한 보기 분리 명령 적용!)
 prompt = f"""
 너는 중학교 1학년 다니엘의 과학 코치야. 
 [단원 {current_unit_index}] 주제: {current_study['topic']} / 포커스: {current_study['focus']}
 
 아래 JSON 형식으로 응답해.
 {{
-  "intro_message": "다니엘, 오늘은 {current_unit_index}단원 '{current_study['topic']}'에 대해 알아볼 거야!",
+  "intro_message": "다니엘, 오늘은 {current_unit_index}단원 '{current_study['topic']}'에 대해 알아볼 거야! 화이팅!",
   "science_summary": "오늘의 학습 포커스를 <ul><li> 태그로 재미있게 요약해.",
   "youtube_keyword": "{current_study['topic']} EBS 중학과학",
   "youtube_tip": "이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!",
@@ -51,8 +51,8 @@ prompt = f"""
   ],
   "quizzes": [
     {{
-      "q": "개념에 대한 객관식 퀴즈 (총 5문제)",
-      "options": ["보기 1번 내용", "보기 2번 내용", "보기 3번 내용", "보기 4번 내용"],
+      "q": "개념에 대한 객관식 퀴즈 (총 5문제). 주의: 절대 (1), (2) 같은 보기 기호와 보기 내용을 문제 텍스트(q) 안에 포함시키지 마! 문제 텍스트는 순수한 문제 글자만 적어야 해.",
+      "options": ["보기 1번 내용", "보기 2번 내용", "보기 3번 내용", "보기 4번 내용 (필요시 더 추가)"],
       "hint": "힌트", 
       "a": "정답 번호 (예: 2)"
     }}
@@ -110,7 +110,7 @@ try:
         </div>
         """
 
-    # HTML 조립 (CSS 마법 포함!)
+    # HTML 조립
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -134,15 +134,15 @@ try:
             .quiz-box {{ border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }}
             .quiz-q {{ font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }}
             .quiz-options-box {{ margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }}
-            .quiz-option {{ margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; }}
+            .quiz-option {{ margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}}
             .quiz-option:hover {{ background: #f1f8ff; }}
             .quiz-input {{ width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }}
             .btn-action {{ padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }}
             
-            /* ✨ 아빠가 원하시던 마법의 정렬 CSS 추가 ✨ */
-            p, li, div.content-text, .quiz-q, .quiz-option {{
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {{
                 word-break: keep-all; /* 단어 단위로 끊어지게 해서 가독성 상승! */
                 line-height: 1.7; /* 줄 간격을 넓혀서 답답함 해소! */
+                text-align: justify; /* 양쪽 정렬 */
             }}
             .content-text {{
                 text-indent: 10px; /* 문단 첫 줄 들여쓰기 */
@@ -188,7 +188,7 @@ try:
             
             <div class="card" style="background: #fdf5e6;">
                 <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
-                <h3 class="content-text" style="color: #8e44ad;">🧠 {data.get('thought_experiment', '')}</h3>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 {data.get('thought_experiment', '')}</h3>
             </div>
         </div>
 
@@ -205,26 +205,26 @@ try:
 
             function renderQuizzes(quizzes, containerId) {{
                 const container = document.getElementById(containerId);
-                quizzes.forEach((quiz, index) => {{
-                    // 보기가 있으면 아래로 차곡차곡 쌓는 HTML 코드!
+                quizzes.forEach((quiz, index) => {
                     let optionsHtml = '';
-                    if (quiz.options && quiz.options.length > 0) {{
+                    if (quiz.options && quiz.options.length > 0) {
                         optionsHtml = '<div class="quiz-options-box">';
-                        quiz.options.forEach((opt, i) => {{
-                            optionsHtml += `<div class="quiz-option">①②③④⑤⑥⑦⑧⑨⑩`.charAt(i) + ` ${{opt}}</div>`;
-                        }});
+                        // 아까 AI가 만든 ①②③ 기호 코드는 지우고, 그냥 깔끔한 숫자 보기를 직접 만듭니다.
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += `<div class="quiz-option">${i+1}. ${opt}</div>`;
+                        });
                         optionsHtml += '</div>';
-                    }}
+                    }
 
                     const html = `
                         <div class="quiz-box">
-                            <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
-                            ${{optionsHtml}}
-                            <input type="text" id="input_q_${{index}}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
-                            <button class="btn-action" onclick="document.getElementById('hint_q_${{index}}').style.display='block'">힌트</button>
-                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${{index}}', '${{quiz.a}}')">확인</button>
-                            <div id="hint_q_${{index}}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${{quiz.hint}}</div>
-                            <div id="result_q_${{index}}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
                         </div>
                     `;
                     container.innerHTML += html;
@@ -232,16 +232,16 @@ try:
             }}
 
             function checkQuiz(id, correctAnswer) {{
-                const userAnswer = document.getElementById(`input_${{id}}`).value.trim().replace(/[^0-9]/g, ''); // 숫자만 남기기
-                const cleanCorrect = String(correctAnswer).replace(/[^0-9]/g, ''); // 정답도 숫자만
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
                 
-                const resultDiv = document.getElementById(`result_${{id}}`);
+                const resultDiv = document.getElementById(`result_${id}`);
                 resultDiv.style.display = 'block';
                 
                 if (userAnswer === cleanCorrect && userAnswer !== '') {{
                     resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
                 }} else {{
-                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${{correctAnswer}}번</b>`;
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
                 }}
             }}
 

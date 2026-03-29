@@ -20,8 +20,26 @@
             .example-ko { color: #555; }
             .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
             .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; }
+            .quiz-option:hover { background: #f1f8ff; }
             .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
             .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            /* ✨ 아빠가 원하시던 마법의 정렬 CSS 추가 ✨ */
+            p, li, div.content-text, .quiz-q, .quiz-option {
+                word-break: keep-all; /* 단어 단위로 끊어지게 해서 가독성 상승! */
+                line-height: 1.7; /* 줄 간격을 넓혀서 답답함 해소! */
+            }
+            .content-text {
+                text-indent: 10px; /* 문단 첫 줄 들여쓰기 */
+            }
+            ul {
+                padding-left: 20px;
+            }
+            li {
+                margin-bottom: 8px;
+            }
         </style>
     </head>
     <body>
@@ -33,18 +51,18 @@
 
             <div class="card" style="border: 1px solid #e1e8ed;">
                 <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
-                <h3 style="color: #c0392b;">👨‍🔬 안녕, 다니엘! 오늘은 중학교 1학년 과학 첫 단원인 '지권의 변화' 중에서도 우리 발밑에 숨겨진 '지구 내부 구조'의 비밀을 함께 파헤쳐 볼 시간이야! 준비됐니?</h3>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 1단원 '지권의 변화'에 대해 알아볼 거야!</h3>
                 <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
                 <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
-                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
-                    오늘 우리는 지구 속으로 여행을 떠나볼 거야!<ul><li>지구는 껍질부터 알맹이까지 여러 겹으로 이루어져 있다는 사실!</li><li>가장 얇은 껍질 '지각'부터 지구의 대부분을 차지하는 '맨틀'!</li><li>뜨거운 액체 상태의 '외핵'과 단단한 고체 '내핵'까지!</li><li>각 층마다 어떤 특징을 가지고 있는지 재미있게 알아보자!</li></ul>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스는 <ul><li>지구 내부가 어떤 층으로 이루어져 있는지 알아볼 거야!</li><li>각 층마다 어떤 특징이 있는지 재미있게 살펴볼 거야!</li><li>딱딱한 부분과 물렁한 부분, 그리고 엄청 뜨거운 부분도 있다는 걸 알게 될 거야!</li></ul>
                 </div>
             </div>
 
             
                 <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
                     <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
-                    <h3 style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <h3 style="color: #c0392b; class="content-text"">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                 
                         <iframe width="100%" height="350" src="https://www.youtube.com/embed/36lXmp7WolM" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
@@ -63,25 +81,13 @@
                 
         <div class="voca-card" onclick="toggleCard(this)">
             <div class="voca-en">
-                <div class="word-title">🔬 지구 내부 구조</div>
-                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
-            </div>
-            <div class="voca-ko" style="display: none;">
-                <div class="word-title" style="color:#e67e22;">지구 내부 구조</div>
-                <div class="meaning-ko">💡 정의: 지구는 중심부로 갈수록 밀도와 온도가 높아지는 동심원 형태의 층상 구조로 이루어져 있습니다. 지각, 맨틀, 외핵, 내핵으로 구분됩니다.</div>
-                <div class="example-ko">🌍 예시: 양파를 까보면 겹겹이 층이 있는 것처럼, 지구도 속을 파고 들어가면 여러 층으로 나뉘어 있어요.</div>
-            </div>
-        </div>
-        
-        <div class="voca-card" onclick="toggleCard(this)">
-            <div class="voca-en">
                 <div class="word-title">🔬 지각 (Crust)</div>
                 <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">지각 (Crust)</div>
-                <div class="meaning-ko">💡 정의: 지구의 가장 바깥층으로, 지표면에서 지하 수십 km까지를 말합니다. 육지 지각과 해양 지각으로 나뉘며, 지구 전체 부피 중 가장 얇은 층입니다.</div>
-                <div class="example-ko">🌍 예시: 우리가 발 딛고 서 있는 땅, 산, 바다 밑바닥이 모두 지각에 해당해요. 마치 사과의 껍질처럼요!</div>
+                <div class="meaning-ko content-text">💡 정의: 지구의 가장 바깥층으로, 우리가 밟고 서 있는 단단한 부분이야. 대륙 지각과 해양 지각으로 나뉘어.</div>
+                <div class="example-ko content-text">🌍 예시: 우리가 걷는 땅, 산, 바다 밑바닥 등이 모두 지각 위에 있어. 지구 내부 층 중 가장 얇은 부분이지.</div>
             </div>
         </div>
         
@@ -92,8 +98,8 @@
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">맨틀 (Mantle)</div>
-                <div class="meaning-ko">💡 정의: 지각 아래에 위치하며, 지구 전체 부피의 약 80%를 차지하는 가장 두꺼운 층입니다. 고체 상태이지만 매우 느리게 움직이며 대류 현상을 일으킵니다.</div>
-                <div class="example-ko">🌍 예시: 지각 아래 거대한 고체 덩어리인데, 아주 뜨거워서 물엿처럼 느리게 움직인다고 상상해봐. 이 움직임이 지진이나 화산 활동에 영향을 준대!</div>
+                <div class="meaning-ko content-text">💡 정의: 지각 아래에 있는 지구 내부의 가장 큰 부피를 차지하는 층이야. 고체 상태이지만, 아주 천천히 대류하며 움직일 수 있어.</div>
+                <div class="example-ko content-text">🌍 예시: 뜨거운 물이 냄비 안에서 뱅글뱅글 도는 것처럼, 맨틀도 아주 천천히 돌면서 지각을 움직이게 해 (대륙 이동의 원인!).</div>
             </div>
         </div>
         
@@ -104,8 +110,8 @@
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">외핵 (Outer Core)</div>
-                <div class="meaning-ko">💡 정의: 맨틀 아래에 위치하며, 액체 상태의 철과 니켈로 이루어져 있습니다. 외핵의 대류가 지구 자기장의 원인으로 추정됩니다.</div>
-                <div class="example-ko">🌍 예시: 지구 중심 근처의 뜨거운 액체 철 덩어리라고 생각하면 돼. 이 액체가 움직이면서 지구를 자석처럼 만들어 준다고!</div>
+                <div class="meaning-ko content-text">💡 정의: 맨틀 아래에 있는 액체 상태의 층이야. 철과 니켈이 녹아 있으며, 지구 자기장을 만드는 원인 중 하나로 알려져 있어.</div>
+                <div class="example-ko content-text">🌍 예시: 뜨거운 쇳물이 흐르는 거대한 강이라고 생각할 수 있어. 이곳의 움직임 때문에 나침반이 북쪽을 가리킬 수 있는 거야.</div>
             </div>
         </div>
         
@@ -116,8 +122,8 @@
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">내핵 (Inner Core)</div>
-                <div class="meaning-ko">💡 정의: 지구의 가장 중심부에 위치하며, 높은 압력으로 인해 고체 상태의 철과 니켈로 이루어져 있습니다. 온도가 약 6,000℃로 매우 높습니다.</div>
-                <div class="example-ko">🌍 예시: 지구의 가장 깊숙한 곳에 있는 뜨겁고 단단한 철공! 태양 표면 온도만큼 뜨겁지만, 엄청난 압력 때문에 액체가 되지 않고 고체로 남아있어.</div>
+                <div class="meaning-ko content-text">💡 정의: 지구의 가장 중심부에 있는 고체 상태의 층이야. 외핵보다 훨씬 높은 압력을 받아 철과 니켈이 녹지 않고 고체로 존재해.</div>
+                <div class="example-ko content-text">🌍 예시: 지구 한가운데 있는 아주 뜨겁고 단단한 철공이야. 온도는 태양 표면과 비슷할 정도로 높지만, 압력 때문에 고체 상태를 유지해.</div>
             </div>
         </div>
         
@@ -125,12 +131,13 @@
 
             <div class="card">
                 <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
                 <div id="quiz-container"></div>
             </div>
             
             <div class="card" style="background: #fdf5e6;">
                 <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
-                <h3 style="color: #8e44ad;">🧠 만약 우리가 지구의 중심까지 자유롭게 드나들 수 있는 엘리베이터를 만들 수 있다면, 각 층을 지날 때마다 무엇을 느끼고 보게 될까? 지각을 뚫고 맨틀에 진입했을 때, 그리고 외핵과 내핵에 도달했을 때의 환경 변화를 상상해서 말해봐!</h3>
+                <h3 class="content-text" style="color: #8e44ad;">🧠 만약 지구의 외핵이 액체 상태가 아니라 내핵처럼 고체 상태가 된다면, 우리 지구에는 어떤 변화가 일어날까? 우리의 삶은 어떻게 달라질지 상상해 보자!</h3>
             </div>
         </div>
 
@@ -148,12 +155,23 @@
             function renderQuizzes(quizzes, containerId) {
                 const container = document.getElementById(containerId);
                 quizzes.forEach((quiz, index) => {
+                    // 보기가 있으면 아래로 차곡차곡 쌓는 HTML 코드!
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += `<div class="quiz-option">①②③④⑤⑥⑦⑧⑨⑩`.charAt(i) + ` ${opt}</div>`;
+                        });
+                        optionsHtml += '</div>';
+                    }
+
                     const html = `
                         <div class="quiz-box">
                             <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
-                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 입력">
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
                             <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
-                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
                             <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
                             <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
                         </div>
@@ -163,18 +181,20 @@
             }
 
             function checkQuiz(id, correctAnswer) {
-                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
-                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().replace(/[^0-9]/g, ''); // 숫자만 남기기
+                const cleanCorrect = String(correctAnswer).replace(/[^0-9]/g, ''); // 정답도 숫자만
+                
                 const resultDiv = document.getElementById(`result_${id}`);
                 resultDiv.style.display = 'block';
-                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
                     resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
                 } else {
-                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
                 }
             }
 
-            renderQuizzes([{"q": "\uc9c0\uad6c\uc758 \ub0b4\ubd80 \uad6c\uc870\ub97c \ubc14\uae65\uce35\ubd80\ud130 \uc21c\uc11c\ub300\ub85c \ub098\uc5f4\ud55c \uac83\uc740? (1) \ub0b4\ud575 - \uc678\ud575 - \ub9e8\ud2c0 - \uc9c0\uac01 (2) \uc9c0\uac01 - \ub9e8\ud2c0 - \uc678\ud575 - \ub0b4\ud575 (3) \ub9e8\ud2c0 - \uc9c0\uac01 - \uc678\ud575 - \ub0b4\ud575 (4) \uc9c0\uac01 - \uc678\ud575 - \ub9e8\ud2c0 - \ub0b4\ud575", "hint": "\uc6b0\ub9ac \ubc1c \ubc11\uc5d0\uc11c\ubd80\ud130 \uc810\uc810 \uae4a\uc740 \uacf3\uc73c\ub85c \ub0b4\ub824\uac04\ub2e4\uace0 \uc0c1\uc0c1\ud574\ubd10!", "a": "(2) \uc9c0\uac01 - \ub9e8\ud2c0 - \uc678\ud575 - \ub0b4\ud575"}, {"q": "\uc9c0\uad6c \ub0b4\ubd80\uc5d0\uc11c \uac00\uc7a5 \ud070 \ubd80\ud53c\ub97c \ucc28\uc9c0\ud558\ub294 \uce35\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694? (1) \uc9c0\uac01 (2) \ub9e8\ud2c0 (3) \uc678\ud575 (4) \ub0b4\ud575", "hint": "\uc9c0\uad6c \uc804\uccb4\uc758 \uc57d 80%\ub97c \ucc28\uc9c0\ud558\ub294 '\uac70\ub300\ud55c' \uce35\uc774\uc57c!", "a": "(2) \ub9e8\ud2c0"}, {"q": "\uc9c0\uad6c\uc758 \ud575 \uc911\uc5d0\uc11c \uc561\uccb4 \uc0c1\ud0dc\ub85c \uc774\ub8e8\uc5b4\uc838 \uc788\uc73c\uba70, \uc9c0\uad6c \uc790\uae30\uc7a5\uc744 \ub9cc\ub4dc\ub294 \uc6d0\uc778\uc73c\ub85c \ucd94\uc815\ub418\ub294 \uce35\uc740 \uc5b4\ub514\uc77c\uae4c\uc694? (1) \uc9c0\uac01 (2) \ub9e8\ud2c0 (3) \uc678\ud575 (4) \ub0b4\ud575", "hint": "'\ubc14\uae65'\uc5d0 \uc788\ub294 \ud575\uc774 '\uc561\uccb4' \uc0c1\ud0dc\uc600\uc9c0?", "a": "(3) \uc678\ud575"}, {"q": "\uc6b0\ub9ac\uac00 \uc0b4\uace0 \uc788\ub294 \uc9c0\uad6c\uc758 \uac00\uc7a5 \uac89 \ubd80\ubd84\uc774\uc790 \uac00\uc7a5 \uc587\uc740 \uce35\uc740 \ubb34\uc5c7\uc774\ub77c\uace0 \ubd80\ub97c\uae4c\uc694? (1) \ub9e8\ud2c0 (2) \uc678\ud575 (3) \uc9c0\uac01 (4) \ub0b4\ud575", "hint": "\uc0ac\uacfc\uc758 \uaecd\uc9c8\uc5d0 \ube44\uc720\ud588\ub358 \uadf8 \ubd80\ubd84\uc774\uc57c!", "a": "(3) \uc9c0\uac01"}, {"q": "\ub0b4\ud575\uc774 \ub728\uac70\uc6b4 \uc628\ub3c4\uc5d0\ub3c4 \ubd88\uad6c\ud558\uace0 \uace0\uccb4 \uc0c1\ud0dc\ub97c \uc720\uc9c0\ud558\ub294 \uac00\uc7a5 \ud070 \uc774\uc720\ub294 \ubb34\uc5c7\uc77c\uae4c\uc694? (1) \ub9e4\uc6b0 \ucc28\uac00\uc6b4 \ubb3c\uc9c8\ub85c \uc774\ub8e8\uc5b4\uc838 \uc788\uae30 \ub54c\ubb38 (2) \ub9e8\ud2c0\uc758 \uc601\ud5a5\uc73c\ub85c \uace0\uccb4\ud654\ub418\uae30 \ub54c\ubb38 (3) \uc8fc\ubcc0\uc758 \uc5c4\uccad\ub09c \uc555\ub825 \ub54c\ubb38 (4) \ube60\ub974\uac8c \ud68c\uc804\ud558\uace0 \uc788\uae30 \ub54c\ubb38", "hint": "\uc6b0\uc8fc\uc120\uc774 \uc9c0\uad6c \uc911\uc2ec\uc73c\ub85c \ub4e4\uc5b4\uac00\uba74 \uc5c4\uccad\ub09c '\ub204\ub974\ub294 \ud798'\uc744 \ubc1b\uac8c \ub420 \uac70\uc57c.", "a": "(3) \uc8fc\ubcc0\uc758 \uc5c4\uccad\ub09c \uc555\ub825 \ub54c\ubb38"}], 'quiz-container');
+            renderQuizzes([{"q": "\uc9c0\uad6c \ub0b4\ubd80\ub97c \uc9c0\uac01, \ub9e8\ud2c0, \uc678\ud575, \ub0b4\ud575\uc73c\ub85c \ub098\ub20c \ub54c, \ubc14\uae65\ucabd\uc5d0\uc11c\ubd80\ud130 \uc548\ucabd\uc73c\ub85c \uc62c\ubc14\ub974\uac8c \ubc30\uc5f4\ub41c \uc21c\uc11c\ub294 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uc9c0\uac01 - \uc678\ud575 - \ub9e8\ud2c0 - \ub0b4\ud575", "\uc9c0\uac01 - \ub9e8\ud2c0 - \uc678\ud575 - \ub0b4\ud575", "\ub9e8\ud2c0 - \uc9c0\uac01 - \uc678\ud575 - \ub0b4\ud575", "\uc9c0\uac01 - \ub0b4\ud575 - \uc678\ud575 - \ub9e8\ud2c0"], "hint": "\uc6b0\ub9ac\uac00 \ubc1f\uace0 \uc788\ub294 \ub545\uc774 \uac00\uc7a5 \ubc14\uae65\uce35\uc774\uc57c.", "a": "2"}, {"q": "\uc9c0\uad6c \ub0b4\ubd80 \uad6c\uc870 \uc911 \uac00\uc7a5 \ud070 \ubd80\ud53c\ub97c \ucc28\uc9c0\ud558\uba70, \uace0\uccb4 \uc0c1\ud0dc\uc774\uc9c0\ub9cc \ucc9c\ucc9c\ud788 \ub300\ub958\ud558\uba70 \uc6c0\uc9c1\uc77c \uc218 \uc788\ub294 \uce35\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uc9c0\uac01", "\ub9e8\ud2c0", "\uc678\ud575", "\ub0b4\ud575"], "hint": "\ub300\ub959 \uc774\ub3d9\uc758 \uc6d0\uc778\uc774 \ub418\ub294 \uce35\uc774\uc57c.", "a": "2"}, {"q": "\uc9c0\uad6c \ub0b4\ubd80\uc758 \uce35 \uc911\uc5d0\uc11c \uc561\uccb4 \uc0c1\ud0dc\ub85c \uc774\ub8e8\uc5b4\uc838 \uc788\uc73c\uba70, \ucca0\uacfc \ub2c8\ucf08\uc774 \ub179\uc544 \ud750\ub974\ub294 \uacf3\uc740 \uc5b4\ub514\uc77c\uae4c\uc694?", "options": ["\uc9c0\uac01", "\ub9e8\ud2c0", "\uc678\ud575", "\ub0b4\ud575"], "hint": "\uc774 \uce35\uc758 \uc6c0\uc9c1\uc784\uc774 \uc9c0\uad6c \uc790\uae30\uc7a5\uc744 \ub9cc\ub4dc\ub294 \ub370 \uc911\uc694\ud574.", "a": "3"}, {"q": "\uc9c0\uad6c\uc758 \uac00\uc7a5 \uc911\uc2ec\ubd80\uc5d0 \uc704\uce58\ud558\uba70, \ub9e4\uc6b0 \ub192\uc740 \uc555\ub825 \ub54c\ubb38\uc5d0 \uace0\uccb4 \uc0c1\ud0dc\ub85c \uc874\uc7ac\ud558\ub294 \uce35\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uc9c0\uac01", "\ub9e8\ud2c0", "\uc678\ud575", "\ub0b4\ud575"], "hint": "\uac00\uc7a5 \ub728\uac81\uc9c0\ub9cc, \uc555\ub825\uc774 \uc5c4\uccad\ub098\uc11c \ub531\ub531\ud55c \uc0c1\ud0dc\ub97c \uc720\uc9c0\ud574.", "a": "4"}, {"q": "\uc9c0\uad6c\uc758 \uce35 \uc911\uc5d0\uc11c \uac00\uc7a5 \uc587\uace0, \uc6b0\ub9ac\uac00 \uc0b4\uace0 \uc788\ub294 \ub300\ub959\uacfc \ubc14\ub2e4 \ubc11\ubc14\ub2e5\uc744 \uc774\ub8e8\ub294 \ubd80\ubd84\uc740 \uc5b4\ub514\uc77c\uae4c\uc694?", "options": ["\uc9c0\uac01", "\ub9e8\ud2c0", "\uc678\ud575", "\ub0b4\ud575"], "hint": "\uc774 \uce35\uc740 \ub300\ub959 \uc9c0\uac01\uacfc \ud574\uc591 \uc9c0\uac01\uc73c\ub85c \ub098\ub258\uc5b4.", "a": "1"}], 'quiz-container');
         </script>
     </body>
     </html>

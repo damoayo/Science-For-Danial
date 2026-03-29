@@ -35,7 +35,7 @@ study_db = {
 }
 current_study = study_db.get(current_unit_index, study_db[1])
 
-# 3. 🤖 AI 프롬프트
+# 3. 🤖 AI 프롬프트 (객관식 보기 옵션 분리 명령 추가!)
 prompt = f"""
 너는 중학교 1학년 다니엘의 과학 코치야. 
 [단원 {current_unit_index}] 주제: {current_study['topic']} / 포커스: {current_study['focus']}
@@ -50,7 +50,12 @@ prompt = f"""
     {{"keyword": "주요 개념", "definition": "과학적 정의", "example": "실생활 예시"}}
   ],
   "quizzes": [
-    {{"q": "개념 퀴즈 (총 5문제)", "hint": "힌트", "a": "정답"}}
+    {{
+      "q": "개념에 대한 객관식 퀴즈 (총 5문제)",
+      "options": ["보기 1번 내용", "보기 2번 내용", "보기 3번 내용", "보기 4번 내용"],
+      "hint": "힌트", 
+      "a": "정답 번호 (예: 2)"
+    }}
   ],
   "thought_experiment": "오늘 배운 내용을 바탕으로 한 사고 실험 질문 1개"
 }}
@@ -66,7 +71,6 @@ try:
     if YOUTUBE_KEY and data.get("youtube_keyword"):
         try:
             youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
-            # maxResults를 3으로 늘려 3개의 영상을 가져옵니다.
             req = youtube.search().list(q=data["youtube_keyword"], part="snippet", maxResults=3, type="video")
             yt_res = req.execute()
             
@@ -74,7 +78,7 @@ try:
                 youtube_html = f"""
                 <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
                     <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
-                    <h3 style="color: #c0392b;">{data.get("youtube_tip", "이 영상들을 보면 이해가 훨씬 빠를 거야!")}</h3>
+                    <h3 style="color: #c0392b; class="content-text"">{data.get("youtube_tip", "이 영상들을 보면 이해가 훨씬 빠를 거야!")}</h3>
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                 """
                 for item in yt_res['items']:
@@ -100,13 +104,13 @@ try:
             </div>
             <div class="voca-ko" style="display: none;">
                 <div class="word-title" style="color:#e67e22;">{c.get('keyword', '')}</div>
-                <div class="meaning-ko">💡 정의: {c.get('definition', '')}</div>
-                <div class="example-ko">🌍 예시: {c.get('example', '')}</div>
+                <div class="meaning-ko content-text">💡 정의: {c.get('definition', '')}</div>
+                <div class="example-ko content-text">🌍 예시: {c.get('example', '')}</div>
             </div>
         </div>
         """
 
-    # HTML 조립
+    # HTML 조립 (CSS 마법 포함!)
     html_content = f"""
     <!DOCTYPE html>
     <html lang="ko">
@@ -129,8 +133,26 @@ try:
             .example-ko {{ color: #555; }}
             .quiz-box {{ border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }}
             .quiz-q {{ font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }}
+            .quiz-options-box {{ margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }}
+            .quiz-option {{ margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; }}
+            .quiz-option:hover {{ background: #f1f8ff; }}
             .quiz-input {{ width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }}
             .btn-action {{ padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }}
+            
+            /* ✨ 아빠가 원하시던 마법의 정렬 CSS 추가 ✨ */
+            p, li, div.content-text, .quiz-q, .quiz-option {{
+                word-break: keep-all; /* 단어 단위로 끊어지게 해서 가독성 상승! */
+                line-height: 1.7; /* 줄 간격을 넓혀서 답답함 해소! */
+            }}
+            .content-text {{
+                text-indent: 10px; /* 문단 첫 줄 들여쓰기 */
+            }}
+            ul {{
+                padding-left: 20px;
+            }}
+            li {{
+                margin-bottom: 8px;
+            }}
         </style>
     </head>
     <body>
@@ -145,7 +167,7 @@ try:
                 <h3 style="color: #c0392b;">👨‍🔬 {data.get('intro_message', '')}</h3>
                 <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
                 <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
-                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
                     {data.get('science_summary', '')}
                 </div>
             </div>
@@ -160,12 +182,13 @@ try:
 
             <div class="card">
                 <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
                 <div id="quiz-container"></div>
             </div>
             
             <div class="card" style="background: #fdf5e6;">
                 <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
-                <h3 style="color: #8e44ad;">🧠 {data.get('thought_experiment', '')}</h3>
+                <h3 class="content-text" style="color: #8e44ad;">🧠 {data.get('thought_experiment', '')}</h3>
             </div>
         </div>
 
@@ -183,12 +206,23 @@ try:
             function renderQuizzes(quizzes, containerId) {{
                 const container = document.getElementById(containerId);
                 quizzes.forEach((quiz, index) => {{
+                    // 보기가 있으면 아래로 차곡차곡 쌓는 HTML 코드!
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {{
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {{
+                            optionsHtml += `<div class="quiz-option">①②③④⑤⑥⑦⑧⑨⑩`.charAt(i) + ` ${{opt}}</div>`;
+                        }});
+                        optionsHtml += '</div>';
+                    }}
+
                     const html = `
                         <div class="quiz-box">
                             <div class="quiz-q">Q${{index+1}}. ${{quiz.q}}</div>
-                            <input type="text" id="input_q_${{index}}" class="quiz-input" placeholder="정답 입력">
+                            ${{optionsHtml}}
+                            <input type="text" id="input_q_${{index}}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
                             <button class="btn-action" onclick="document.getElementById('hint_q_${{index}}').style.display='block'">힌트</button>
-                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${{index}}', '${{quiz.a.replace(/'/g, "\\'")}}')">확인</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${{index}}', '${{quiz.a}}')">확인</button>
                             <div id="hint_q_${{index}}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${{quiz.hint}}</div>
                             <div id="result_q_${{index}}" style="display:none; margin-top:15px; font-weight:bold;"></div>
                         </div>
@@ -198,14 +232,16 @@ try:
             }}
 
             function checkQuiz(id, correctAnswer) {{
-                const userAnswer = document.getElementById(`input_${{id}}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
-                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const userAnswer = document.getElementById(`input_${{id}}`).value.trim().replace(/[^0-9]/g, ''); // 숫자만 남기기
+                const cleanCorrect = String(correctAnswer).replace(/[^0-9]/g, ''); // 정답도 숫자만
+                
                 const resultDiv = document.getElementById(`result_${{id}}`);
                 resultDiv.style.display = 'block';
-                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {{
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {{
                     resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
                 }} else {{
-                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${{correctAnswer}}</b>`;
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${{correctAnswer}}번</b>`;
                 }}
             }}
 

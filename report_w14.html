@@ -1,0 +1,153 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 과학 도서관</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            :root { --main: #3498db; --point: #e67e22; --bg: #f8fafd; --text: #2c3e50; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+            .header { background: linear-gradient(135deg, #6dd5ed, #2193b0); color: white; padding: 60px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+            .container { max-width: 800px; margin: -50px auto 50px; padding: 0 20px; }
+            .card { background: white; border-radius: 25px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eff3f6; }
+            .point-box { border-left: 6px solid var(--main); background: #f0f7ff; padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 25px; position: relative; }
+            .point-num { position: absolute; left: -15px; top: -15px; background: var(--main); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 4px solid white; }
+            .img-deco { width: 100%; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+            .quiz-zone { background: #fff9f2; border: 2px dashed #ffdebd; border-radius: 25px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+            .btn-ans { background: var(--text); color: white; border: none; padding: 8px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9em; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid #2ecc71; }
+            .lab-btn { display: block; text-align: center; background: var(--point); color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2em; transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(230,126,34,0.3); }
+        </style>
+        <script>function toggleAns(id){ var x=document.getElementById(id); x.style.display=(x.style.display==='none'||x.style.display==='')?'block':'none'; }</script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin:0; font-size:2.2em;">🔬 다니엘의 스마트 과학 리포트</h1>
+            <p style="opacity:0.9; font-weight:700; margin-top:10px;">중학교 1학년 과학: 3. 지각의 변화 (지진과 화산)</p>
+        </div>
+        <div class="container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80" class="img-deco">
+                <h2 style="color:var(--main); margin-bottom:30px;">📖 아빠의 핵심 요약 노트</h2>
+    
+                <div class="point-box">
+                    <div class="point-num">1</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">안녕, 다니엘! 오늘은 우리가 살고 있는 지구에서 일어나는 신기하고 때로는 무서운 일들, 바로 '지진과 화산'에 대해 알아볼 거야. 지구는 가만히 있는 것처럼 보이지만, 사실은 끊임없이 움직이고 변화하고 있단다! 그 비밀을 하나씩 파헤쳐 보자.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">2</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**1. 지구는 움직이는 거대한 퍼즐 조각! (판 구조론)**
+  우리 지구의 겉 부분은 마치 깨진 달걀 껍데기처럼 여러 개의 커다란 조각으로 나뉘어 있어. 이 조각들을 과학에서는 '판'이라고 부른단다. 이 판들은 지구 맨틀(지구 속 중간층) 위에 둥둥 떠서 아주아주 느리게 움직이고 있어. 1년에 몇 cm 정도 움직인다고 하니, 우리가 눈으로 보기는 어렵겠지? 이 판들이 서로 부딪히고, 멀어지고, 스쳐 지나가는 과정에서 바로 지진과 화산이 일어나는 거야. 마치 거대한 퍼즐 조각들이 서로 맞닿아 움직일 때 마찰이 생기거나 틈이 벌어지는 것과 같다고 생각하면 돼.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">3</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**2. 땅이 흔들리는 이유, '지진'은 왜 생길까?**
+  판들이 움직이다 보면 서로 부딪히거나, 엇갈리거나, 서로의 밑으로 파고들 때가 있겠지? 이때 엄청난 힘이 판과 판 사이에 쌓이게 돼. 이 힘이 너무 커져서 더 이상 버틸 수 없게 되면, '꽝!' 하고 한꺼번에 터져 나오면서 땅이 흔들리는 현상이 바로 '지진'이야. 이때 생기는 흔들림은 땅속을 통해 사방으로 퍼져나가는데, 이걸 '지진파'라고 해. 지진이 처음 시작된 땅속 지점을 '진원'이라고 하고, 진원 바로 위 지표면을 '진앙'이라고 부른단다. 지진은 건물을 무너뜨리거나 땅을 갈라지게 하는 등 큰 피해를 줄 수 있어서 미리미리 대비하는 것이 정말 중요해!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">4</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**3. 뜨거운 불기둥, '화산'은 어떻게 생길까?**
+  지구 속은 우리가 생각하는 것보다 훨씬 뜨거워! 땅속 깊은 곳에는 돌멩이들이 너무 뜨거워서 녹아 액체 상태가 되어 있는데, 이걸 '마그마'라고 해. 이 마그마는 가볍기 때문에 위로 올라가려는 성질이 있어. 판들이 움직이면서 땅에 약한 틈이나 균열이 생기면, 마그마가 그 틈을 따라 지표면 밖으로 터져 나오게 된단다. 이게 바로 '화산 폭발'이야. 마그마가 땅 밖으로 나오면 '용암'이라고 부르고, 뜨거운 화산재와 가스도 함께 뿜어져 나오지. 화산은 때때로 큰 피해를 주지만, 온천을 만들거나 주변 땅을 비옥하게 만드는 등 좋은 점도 있단다.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">5</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**4. 지진과 화산은 '판의 경계'에서 친한 친구!**
+  재미있게도 지진과 화산은 거의 대부분 '판의 경계'에서 함께 나타나는 경우가 많아. 판들이 서로 맞닿아 움직이는 곳에서 가장 많은 힘과 에너지가 발생하기 때문이지. 전 세계적으로 지진과 화산 활동이 가장 활발한 곳은 '환태평양 조산대'라고 불리는데, 마치 불이 타오르는 고리처럼 보여서 '불의 고리'라는 별명도 가지고 있단다. 이곳에는 전 세계 활화산의 대부분이 모여 있고, 지진도 자주 발생해. 판의 움직임이 지구의 모습을 계속해서 바꾸고 있는 멋진 증거라고 할 수 있지!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">6</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**5. 지진과 화산, 우리는 어떻게 대비해야 할까?**
+  지진과 화산은 언제 일어날지 100% 정확하게 예측하기는 어렵지만, 과학자들은 많은 연구를 통해 어느 지역에서 자주 발생할지 예측하고 대비하고 있어. 우리도 지진이 일어났을 때 어떻게 행동해야 하는지 미리 알아두면 안전하게 대처할 수 있어. 예를 들어, 갑자기 땅이 흔들리면 튼튼한 탁자 밑으로 들어가 머리를 보호하고, 흔들림이 멈추면 침착하게 전기와 가스를 잠그고 넓은 운동장이나 공원 같은 안전한 곳으로 대피하는 것이 중요해! 엘리베이터 대신 계단을 이용해야 한다는 것도 잊지 마. '공정한 실험을 위해 똑같이 맞출 조건'처럼 모든 사람이 안전하게 지킬 규칙을 미리 알아두는 것이 정말 중요하단다!</p>
+                </div>
+        
+                <a href="./lab_w14.html" class="lab-btn">🧪 나만의 애니메이션 실험실 가기 →</a>
+            </div>
+
+            <div class="card quiz-zone">
+                <h2 style="color:var(--point); text-align:center;">📝 실력 쑥쑥! 퀴즈 타임</h2>
+    
+                <div class="q-card">
+                    <p style="font-weight:800;">Q1. 지구의 겉 부분은 여러 개의 커다란 '판'으로 나뉘어 있으며, 이 판들은 계속 움직이고 있다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans0')">정답 확인</button>
+                    <div id="ans0" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 지구의 겉은 마치 거대한 퍼즐 조각처럼 여러 판으로 이루어져 있고, 이 판들이 아주 천천히 움직이면서 지구의 다양한 현상을 만들어낸답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q2. 지진은 땅속 깊은 곳의 뜨거운 마그마가 폭발하여 땅이 흔들리는 현상이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">✨ 정답: <b>X</b><br><small>아니에요! 마그마가 폭발하여 땅 밖으로 나오는 것은 '화산 활동'이고, 지진은 판들이 부딪히거나 움직일 때 쌓인 에너지가 터져 나와 땅이 흔들리는 현상이에요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q3. 화산 활동으로 뿜어져 나온 마그마가 땅 밖으로 나오면 '용암'이라고 부른다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">✨ 정답: <b>O</b><br><small>정답! 땅속에 있을 때는 '마그마'라고 하지만, 땅 밖으로 흘러나오면 '용암'이라고 이름이 바뀐답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q4. 대부분의 지진과 화산은 지구 어디에서나 아무렇게나 일어나는 것이 아니라, '판의 경계'에서 주로 발생한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans3')">정답 확인</button>
+                    <div id="ans3" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 판들이 서로 맞닿아 움직이는 '판의 경계'가 가장 불안정하기 때문에 지진과 화산 활동이 활발하게 일어나는 주요 지역이랍니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q5. 지진이 발생하여 건물이 흔들릴 때는 당황하지 않고 바로 엘리베이터를 타고 밖으로 대피해야 한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans4')">정답 확인</button>
+                    <div id="ans4" class="ans-box">✨ 정답: <b>X</b><br><small>절대 안 돼요! 지진 시에는 엘리베이터가 멈추거나 고장 날 수 있으니, 반드시 계단을 이용해야 해요. 먼저 튼튼한 탁자 밑으로 들어가 머리를 보호하는 것이 중요해요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q6. 지구의 겉 부분을 이루는 거대한 조각들을 무엇이라고 할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 껍질</li><li>· 2. 핵</li><li>· 3. 판</li><li>· 4. 맨틀</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans5')">정답 확인</button>
+                    <div id="ans5" class="ans-box">✨ 정답: <b>3</b><br><small>지구의 겉은 여러 개의 '판'으로 나뉘어 있고, 이 판들이 움직이면서 지진과 화산을 일으킵니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q7. 지하 깊은 곳에 있는 뜨거운 액체 상태의 돌멩이를 무엇이라고 할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 용암</li><li>· 2. 화산재</li><li>· 3. 마그마</li><li>· 4. 암석</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans6')">정답 확인</button>
+                    <div id="ans6" class="ans-box">✨ 정답: <b>3</b><br><small>땅속에 있을 때는 '마그마'라고 부르고, 이 마그마가 땅 밖으로 나오면 '용암'이 됩니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q8. 지진 발생 시 가장 먼저 해야 할 안전 행동으로 옳은 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 밖으로 빨리 뛰어나간다.</li><li>· 2. 튼튼한 탁자 밑으로 들어가 머리를 보호한다.</li><li>· 3. 창문 근처에 서서 바깥 상황을 살핀다.</li><li>· 4. 전화를 걸어 친구에게 소식을 알린다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans7')">정답 확인</button>
+                    <div id="ans7" class="ans-box">✨ 정답: <b>2</b><br><small>지진이 났을 때는 떨어지는 물건으로부터 몸을 보호하는 것이 가장 중요해요. 튼튼한 탁자 밑으로 들어가 머리를 보호하세요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q9. 다음 중 화산 활동으로 인해 생기는 것이 아닌 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 용암</li><li>· 2. 화산 가스</li><li>· 3. 지진파</li><li>· 4. 화산재</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans8')">정답 확인</button>
+                    <div id="ans8" class="ans-box">✨ 정답: <b>3</b><br><small>'용암', '화산 가스', '화산재'는 화산 활동으로 생기는 물질들이에요. '지진파'는 지진으로 인해 땅이 흔들릴 때 발생하는 파동이랍니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q10. '불의 고리'라고 불리며 지진과 화산 활동이 매우 활발한 지역은 무엇과 관련이 깊을까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 바다의 깊이</li><li>· 2. 높은 산의 분포</li><li>· 3. 판의 경계</li><li>· 4. 강한 바람</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans9')">정답 확인</button>
+                    <div id="ans9" class="ans-box">✨ 정답: <b>3</b><br><small>'불의 고리'는 판들이 서로 맞닿아 움직이는 '판의 경계'에 위치하고 있어서, 그곳에서 지진과 화산 활동이 집중적으로 일어난답니다.</small></div>
+                </div>
+        
+            </div>
+            <p style="text-align:center; color:#bdc3c7; margin-top:30px;">아빠가 다니엘을 위해 코드로 만든 사랑의 리포트 ❤️</p>
+        </div>
+    </body>
+    </html>
+    

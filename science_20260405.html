@@ -1,0 +1,206 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 05일 | 과학 2단원: 여러 가지 힘</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 2단원 '여러 가지 힘'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스는 <ul><li>우리를 움직이게 하는 신비한 '힘'이 무엇인지 함께 파헤쳐 볼 거야.</li><li>힘의 중요한 두 가지 특징, 바로 '크기'와 '방향'이 무엇인지 배워볼 거야.</li><li>힘을 어떻게 나타내면 좋을지, 화살표를 사용해서 힘을 멋지게 그려보는 방법을 알아볼 거야!</li></ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/DTXocqyhgA8" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/809Sq1lwUbQ" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/HHp11TE408Y" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 힘 (Force)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">힘 (Force)</div>
+                <div class="meaning-ko content-text">💡 정의: 물체의 모양이나 운동 상태(멈춰 있거나 움직이는 것)를 변화시키거나 변화시키려는 작용을 말해요. 단위는 N(뉴턴)을 사용해요.</div>
+                <div class="example-ko content-text">🌍 예시: 야구공을 던져서 속도가 빨라지게 하거나, 찰흙을 눌러서 모양이 변하게 하는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 힘의 3요소</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">힘의 3요소</div>
+                <div class="meaning-ko content-text">💡 정의: 힘을 정확하게 설명하려면 꼭 알아야 하는 세 가지 요소로, '힘의 크기', '힘의 방향', '힘의 작용점'을 말해요.</div>
+                <div class="example-ko content-text">🌍 예시: 문을 밀 때, 얼마나 세게 미는지(크기), 어느 쪽으로 미는지(방향), 문고리를 미는지 문 한가운데를 미는지(작용점)에 따라 결과가 달라져요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 힘의 크기 (Magnitude of Force)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">힘의 크기 (Magnitude of Force)</div>
+                <div class="meaning-ko content-text">💡 정의: 힘이 작용하는 정도를 나타내는 것으로, 숫자로 표현하며 단위는 N(뉴턴)을 사용해요. 힘이 클수록 물체의 변화가 커져요.</div>
+                <div class="example-ko content-text">🌍 예시: 무거운 상자를 들 때 더 큰 힘이 필요하고, 가벼운 책을 들 때는 작은 힘이 필요한 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 힘의 방향 (Direction of Force)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">힘의 방향 (Direction of Force)</div>
+                <div class="meaning-ko content-text">💡 정의: 힘이 작용하는 쪽을 나타내는 것으로, 주로 화살표의 방향으로 표현해요. 힘이 작용하는 방향에 따라 물체의 운동 방향이 결정돼요.</div>
+                <div class="example-ko content-text">🌍 예시: 줄다리기에서 양쪽 팀이 서로 반대 방향으로 줄을 당기는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 힘의 작용점 (Point of Application of Force)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">힘의 작용점 (Point of Application of Force)</div>
+                <div class="meaning-ko content-text">💡 정의: 힘이 물체에 처음으로 작용하는 지점을 말해요. 같은 크기와 방향의 힘이라도 작용점에 따라 물체에 미치는 효과가 달라질 수 있어요.</div>
+                <div class="example-ko content-text">🌍 예시: 문을 열 때, 문고리를 미는지 문 중간을 미는지에 따라 문이 열리는 것이 쉬운지 어려운지가 달라지는 것.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 만약 네가 아주 무거운 상자를 혼자서 밀고 있다고 상상해봐. 아무리 밀어도 상자가 꿈쩍도 하지 않는다면, 힘의 '크기'와 '방향' 중에서 어떤 것을 먼저 조절해 보는 것이 상자를 움직이는 데 더 효과적일까? 그리고 그 이유는 무엇일지 설명해볼래?</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\ubb3c\uccb4\uc758 \ubaa8\uc591\uc774\ub098 \uc6b4\ub3d9 \uc0c1\ud0dc\ub97c \ubcc0\ud654\uc2dc\ud0a4\uac70\ub098 \ubcc0\ud654\uc2dc\ud0a4\ub824\ub294 \uc791\uc6a9\uc744 \ubb34\uc5c7\uc774\ub77c\uace0 \ud560\uae4c?", "options": ["\uc9c8\ub7c9", "\ud798", "\uc18d\ub3c4", "\uc5d0\ub108\uc9c0"], "hint": "\uc774\uac83\uc774 \uc788\uc5b4\uc57c \ubb3c\uccb4\uac00 \uc6c0\uc9c1\uc774\uac70\ub098 \uba48\ucd94\uace0, \ubaa8\uc591\uc774 \ubcc0\ud560 \uc218 \uc788\uc5b4.", "a": 2}, {"q": "\ud798\uc744 \uc815\ud655\ud558\uac8c \ub098\ud0c0\ub0b4\uae30 \uc704\ud574 \uaf2d \ud544\uc694\ud55c \uc138 \uac00\uc9c0 \uc694\uc18c\ub97c '\ud798\uc758 3\uc694\uc18c'\ub77c\uace0 \ud574. \ub2e4\uc74c \uc911 \ud798\uc758 3\uc694\uc18c\uc5d0 \ud574\ub2f9\ud558\uc9c0 \uc54a\ub294 \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c?", "options": ["\ud798\uc758 \ud06c\uae30", "\ud798\uc758 \uc791\uc6a9\uc810", "\ud798\uc758 \ubc29\ud5a5", "\ud798\uc758 \uc885\ub958"], "hint": "\ud798\uc774 \uc5bc\ub9c8\ub098 \uc13c\uc9c0, \uc5b4\ub290 \uacf3\uc5d0\uc11c, \uc5b4\ub290 \ucabd\uc73c\ub85c \uc791\uc6a9\ud558\ub294\uc9c0\ub97c \uc0dd\uac01\ud574\ubd10.", "a": 4}, {"q": "\ud798\uc758 \ud06c\uae30\ub97c \ub098\ud0c0\ub0b4\ub294 \uad6d\uc81c \ub2e8\uc704\ub294 \ubb34\uc5c7\uc77c\uae4c?", "options": ["kg (\ud0ac\ub85c\uadf8\ub7a8)", "m/s (\ubbf8\ud130 \ud37c \ucd08)", "N (\ub274\ud134)", "J (\uc904)"], "hint": "\uc601\uad6d\uc758 \uc720\uba85\ud55c \uacfc\ud559\uc790\uc758 \uc774\ub984\uc5d0\uc11c \ub530\uc628 \ub2e8\uc704\uc57c.", "a": 3}, {"q": "\ud798\uc758 \ubc29\ud5a5\uc744 \ub098\ud0c0\ub0bc \ub54c \uc8fc\ub85c \uc0ac\uc6a9\ud558\ub294 \uac00\uc7a5 \ud6a8\uacfc\uc801\uc778 \ubc29\ubc95\uc740 \ubb34\uc5c7\uc77c\uae4c?", "options": ["\uc22b\uc790\ub85c \ud45c\ud604", "\uc0c9\uae54\ub85c \ud45c\ud604", "\ud654\uc0b4\ud45c\ub85c \ud45c\ud604", "\uae00\uc790\ub85c \ud45c\ud604"], "hint": "\ud798\uc774 \uc791\uc6a9\ud558\ub294 \ucabd\uc744 \uc9c1\uad00\uc801\uc73c\ub85c \ubcf4\uc5ec\uc8fc\ub294 \uadf8\ub9bc\uc774\uc57c.", "a": 3}, {"q": "\uba48\ucdb0 \uc788\ub294 \ucd95\uad6c\uacf5\uc744 \ubc1c\ub85c \ucc28\uba74 \ucd95\uad6c\uacf5\uc758 \uc5b4\ub5a4 \uc0c1\ud0dc\uac00 \ubcc0\ud558\uac8c \ub420\uae4c?", "options": ["\uc9c8\ub7c9", "\uc628\ub3c4", "\uc0c9\uae54", "\uc6b4\ub3d9 \uc0c1\ud0dc"], "hint": "\uacf5\uc774 \uac00\ub9cc\ud788 \uc788\ub2e4\uac00 \uc6c0\uc9c1\uc774\uac8c \ub418\ub294 \ubcc0\ud654\ub97c \ub5a0\uc62c\ub824\ubd10.", "a": 4}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

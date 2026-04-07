@@ -1,0 +1,194 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 07일 | 과학 3단원: 생물의 다양성</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 3단원 '생물의 다양성'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스는 <ul><li>우리가 왜 수많은 생물들을 분류해야 하는지 그 이유를 알아보고</li><li>생물을 어떻게 체계적으로 분류하는지에 대한 방법을 배워볼 거야.</li><li>특히, 분류의 기본 단위인 '종'과 계층적 분류 단계를 이해하는 것이 중요해!</ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/r3lsILr9hCE" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/UHbQyUAkWBQ" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/UUf7y92yVLY" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 생물 분류</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">생물 분류</div>
+                <div class="meaning-ko content-text">💡 정의: 생물들 간의 유사점과 차이점을 기준으로 체계적으로 그룹화하는 과정이에요. 복잡한 생물 세계를 이해하고 정리하는 데 도움을 줘요.</div>
+                <div class="example-ko content-text">🌍 예시: 동물과 식물을 나누거나, 식물 중에서도 꽃이 피는 식물과 피지 않는 식물을 나누는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 종 (Species)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">종 (Species)</div>
+                <div class="meaning-ko content-text">💡 정의: 생물 분류의 가장 기본이 되는 단위로, 자연 상태에서 서로 짝짓기하여 생식 능력 있는 자손을 낳을 수 있는 생물 집단이에요.</div>
+                <div class="example-ko content-text">🌍 예시: 사람, 개, 고양이, 벼 등이 각각의 '종'에 해당해요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 계통 분류</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">계통 분류</div>
+                <div class="meaning-ko content-text">💡 정의: 생물들이 공통 조상으로부터 진화해 온 과정을 바탕으로, 유연 관계(진화적 가까움)가 가까운 생물들을 함께 묶어 분류하는 방법이에요.</div>
+                <div class="example-ko content-text">🌍 예시: 고양이, 호랑이, 사자는 모두 '고양이과'에 속하는데, 이는 이들이 진화적으로 매우 가깝다는 것을 의미해요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 분류 단계</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">분류 단계</div>
+                <div class="meaning-ko content-text">💡 정의: 생물을 분류하는 계층적인 단계로, '계-문-강-목-과-속-종' 순서로 나뉘어요. 아래로 갈수록 범위가 좁아지고 생물들 간의 공통점이 더 많아져요.</div>
+                <div class="example-ko content-text">🌍 예시: 사람은 동물계-척삭동물문-포유강-영장목-사람과-사람속-사람종으로 분류돼요.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 만약 네가 새로운 생물을 발견했는데, 이 생물이 식물처럼 광합성을 해서 스스로 양분을 만들면서도 동물처럼 자유롭게 움직일 수 있다면, 오늘 배운 분류 방법을 사용해서 이 생물을 어떻게 분류할지 설명해보고, 또 분류 과정에서 어떤 어려움에 부딪힐 수 있을지 이야기해볼래?</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\uc0dd\ubb3c\uc744 \ubd84\ub958\ud558\ub294 \uc8fc\ub41c \uc774\uc720\ub85c \uac00\uc7a5 \uc801\uc808\ud558\uc9c0 \uc54a\uc740 \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uc0dd\ubb3c \uac04\uc758 \uad00\uacc4\ub97c \uc774\ud574\ud558\uae30 \uc27d\uac8c \ud558\uae30 \uc704\ud568\uc774\ub2e4.", "\uc0c8\ub85c\uc6b4 \uc0dd\ubb3c\uc744 \ubc1c\uacac\ud588\uc744 \ub54c \uccb4\uacc4\uc801\uc73c\ub85c \uc815\ub9ac\ud558\uae30 \uc704\ud568\uc774\ub2e4.", "\uc0dd\ubb3c\uc758 \ud2b9\uc9d5\uc744 \ud6a8\uc728\uc801\uc73c\ub85c \ud30c\uc545\ud558\uace0 \uc815\ubcf4\ub97c \uacf5\uc720\ud558\uae30 \uc704\ud568\uc774\ub2e4.", "\uc0dd\ubb3c\uc774 \uc5bc\ub9c8\ub098 \ub9ce\uc740\uc9c0 \ub2e8\uc21c\ud788 \uac1c\uc218\ub97c \uc138\uc5b4 \ubcf4\uae30 \uc704\ud568\uc774\ub2e4."], "hint": "\uc0dd\ubb3c \ubd84\ub958\ub294 \ub2e8\uc21c\ud55c \uc22b\uc790 \uc138\uae30 \uc774\uc0c1\uc758 \uacfc\ud559\uc801 \ubaa9\uc801\uc744 \uac00\uc9c0\uace0 \uc788\uc5b4.", "a": 4}, {"q": "\uc0dd\ubb3c \ubd84\ub958\uc5d0\uc11c \uac00\uc7a5 \uae30\ubcf8\uc774 \ub418\ub294 \ub2e8\uc704\ub85c, \uc790\uc5f0 \uc0c1\ud0dc\uc5d0\uc11c \uc11c\ub85c \uad50\ubc30\ud558\uc5ec \uc0dd\uc2dd \ub2a5\ub825 \uc788\ub294 \uc790\uc190\uc744 \ub0b3\uc744 \uc218 \uc788\ub294 \uc9d1\ub2e8\uc744 \ubb34\uc5c7\uc774\ub77c\uace0 \ud560\uae4c\uc694?", "options": ["\uc18d", "\uacfc", "\uc885", "\uac15"], "hint": "\ud558\ub098\uc758 \uac1c\uccb4\ub97c \uc815\uc758\ud558\ub294 \uac00\uc7a5 \uc791\uc740 \uc0dd\ubb3c\ud559\uc801 \ub2e8\uc704\uc57c.", "a": 3}, {"q": "\uc0dd\ubb3c \ubd84\ub958 \ubc29\ubc95 \uc911, \uc0dd\ubb3c\ub4e4\uc758 \uc9c4\ud654\uc801 \uad00\uacc4\uc640 \uc720\uc5f0 \uad00\uacc4\ub97c \uace0\ub824\ud558\uc5ec \ubd84\ub958\ud558\ub294 \uac83\uc744 \ubb34\uc5c7\uc774\ub77c\uace0 \ud560\uae4c\uc694?", "options": ["\ud615\ud0dc \ubd84\ub958", "\uacc4\ud1b5 \ubd84\ub958", "\uc0dd\ud0dc \ubd84\ub958", "\uc784\uc758 \ubd84\ub958"], "hint": "\uc0dd\ubb3c\uc758 '\uc871\ubcf4'\ub098 '\uc5ed\uc0ac'\ub97c \uc911\uc694\ud558\uac8c \uc0dd\uac01\ud558\ub294 \ubd84\ub958 \ubc29\ubc95\uc774\uc57c.", "a": 2}, {"q": "\uc0dd\ubb3c \ubd84\ub958 \ub2e8\uacc4\uc5d0\uc11c '\uc885' \ub2e4\uc74c\uc73c\ub85c \ub113\uc740 \ubc94\uc704\uc758 \ubd84\ub958 \ub2e8\uacc4\ub294 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uacfc", "\ubaa9", "\uc18d", "\uac15"], "hint": "'\uacc4-\ubb38-\uac15-\ubaa9-\uacfc-\uc18d-\uc885' \uc21c\uc11c\ub97c \uac70\uafb8\ub85c \uc0dd\uac01\ud574\ubcf4\uba74 \ub3fc.", "a": 3}, {"q": "\uac1c(Canis familiaris)\uc640 \ub291\ub300(Canis lupus)\ub294 \uac19\uc740 '\uc18d(Genus)'\uc5d0 \uc18d\ud569\ub2c8\ub2e4. \uc774\uac83\uc774 \uc758\ubbf8\ud558\ub294 \ubc14\ub294 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uac1c\uc640 \ub291\ub300\ub294 \uc11c\ub85c \ub2e4\ub978 \ubd84\ub958 \uccb4\uacc4\uc5d0 \uc18d\ud55c\ub2e4.", "\uac1c\uc640 \ub291\ub300\ub294 \uc678\ud615\uc774 \uc644\uc804\ud788 \ub2e4\ub974\ub2e4.", "\uac1c\uc640 \ub291\ub300\ub294 \ub9e4\uc6b0 \uac00\uae4c\uc6b4 \uc9c4\ud654\uc801 \uad00\uacc4\ub97c \uac00\uc9c4\ub2e4.", "\uac1c\uc640 \ub291\ub300\ub294 \uc808\ub300 \uc9dd\uc9d3\uae30\ud560 \uc218 \uc5c6\ub2e4."], "hint": "\uac19\uc740 \uc18d\uc774\ub77c\ub294 \uac74 \ud615\ud0dc\uc801, \uc720\uc804\uc801\uc73c\ub85c \uacf5\ud1b5\uc810\uc774 \ub9ce\ub2e4\ub294 \ub73b\uc774\uc57c.", "a": 3}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

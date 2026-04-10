@@ -1,0 +1,122 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 10일 | 단원 4 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 4단원을 복습할 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> I want to be a chef.</p>
+                    <ul><li>"I'm going to"는 미래에 대한 계획이나 의도를 나타낼 때 사용해. '무엇을 할 것이다'라는 의미로 쓰여.</li><li>예문 1: I'm going to visit my grandparents this weekend. (나는 이번 주말에 할머니 할아버지 댁에 방문할 거야.)</li><li>예문 2: She's going to study English harder next year. (그녀는 내년에 영어를 더 열심히 공부할 거야.)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">souvenir</div>
+                <div class="meaning-en">An item of sentimental value, usually kept as a reminder of a place or event.</div>
+                <div class="example-en">👉 I bought a small statue as a souvenir from Paris.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">souvenir</div>
+                <div class="meaning-ko">💡 뜻: 기념품</div>
+                <div class="example-ko">해석: 나는 파리에서 기념품으로 작은 조각상을 샀다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\ub2e4\uc74c \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc744 \uc4f0\uc2dc\uc624: souvenir", "hint": "\uc5ec\ud589\uc9c0\uc5d0\uc11c \ucd94\uc5b5\uc744 \ub0a8\uae30\uae30 \uc704\ud574 \uc0ac\ub294 \uac83", "a": "\uae30\ub150\ud488"}, {"q": "\ub2e4\uc74c \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc744 \uc4f0\uc2dc\uc624: view", "hint": "\ub208\uc73c\ub85c \ubcfc \uc218 \uc788\ub294 \ud48d\uacbd\uc774\ub098 \uc804\ub9dd", "a": "\uacbd\uce58, \ud48d\uacbd"}, {"q": "\ub2e4\uc74c \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc744 \uc4f0\uc2dc\uc624: fee", "hint": "\uc5b4\ub5a4 \uc11c\ube44\uc2a4\ub098 \ud65c\ub3d9\uc5d0 \ub300\ud574 \uc9c0\ubd88\ud558\ub294 \ub3c8", "a": "\uc694\uae08, \uc218\uc218\ub8cc"}, {"q": "\ub2e4\uc74c \ub2e8\uc5b4\uc758 \uc601\uc5b4 \ub2e8\uc5b4\ub97c \uc4f0\uc2dc\uc624: \uc9c0\uc5ed\uc758, \ud604\uc9c0\uc758", "hint": "'\ub85c\uceec'\uc774\ub77c\ub294 \ub9d0\ub85c\ub3c4 \ub9ce\uc774 \uc4f0\uc5ec", "a": "local"}, {"q": "\ub2e4\uc74c \ub2e8\uc5b4\uc758 \uc601\uc5b4 \ub2e8\uc5b4\ub97c \uc4f0\uc2dc\uc624: \ud0d0\ud5d8\ud558\ub2e4", "hint": "\uc0c8\ub85c\uc6b4 \uc7a5\uc18c\ub098 \ubbf8\uc9c0\uc758 \uac83\uc744 \ucc3e\uc544 \ub098\uc11c\ub2e4", "a": "explore"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \uace0\ub974\uc2dc\uc624: We went to the top of the mountain to enjoy the beautiful _____. (view/fee)", "hint": "\uc0b0 \uc815\uc0c1\uc5d0\uc11c\ub294 \uc544\ub984\ub2e4\uc6b4...\uc744 \uc990\uae38 \uc218 \uc788\uc5b4.", "a": "view"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \uace0\ub974\uc2dc\uc624: It costs a small _____ to enter the museum. (souvenir/fee)", "hint": "\ubc15\ubb3c\uad00\uc5d0 \uc785\uc7a5\ud558\ub824\uba74 \uc801\uc740 ...\uc744 \ub0b4\uc57c \ud574.", "a": "fee"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \uace0\ub974\uc2dc\uc624: I want to _____ new cultures when I travel. (explore/local)", "hint": "\uc5ec\ud589\ud560 \ub54c \uc0c8\ub85c\uc6b4 \ubb38\ud654\ub97c...\ud558\uace0 \uc2f6\uc5b4.", "a": "explore"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\ub098\ub294 \uc7a5\ub798\uc5d0 \uc694\ub9ac\uc0ac\uac00 \ub418\uace0 \uc2f6\uc5b4. \uadf8\ub798\uc11c \uc694\ub9ac \uc218\uc5c5\uc744 \ub4e4\uc744 \uac70\uc57c. (\ub450 \ubb38\uc7a5\uc744 \uc774\uc5b4 \uc601\uc791)", "hint": "'\ub098\ub294 ~\uac00 \ub418\uace0 \uc2f6\ub2e4'\uc640 '\ub098\ub294 ~\ud560 \uac83\uc774\ub2e4' \ud328\ud134\uc744 \uc0ac\uc6a9\ud574\ubd10.", "a": "I want to be a chef. I'm going to take cooking classes."}, {"q": "\ub2e4\ub2c8\uc5d8, \ub108\ub294 \ub2e4\uc74c \uc8fc\ub9d0\uc5d0 \ubb34\uc5c7\uc744 \ud560 \uc608\uc815\uc774\ub2c8? (\ubb3c\uc5b4\ubcf4\uace0, '\ub098\ub294 \uce5c\uad6c\ub4e4\uacfc \ucd95\uad6c\ud560 \uac70\uc57c'\ub77c\uace0 \ub2f5\ud558\ub294 \ubb38\uc7a5)", "hint": "'\ubb34\uc5c7\uc744 \ud560 \uc608\uc815\uc774\ub2c8?'\ub294 What are you going to do...? / '\ub098\ub294 ~\ud560 \uac70\uc57c'\ub294 I'm going to...", "a": "Q: What are you going to do next weekend? A: I'm going to play soccer with my friends."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

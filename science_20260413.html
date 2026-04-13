@@ -1,0 +1,194 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 13일 | 과학 4단원: 기체의 성질</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 4단원 '기체의 성질'에 대해 알아볼 거야! 기체들이 온도와 압력에 따라 어떻게 변하는지 궁금하지? 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <ul><li>풍선이 뜨거운 햇볕 아래서 빵빵해지는 이유를 알아볼까? (온도와 부피)</li><li>깊은 물속에서 올라오는 기포가 점점 커지는 이유를 파헤쳐 보자! (압력과 부피)</li><li>우리 주변에서 기체의 부피 변화가 일어나는 신기한 현상들을 탐험해 볼 거야!</li></ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/PWL33HB2hGQ" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/WGA9_DDylLg" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/_lwkRBZELcc" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 보일의 법칙</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">보일의 법칙</div>
+                <div class="meaning-ko content-text">💡 정의: 온도가 일정할 때, 기체의 압력과 부피는 서로 반비례하는 관계를 말해. 압력이 2배가 되면 부피는 1/2배가 되는 식이지.</div>
+                <div class="example-ko content-text">🌍 예시: 잠수부가 깊은 물속에서 내뿜는 기포가 수면으로 올라올수록 점점 커지는 현상. (수심이 깊을수록 압력이 높고, 수면으로 올라올수록 압력이 낮아지기 때문에 기포의 부피가 커져.)</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 샤를의 법칙</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">샤를의 법칙</div>
+                <div class="meaning-ko content-text">💡 정의: 압력이 일정할 때, 기체의 온도가 높아지면 부피가 늘어나고, 온도가 낮아지면 부피가 줄어드는 관계를 말해. 기체를 가열하면 분자 운동이 활발해져 부피가 커지는 거야.</div>
+                <div class="example-ko content-text">🌍 예시: 찌그러진 탁구공을 뜨거운 물에 넣으면 다시 펴지는 현상. (뜨거운 물의 열로 탁구공 안의 공기 부피가 팽창하여 공을 펴지게 해.)</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 기체의 압력</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">기체의 압력</div>
+                <div class="meaning-ko content-text">💡 정의: 기체 분자들이 용기 벽에 충돌하여 단위 면적당 가하는 힘을 말해. 분자들이 더 많이, 더 세게 충돌할수록 압력이 커지지.</div>
+                <div class="example-ko content-text">🌍 예시: 풍선에 바람을 불어넣을 때 풍선이 팽팽해지는 것은 안의 공기가 풍선 벽을 밀어내는 압력 때문이야.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 기체의 부피</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">기체의 부피</div>
+                <div class="meaning-ko content-text">💡 정의: 기체가 차지하는 공간의 크기를 말해. 기체 분자 자체의 크기보다는 분자들이 자유롭게 움직일 수 있는 공간의 크기로 결정돼.</div>
+                <div class="example-ko content-text">🌍 예시: 페트병에 공기를 가득 채우면, 그 공기가 페트병이라는 공간을 가득 채우는 거야.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 우주 공간은 지구 표면보다 압력이 훨씬 낮아. 만약 네가 풍선을 가지고 우주 공간으로 나간다면, 그 풍선은 어떻게 될까? 왜 그렇게 되는지 오늘 배운 개념으로 설명해 볼 수 있을까?</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\uc628\ub3c4\uac00 \uc77c\uc815\ud560 \ub54c, \uae30\uccb4\uc758 \uc555\ub825\uacfc \ubd80\ud53c\uc758 \uad00\uacc4\uc5d0 \ub300\ud55c \uc124\uba85\uc73c\ub85c \uc633\uc740 \uac83\uc740?", "options": ["\uc555\ub825\uc774 \ucee4\uc9c0\uba74 \ubd80\ud53c\ub3c4 \ucee4\uc9c4\ub2e4.", "\uc555\ub825\uc774 \uc791\uc544\uc9c0\uba74 \ubd80\ud53c\ub3c4 \uc791\uc544\uc9c4\ub2e4.", "\uc555\ub825\uc774 \ucee4\uc9c0\uba74 \ubd80\ud53c\ub294 \uc791\uc544\uc9c4\ub2e4.", "\uc555\ub825\uacfc \ubd80\ud53c\ub294 \uc544\ubb34\ub7f0 \uad00\uacc4\uac00 \uc5c6\ub2e4."], "hint": "\ubcf4\uc77c\uc758 \ubc95\uce59\uc740 \uc555\ub825\uacfc \ubd80\ud53c\uac00 '\ubc18\ub300\ub85c' \ubcc0\ud558\ub294 \uad00\uacc4\ub97c \ub9d0\ud574\uc918.", "a": 3}, {"q": "\uc555\ub825\uc774 \uc77c\uc815\ud560 \ub54c, \uae30\uccb4\uc758 \uc628\ub3c4\ub97c \ub192\uc774\uba74 \uae30\uccb4\uc758 \ubd80\ud53c\ub294 \uc5b4\ub5bb\uac8c \ubcc0\ud560\uae4c?", "options": ["\uc810\uc810 \uc904\uc5b4\ub4e0\ub2e4.", "\ubcc0\ud654\uac00 \uc5c6\ub2e4.", "\uc810\uc810 \ub298\uc5b4\ub09c\ub2e4.", "\ucc98\uc74c\uc5d0\ub294 \ub298\uc5b4\ub098\ub2e4 \uc904\uc5b4\ub4e0\ub2e4."], "hint": "\ub728\uac70\uc6b4 \ubb3c\uc5d0 \ucc0c\uadf8\ub7ec\uc9c4 \ud0c1\uad6c\uacf5\uc744 \ub123\uc5b4\ubcf4\uba74 \uc5b4\ub5bb\uac8c \ub418\ub294\uc9c0 \uc0dd\uac01\ud574\ubd10.", "a": 3}, {"q": "\ub2e4\uc74c \ud604\uc0c1 \uc911 \ubcf4\uc77c\uc758 \ubc95\uce59\uc73c\ub85c \uc124\uba85\ud560 \uc218 \uc788\ub294 \uac83\uc740?", "options": ["\ub728\uac70\uc6b4 \ubb3c\uc5d0\uc11c \uae40\uc774 \ubaa8\ub77d\ubaa8\ub77d \ub098\ub294 \uac83", "\uc555\ub825\ubc25\uc1a5\uc73c\ub85c \ubc25\uc744 \ube68\ub9ac\ud558\ub294 \uac83", "\uc7a0\uc218\ubd80\uac00 \ub0b4\ubfdc\uc740 \uacf5\uae30 \ubc29\uc6b8\uc774 \uc218\uba74\uc73c\ub85c \uc62c\ub77c\uc62c\uc218\ub85d \ucee4\uc9c0\ub294 \uac83", "\ucc28\uac00\uc6b4 \uc74c\ub8cc\uc218 \ucef5 \ud45c\uba74\uc5d0 \ubb3c\ubc29\uc6b8\uc774 \ub9fa\ud788\ub294 \uac83"], "hint": "\uc555\ub825 \ubcc0\ud654\uc5d0 \ub530\ub978 \ubd80\ud53c \ubcc0\ud654\ub97c \ucc3e\uc544\ubd10.", "a": 3}, {"q": "\ub2e4\uc74c \ud604\uc0c1 \uc911 \uc0e4\ub97c\uc758 \ubc95\uce59\uc73c\ub85c \uc124\uba85\ud560 \uc218 \uc788\ub294 \uac83\uc740?", "options": ["\ud0c4\uc0b0 \uc74c\ub8cc\ub97c \ub530\uba74 \uac70\ud488\uc774 \uc62c\ub77c\uc624\ub294 \uac83", "\uc8fc\uc0ac\uae30\uc758 \uc785\uad6c\ub97c \ub9c9\uace0 \ubc00\uba74 \ubd80\ud53c\uac00 \uc904\uc5b4\ub4dc\ub294 \uac83", "\ubd88\uc774 \ub09c \uac74\ubb3c\uc5d0\uc11c \ub728\uac70\uc6b4 \uacf5\uae30\uac00 \uc704\ub85c \uc62c\ub77c\uac00\ub294 \uac83", "\ucc0c\uadf8\ub7ec\uc9c4 \ud0c1\uad6c\uacf5\uc744 \ub728\uac70\uc6b4 \ubb3c\uc5d0 \ub123\uc73c\uba74 \ud3b4\uc9c0\ub294 \uac83"], "hint": "\uc628\ub3c4 \ubcc0\ud654\uc5d0 \ub530\ub978 \ubd80\ud53c \ubcc0\ud654\ub97c \ucc3e\uc544\ubd10.", "a": 4}, {"q": "\uae30\uccb4 \ubd84\uc790 \uc6b4\ub3d9\uc5d0 \ub300\ud55c \uc124\uba85\uc73c\ub85c \uc633\uc740 \uac83\uc740?", "options": ["\uae30\uccb4 \ubd84\uc790\ub294 \ud56d\uc0c1 \uc81c\uc790\ub9ac\uc5d0 \uace0\uc815\ub418\uc5b4 \uc788\ub2e4.", "\uc628\ub3c4\uac00 \ub0ae\uc544\uc9c0\uba74 \uae30\uccb4 \ubd84\uc790 \uc6b4\ub3d9\uc774 \ub354 \ud65c\ubc1c\ud574\uc9c4\ub2e4.", "\uae30\uccb4 \ubd84\uc790\ub4e4\uc740 \ub04a\uc784\uc5c6\uc774 \uc6c0\uc9c1\uc774\uba70 \uc6a9\uae30 \ubcbd\uc5d0 \ucda9\ub3cc\ud55c\ub2e4.", "\uae30\uccb4 \ubd84\uc790\ub4e4\uc740 \uc11c\ub85c \uac15\ud558\uac8c \ub04c\uc5b4\ub2f9\uae34\ub2e4."], "hint": "\uae30\uccb4 \ubd84\uc790\ub4e4\uc758 \ud2b9\uc9d5\uc744 \uc0dd\uac01\ud574\ubd10.", "a": 3}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

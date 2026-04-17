@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 17일 | 단원 5 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 5단원을 복습할 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> It's getting dark.</p>
+                    <ul><li><b>비교급 (Comparative)</b>: 두 대상을 비교할 때 사용하며, 주로 형용사/부사 뒤에 '-er'를 붙이거나 'more'를 앞에 붙이고 'than'과 함께 씁니다. (예: He is <b>taller than</b> his brother. 그는 그의 형보다 키가 더 크다.)</li><li><b>최상급 (Superlative)</b>: 셋 이상의 대상 중에서 가장 ~한 것을 나타낼 때 사용하며, 주로 형용사/부사 앞에 'the'를 붙이고 '-est'를 뒤에 붙이거나 'the most'를 앞에 붙입니다. (예: This is <b>the smallest</b> cat I have ever seen. 이것은 내가 본 고양이 중에 가장 작다.)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">guard</div>
+                <div class="meaning-en">A person who protects a place or people, or who keeps prisoners in prison.</div>
+                <div class="example-en">👉 The security guard stood by the gate all night.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">guard</div>
+                <div class="meaning-ko">💡 뜻: 경비원, 지키다</div>
+                <div class="example-ko">해석: 경비원이 밤새도록 문 옆에 서 있었다.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">suspect</div>
+                <div class="meaning-en">A person thought to be guilty of a crime or offence.</div>
+                <div class="example-en">👉 The police questioned the suspect for hours.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">suspect</div>
+                <div class="meaning-ko">💡 뜻: 용의자</div>
+                <div class="example-ko">해석: 경찰은 용의자를 몇 시간 동안 심문했다.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">painting</div>
+                <div class="meaning-en">A picture made using paint.</div>
+                <div class="example-en">👉 She hung a beautiful painting on the wall.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">painting</div>
+                <div class="meaning-ko">💡 뜻: 그림, 회화</div>
+                <div class="example-ko">해석: 그녀는 벽에 아름다운 그림을 걸었다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "This is the place where a crime has happened. (___________)", "hint": "\ubc94\uc8c4 \ud604\uc7a5", "a": "crime scene"}, {"q": "A person who protects a place or people. (___________)", "hint": "\uc9c0\ud0a4\ub294 \uc0ac\ub78c", "a": "guard"}, {"q": "Fill in the blank: The police are looking for a ______ who stole the car.", "hint": "\ubc94\uc8c4\ub97c \uc800\uc9c8\ub800\ub2e4\uace0 \uc758\uc2ec\ub418\ub294 \uc0ac\ub78c", "a": "suspect"}, {"q": "What does 'wheelchair' mean in Korean?", "hint": "\ubc14\ud034\uac00 \ub2ec\ub9b0 \uc758\uc790", "a": "\ud720\uccb4\uc5b4"}, {"q": "Which word means '\uadf8\ub9bc' or '\ud68c\ud654'?", "hint": "\ubbf8\uc220 \uc791\ud488", "a": "painting"}, {"q": "True or False: A 'guard' is someone who commits crimes.", "hint": "\uc9c0\ud0a4\ub294 \uc0ac\ub78c vs \ubc94\uc8c4\uc790", "a": "False"}, {"q": "Fill in the blank: The old woman uses a __________ to move around.", "hint": "\ub2e4\ub9ac\uac00 \ubd88\ud3b8\ud560 \ub54c \uc0ac\uc6a9\ud558\ub294 \uac83", "a": "wheelchair"}, {"q": "What is the English word for '\uc6a9\uc758\uc790'?", "hint": "\ubc94\uc8c4\ub97c \uc800\uc9c8\ub800\ub2e4\uace0 \uc758\uc2ec\ubc1b\ub294 \uc0ac\ub78c", "a": "suspect"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\uc810\uc810 \uc5b4\ub450\uc6cc\uc9c0\uace0 \uc788\uc5b4. \uc774 \uadf8\ub9bc\uc774 \ub0b4\uac00 \ubcf8 \uac83 \uc911\uc5d0 \uac00\uc7a5 \uc544\ub984\ub2e4\uc6b4 \uadf8\ub9bc\uc774\uc57c.", "hint": "\uc810\uc810 \uc5b4\ub450\uc6cc\uc9c0\uace0 \uc788\ub2e4 (\uc624\ub298\uc758 \ud328\ud134) / \uac00\uc7a5 \uc544\ub984\ub2e4\uc6b4 (\ucd5c\uc0c1\uae09)", "a": "It's getting dark. This painting is the most beautiful one I have ever seen."}, {"q": "\uc810\uc810 \ub354 \ucd94\uc6cc\uc9c0\uace0 \uc788\uc5b4. \uc800 \uacbd\ube44\uc6d0\uc774 \uc6b0\ub9ac \ud559\uad50 \uacbd\ube44\uc6d0\ubcf4\ub2e4 \ud0a4\uac00 \ub354 \ucee4.", "hint": "\uc810\uc810 \ub354 \ucd94\uc6cc\uc9c0\uace0 \uc788\ub2e4 (\ube44\uad50\uae09) / \ub354 \ud0a4\uac00 \ud070 (\ube44\uad50\uae09)", "a": "It's getting colder. That guard is taller than our school guard."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

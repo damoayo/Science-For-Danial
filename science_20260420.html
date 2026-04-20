@@ -1,0 +1,218 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 20일 | 과학 5단원: 물질의 상태 변화</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 5단원 '물질의 상태 변화'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스를 <ul><li> 태그로 재미있게 요약해.<ul><li>물질이 고체, 액체, 기체로 변할 때 열에너지를 흡수하거나 방출한다는 사실을 알아볼 거야!</li><li>얼음이 녹고, 물이 끓고, 수증기가 다시 물방울이 되는 모든 과정에는 열에너지가 숨어있단다.</li><li>어떤 상태 변화가 주변의 열을 빼앗아 시원하게 하는지, 어떤 상태 변화가 열을 내뿜어 따뜻하게 하는지 함께 탐험해보자!</li></ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/96UxiH7C1hA" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/1uS1jwmNkP8" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/ekN9KcXRGMw" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 융해 (Melting)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">융해 (Melting)</div>
+                <div class="meaning-ko content-text">💡 정의: 고체가 액체로 변하는 현상. 이때 주변으로부터 열에너지를 흡수합니다.</div>
+                <div class="example-ko content-text">🌍 예시: 냉장고에서 꺼낸 얼음이 녹아 물이 되는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 기화 (Vaporization)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">기화 (Vaporization)</div>
+                <div class="meaning-ko content-text">💡 정의: 액체가 기체로 변하는 현상. 이때 주변으로부터 열에너지를 흡수합니다. (끓음과 증발 포함)</div>
+                <div class="example-ko content-text">🌍 예시: 젖은 옷이 마르거나 주전자의 물이 끓어 수증기가 되는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 승화 (고체→기체)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">승화 (고체→기체)</div>
+                <div class="meaning-ko content-text">💡 정의: 고체가 액체 상태를 거치지 않고 바로 기체로 변하는 현상. 이때 열에너지를 흡수합니다.</div>
+                <div class="example-ko content-text">🌍 예시: 드라이아이스가 연기처럼 사라지는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 응고 (Freezing)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">응고 (Freezing)</div>
+                <div class="meaning-ko content-text">💡 정의: 액체가 고체로 변하는 현상. 이때 주변으로 열에너지를 방출합니다.</div>
+                <div class="example-ko content-text">🌍 예시: 물이 얼어 얼음이 되거나 촛농이 굳는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 액화 (Condensation)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">액화 (Condensation)</div>
+                <div class="meaning-ko content-text">💡 정의: 기체가 액체로 변하는 현상. 이때 주변으로 열에너지를 방출합니다.</div>
+                <div class="example-ko content-text">🌍 예시: 차가운 컵 표면에 물방울이 맺히거나 샤워 후 거울에 김이 서리는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 승화 (기체→고체)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">승화 (기체→고체)</div>
+                <div class="meaning-ko content-text">💡 정의: 기체가 액체 상태를 거치지 않고 바로 고체로 변하는 현상. 이때 열에너지를 방출합니다.</div>
+                <div class="example-ko content-text">🌍 예시: 겨울철 나뭇가지에 서리가 내리거나 성에가 끼는 것.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 여름철 더운 날, 땀을 흘리고 나면 몸이 시원해지는 것을 느낄 수 있어. 반대로, 추운 겨울날 난로 옆에 물이 가득 담긴 양동이를 놓아두면 실내 온도가 너무 급격하게 떨어지는 것을 막아준다고 해. 이 두 가지 현상이 오늘 배운 '물질의 상태 변화 시 열에너지의 흡수와 방출'과 어떤 관련이 있는지 설명해 볼래?</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\ub2e4\uc74c \uc0c1\ud0dc \ubcc0\ud654 \uc911 \uc8fc\ubcc0\uc73c\ub85c\ubd80\ud130 \uc5f4\uc5d0\ub108\uc9c0\ub97c \ud761\uc218\ud558\ub294 \uacfc\uc815\uc740 \ubb34\uc5c7\uc77c\uae4c?", "options": ["\uc751\uace0", "\uc561\ud654", "\uc735\ud574", "\uc2b9\ud654 (\uae30\uccb4\u2192\uace0\uccb4)"], "hint": "\uace0\uccb4\uac00 \uc561\uccb4\ub85c \ubcc0\ud560 \ub54c \uc5d0\ub108\uc9c0\uac00 \ud544\uc694\ud574!", "a": 3}, {"q": "\ubb3c\uc774 \uc5bc\uc5b4 \uc5bc\uc74c\uc774 \ub420 \ub54c \uc8fc\ubcc0\uc73c\ub85c \uc5f4\uc5d0\ub108\uc9c0\ub97c \ubc29\ucd9c\ud558\ub294 \uc0c1\ud0dc \ubcc0\ud654\ub97c \ubb34\uc5c7\uc774\ub77c\uace0 \ud560\uae4c?", "options": ["\uae30\ud654", "\uc735\ud574", "\uc751\uace0", "\uc2b9\ud654 (\uace0\uccb4\u2192\uae30\uccb4)"], "hint": "\uc561\uccb4\uac00 \uace0\uccb4\ub85c \uad73\ub294 \ud604\uc0c1\uc744 \uc0dd\uac01\ud574 \ubd10!", "a": 3}, {"q": "\uc816\uc740 \uc190\uc5d0 \uc54c\ucf54\uc62c\uc744 \ubc14\ub974\uba74 \uc2dc\uc6d0\ud574\uc9c0\ub294 \uc774\uc720\ub294 \ubb34\uc5c7\uc77c\uae4c?", "options": ["\uc54c\ucf54\uc62c\uc774 \uc5f4\uc744 \ubc29\ucd9c\ud558\uae30 \ub54c\ubb38\uc5d0", "\uc54c\ucf54\uc62c\uc774 \uc99d\ubc1c\ud558\uba74\uc11c \uc190\uc758 \uc5f4\uc744 \ud761\uc218\ud558\uae30 \ub54c\ubb38\uc5d0", "\uc54c\ucf54\uc62c\uc774 \ucc28\uac00\uc6b4 \uc131\uc9c8\uc744 \uac00\uc9c0\uace0 \uc788\uae30 \ub54c\ubb38\uc5d0", "\uc54c\ucf54\uc62c\uc774 \uacf5\uae30\uc640 \ubc18\uc751\ud558\uc5ec \uc5f4\uc744 \ubc1c\uc0dd\uc2dc\ud0a4\uae30 \ub54c\ubb38\uc5d0"], "hint": "\uc54c\ucf54\uc62c\uc774 \uc561\uccb4\uc5d0\uc11c \uae30\uccb4\ub85c \ubcc0\ud558\ub294 \uacfc\uc815\uc774\uc57c!", "a": 2}, {"q": "\uaca8\uc6b8\ucca0, \ub208 \ub0b4\ub9ac\ub294 \ub0a0\ubcf4\ub2e4 \ub208\uc774 \ub179\ub294 \ub0a0(\ub610\ub294 \ub179\uace0 \uc788\ub294 \ub208 \uadfc\ucc98)\uc774 \ub354 \ucda5\uac8c \ub290\uaef4\uc9c0\ub294 \uac83\uc740 \uc5b4\ub5a4 \uc0c1\ud0dc \ubcc0\ud654\uc640 \uad00\ub828\uc774 \uc788\uc744\uae4c?", "options": ["\ub208\uc774 \ub179\uc73c\uba74\uc11c \uc5f4\uc5d0\ub108\uc9c0\ub97c \ubc29\ucd9c\ud558\uae30 \ub54c\ubb38\uc5d0", "\ub208\uc774 \ub179\uc73c\uba74\uc11c \uc8fc\ubcc0\uc73c\ub85c\ubd80\ud130 \uc5f4\uc5d0\ub108\uc9c0\ub97c \ud761\uc218\ud558\uae30 \ub54c\ubb38\uc5d0", "\ub208\uc774 \ub179\ub294 \uacfc\uc815\uacfc \uc5f4\uc5d0\ub108\uc9c0\ub294 \uc0c1\uad00\uc774 \uc5c6\uae30 \ub54c\ubb38\uc5d0", "\ub208\uc774 \ub179\uc73c\uba74 \uacf5\uae30 \uc911 \uc218\uc99d\uae30\ub7c9\uc774 \ub9ce\uc544\uc9c0\uae30 \ub54c\ubb38\uc5d0"], "hint": "\uc8fc\ubcc0\uc758 \uc5f4\uc744 \ube7c\uc557\uc544 \uac00\uae30 \ub54c\ubb38\uc5d0 \ucd94\uc6cc\uc9c0\ub294 \uac70\uc57c.", "a": 2}, {"q": "\uc561\uccb4\uac00 \uace0\uccb4\ub85c \ubcc0\ud558\ub294 \uc751\uace0 \uacfc\uc815\uc5d0\uc11c \ubb3c\uc9c8\uc758 \uc628\ub3c4\ub294 \uc5b4\ub5bb\uac8c \ub420\uae4c? (\ub2e8, \uc0c1\ud0dc \ubcc0\ud654\uac00 \uc9c4\ud589\ub418\ub294 \ub3d9\uc548)", "options": ["\uc628\ub3c4\uac00 \uacc4\uc18d \uc0c1\uc2b9\ud55c\ub2e4", "\uc628\ub3c4\uac00 \uacc4\uc18d \ud558\uac15\ud55c\ub2e4", "\uc628\ub3c4\uac00 \uc77c\uc815\ud558\uac8c \uc720\uc9c0\ub41c\ub2e4", "\uc628\ub3c4 \ubcc0\ud654\ub97c \uc608\uce21\ud560 \uc218 \uc5c6\ub2e4"], "hint": "\uc0c1\ud0dc \ubcc0\ud654\uac00 \uc77c\uc5b4\ub098\ub294 \ub3d9\uc548\uc5d0\ub294 \ubb3c\uc9c8\uc774 \ud761\uc218\ud558\uac70\ub098 \ubc29\ucd9c\ud558\ub294 \uc5f4\uc774 \uc0c1\ud0dc\ub97c \ubc14\uafb8\ub294 \ub370 \uc0ac\uc6a9\ub3fc.", "a": 3}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

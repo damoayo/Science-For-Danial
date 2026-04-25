@@ -1,0 +1,122 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 25일 | 단원 6 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 6단원을 복습할 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> Do you want to save the Earth?</p>
+                    <ul><li>"Can you~?"는 상대방에게 무언가를 '요청'할 때 쓰는 표현이야. "No, I can't."나 "Sorry, I can't." 등으로 '거절'할 수 있어.</li><li>예문 1: Can you help me with my homework? (숙제 도와줄 수 있니?)</li><li>예문 2: Can you close the door? (문 좀 닫아줄래?)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">environment</div>
+                <div class="meaning-en">the natural world, for example, the land, sea, air, plants, and animals, around us</div>
+                <div class="example-en">👉 We should protect our environment.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">environment</div>
+                <div class="meaning-ko">💡 뜻: 환경</div>
+                <div class="example-ko">해석: 우리는 우리의 환경을 보호해야 한다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "Which word means 'designed to be used only once and then thrown away'?", "hint": "\ud55c \ubc88 \uc4f0\uace0 \ubc84\ub9ac\ub294", "a": "single-use"}, {"q": "Food remaining after a meal is called _____.", "hint": "\ub0a8\uc740 \uc74c\uc2dd", "a": "leftovers"}, {"q": "_____ is the process of converting waste materials into new materials and objects.", "hint": "\uc7ac\ud65c\uc6a9", "a": "recycling"}, {"q": "What do we call unwanted material or rubbish, especially household waste?", "hint": "\uc4f0\ub808\uae30", "a": "trash"}, {"q": "The natural world, such as the air, water, and land, is our _____.", "hint": "\uc790\uc5f0 \ud658\uacbd", "a": "environment"}, {"q": "We should reduce _____ plastic bags. (\ud55c \ubc88 \uc4f0\uace0 \ubc84\ub9ac\ub294)", "hint": "_____ plastic bags", "a": "single-use"}, {"q": "Don't throw away your _____. You can eat them later.", "hint": "\ub0a8\uc740 \uc74c\uc2dd", "a": "leftovers"}, {"q": "_____ is very important for saving our planet.", "hint": "\uc7ac\ud65c\uc6a9", "a": "Recycling"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\ub2e4\ub2c8\uc5d8, \uc9c0\uad6c\ub97c \uad6c\ud558\uace0 \uc2f6\ub2c8? \ub108\ub294 \uc7ac\ud65c\uc6a9\uc744 \ud560 \uc218 \uc788\ub2c8?", "hint": "\ud575\uc2ec \ud328\ud134\uacfc \uc694\uccad \ubb38\ubc95\uc744 \ud65c\uc6a9\ud558\uc5ec \ub450 \ubb38\uc7a5\uc73c\ub85c \uc791\uc131\ud558\uc138\uc694.", "a": "Do you want to save the Earth? Can you recycle?"}, {"q": "\uc5c4\ub9c8, \ub0a8\uc740 \uc74c\uc2dd \uc880 \ub0c9\uc7a5\uace0\uc5d0 \ub123\uc5b4\uc904 \uc218 \uc788\uc5b4\uc694? (\uc5c4\ub9c8\uac00 \ubc14\uc058\ub2e4\uace0 \uac70\uc808\ud558\ub294 \ub300\ub2f5\uae4c\uc9c0 \ud3ec\ud568)", "hint": "\uc694\uccad \ubb38\ubc95(Can you~?)\uacfc \uac70\uc808 \ud45c\ud604, 'leftovers'\ub97c \ud65c\uc6a9\ud558\uc5ec \ub300\ud654\ub97c \uc644\uc131\ud558\uc138\uc694.", "a": "Mom, can you put the leftovers in the fridge? / Sorry, I can't right now because I'm busy."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

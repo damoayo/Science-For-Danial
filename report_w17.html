@@ -1,0 +1,161 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 과학 도서관</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            :root { --main: #3498db; --point: #e67e22; --bg: #f8fafd; --text: #2c3e50; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+            .header { background: linear-gradient(135deg, #6dd5ed, #2193b0); color: white; padding: 60px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+            .container { max-width: 800px; margin: -50px auto 50px; padding: 0 20px; }
+            .card { background: white; border-radius: 25px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eff3f6; }
+            .point-box { border-left: 6px solid var(--main); background: #f0f7ff; padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 25px; position: relative; }
+            .point-num { position: absolute; left: -15px; top: -15px; background: var(--main); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 4px solid white; }
+            .img-deco { width: 100%; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+            .quiz-zone { background: #fff9f2; border: 2px dashed #ffdebd; border-radius: 25px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+            .btn-ans { background: var(--text); color: white; border: none; padding: 8px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9em; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid #2ecc71; }
+            .lab-btn { display: block; text-align: center; background: var(--point); color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2em; transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(230,126,34,0.3); }
+        </style>
+        <script>function toggleAns(id){ var x=document.getElementById(id); x.style.display=(x.style.display==='none'||x.style.display==='')?'block':'none'; }</script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin:0; font-size:2.2em;">🔬 다니엘의 스마트 과학 리포트</h1>
+            <p style="opacity:0.9; font-weight:700; margin-top:10px;">중학교 1학년 과학: 6. 물질의 상태 변화 (고체, 액체, 기체)</p>
+        </div>
+        <div class="container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80" class="img-deco">
+                <h2 style="color:var(--main); margin-bottom:30px;">📖 아빠의 핵심 요약 노트</h2>
+    
+                <div class="point-box">
+                    <div class="point-num">1</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">안녕, 다니엘! 오늘은 우리 주변의 모든 물질이 어떤 모습으로 변하는지 신기한 여행을 떠나볼 거야. 마치 변신 로봇처럼 말이야! 물질은 크게 세 가지 모습으로 존재해. 바로 **고체, 액체, 기체**야.
+
+*   **고체**는 '딱딱해!' 생각하면 돼. 모양도 일정하고, 부피(차지하는 공간)도 딱 정해져 있어. (예: 얼음, 책상, 연필) 만져보면 단단한 느낌이지?
+*   **액체**는 '흐물흐물해!' 생각하면 쉬워. 담는 그릇에 따라 모양은 바뀌지만, 부피는 변하지 않아. (예: 물, 주스, 우유) 컵에 담으면 컵 모양, 병에 담으면 병 모양이 되지만, 양은 그대로잖아?
+*   **기체**는 '자유로워!' 생각하면 돼. 모양도, 부피도 정해져 있지 않고, 공간이 있으면 어디든 채워버려. (예: 수증기, 공기, 풍선 안의 공기) 그래서 눈에 잘 보이지도 않고 잡을 수도 없어. 공기 중에 떠다니는 수증기를 생각해봐.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">2</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">그럼 이런 물질들이 왜 고체였다가 액체가 되고, 액체였다가 기체가 될까? 그 비밀은 바로 **열에너지**에 있어! 물질을 이루는 아주 작은 알갱이들(입자)은 항상 움직이고 있거든.
+
+*   **열에너지를 얻으면** 이 알갱이들이 더 활발하게 움직여. 춤추듯 뛰어다니는 거지! 그래서 고체(가만히 붙어있다가) → 액체(자유롭게 움직이기 시작) → 기체(마구 날아다님)로 변하는 거야.
+*   반대로 **열에너지를 잃으면** 알갱이들이 힘이 빠져서 움직임이 둔해져. 그래서 기체(마구 날아다니다가) → 액체(좀 진정하고) → 고체(다 같이 뭉쳐서)로 변하는 거란다. 마치 열 받으면 흥분하고, 식으면 차분해지는 우리 모습과 비슷해!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">3</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">첫 번째 변신은 고체와 액체 사이의 변화야!
+
+*   **융해 (녹는 현상):** 고체가 열에너지를 '흡수'해서 액체로 변하는 걸 말해. 우리 주변에서 가장 흔하게 볼 수 있는 건 얼음이 물로 변하는 거지? 얼음이 따뜻한 곳에서 녹는 것처럼, 초콜릿이나 양초도 열을 받으면 녹아 액체가 된단다. 고체가 녹는 온도를 '녹는점'이라고 불러.
+*   **응고 (굳는 현상):** 액체가 열에너지를 '방출'해서 고체로 변하는 걸 말해. 물이 얼어서 얼음이 되는 게 대표적이야. 양초가 타다가 다시 굳는 것도 응고고, 뜨거운 납이 식어서 굳는 것도 응고지. 액체가 굳는 온도를 '어는점'이라고 하는데, 신기하게도 같은 물질이라면 '녹는점'과 '어는점'이 똑같아! 예를 들어, 물의 녹는점과 어는점은 0℃로 같아.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">4</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">두 번째 변신은 액체와 기체 사이의 변화야!
+
+*   **기화 (증발 또는 끓음):** 액체가 열에너지를 '흡수'해서 기체로 변하는 현상이야. 물이 끓어서 수증기가 되는 걸 본 적 있지? 주전자에서 김이 모락모락 올라오는 것이 바로 기화의 한 종류인 '끓음'이야. 젖은 빨래가 마르는 것도 물이 수증기가 되어 날아가는 '증발'이고! 액체가 끓는 온도를 '끓는점'이라고 해.
+*   **액화 (이슬 또는 김):** 기체가 열에너지를 '방출'해서 액체로 변하는 현상이야. 차가운 유리창에 이슬이 맺히는 거, 겨울에 입김을 불면 거울에 김이 서리는 거 모두 액화란다. 공기 중의 수증기(기체)가 차가운 표면을 만나 열을 잃고 물방울(액체)이 되는 거지.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">5</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">마지막 변신은 좀 특별해! 고체가 액체를 거치지 않고 바로 기체가 되거나, 기체가 액체를 거치지 않고 바로 고체가 되는 현상이야. 이걸 **승화**라고 불러.
+
+*   **고체 → 기체 승화:** 열에너지를 '흡수'하면서 고체가 액체 상태를 건너뛰고 바로 기체가 되는 거야. 아이스크림 케이크 포장할 때 쓰는 **드라이아이스** 알지? 하얀 연기가 뿜어져 나오는데, 그건 드라이아이스(고체)가 녹지 않고 바로 이산화탄소 기체로 변하는 모습이야. 옷장 속 **나프탈렌**도 서서히 작아지는 걸 볼 수 있는데, 이것도 승화 때문이야.
+*   **기체 → 고체 승화:** 반대로 기체가 열에너지를 '방출'하면서 바로 고체가 되는 경우도 있어. 겨울철 추운 날 아침에 나뭇가지나 풀잎에 하얗게 생기는 **서리**가 바로 기체인 수증기가 고체 얼음으로 변하는 모습이고, 예쁜 **눈 결정**이 만들어지는 것도 기체 승화 덕분이랍니다!
+
+다니엘, 이렇게 물질의 상태 변화를 알아볼 때, 우리가 어떤 물질의 변화를 정확하게 관찰하려면 '공정한 실험을 위해 똑같이 맞출 조건'을 잘 생각해야 해. 예를 들어, 얼음이 녹는 온도를 잴 때, 얼음의 양이나 주변 온도 등 다른 조건을 똑같이 맞춰야 정확한 결과를 얻을 수 있겠지?</p>
+                </div>
+        
+                <a href="./lab_w17.html" class="lab-btn">🧪 나만의 애니메이션 실험실 가기 →</a>
+            </div>
+
+            <div class="card quiz-zone">
+                <h2 style="color:var(--point); text-align:center;">📝 실력 쑥쑥! 퀴즈 타임</h2>
+    
+                <div class="q-card">
+                    <p style="font-weight:800;">Q1. 고체는 담는 그릇에 따라 모양이 변하지만, 부피는 일정하다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans0')">정답 확인</button>
+                    <div id="ans0" class="ans-box">✨ 정답: <b>X</b><br><small>이 설명은 액체에 대한 설명이에요. 고체는 모양과 부피가 모두 일정하답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q2. 물질이 열에너지를 얻으면 물질을 이루는 알갱이(입자)의 운동이 활발해져 기체로 변하기 쉬워진다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 열에너지를 얻으면 알갱이들이 더 자유롭게 움직이려고 해서 고체 → 액체 → 기체 순서로 변하게 돼요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q3. 물이 얼어서 얼음이 되는 현상을 '융해'라고 한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">✨ 정답: <b>X</b><br><small>물이 얼어서 얼음이 되는 것은 '응고' 현상이에요. 융해는 얼음이 물로 녹는 현상을 말한답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q4. 차가운 음료수 병 표면에 물방울이 맺히는 것은 기체가 액체로 변하는 '액화' 현상이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans3')">정답 확인</button>
+                    <div id="ans3" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 공기 중의 수증기(기체)가 차가운 병을 만나 열을 잃고 물방울(액체)이 되는 액화 현상이에요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q5. 드라이아이스는 고체에서 액체를 거쳐 기체로 변한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans4')">정답 확인</button>
+                    <div id="ans4" class="ans-box">✨ 정답: <b>X</b><br><small>드라이아이스는 고체에서 액체 상태를 거치지 않고 바로 기체로 변하는 '승화' 현상을 보여줘요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q6. 다음 중 담는 그릇에 따라 모양은 변하지만 부피는 일정한 물질의 상태는?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 고체</li><li>· 2. 액체</li><li>· 3. 기체</li><li>· 4. 플라스마</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans5')">정답 확인</button>
+                    <div id="ans5" class="ans-box">✨ 정답: <b>2</b><br><small>액체는 담는 용기에 따라 모양은 변하지만, 그 양(부피)은 그대로 유지돼요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q7. 얼음이 물로 변하는 현상에 대한 설명으로 옳은 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 열에너지를 방출한다.</li><li>· 2. 입자 운동이 둔해진다.</li><li>· 3. 융해 현상이라고 한다.</li><li>· 4. 어는점 이하의 온도에서 일어난다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans6')">정답 확인</button>
+                    <div id="ans6" class="ans-box">✨ 정답: <b>3</b><br><small>얼음이 물로 녹는 것은 '융해' 현상이며, 이 과정에서 열에너지를 흡수하여 입자 운동이 활발해진답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q8. 다음 중 액체가 열에너지를 흡수하여 기체로 변하는 현상은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 융해</li><li>· 2. 응고</li><li>· 3. 기화</li><li>· 4. 액화</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans7')">정답 확인</button>
+                    <div id="ans7" class="ans-box">✨ 정답: <b>3</b><br><small>액체가 열에너지를 흡수하여 기체로 변하는 것을 '기화'라고 해요. 빨래가 마르거나 물이 끓는 것이 대표적인 예시예요.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q9. 겨울 아침, 나뭇가지에 하얗게 서리가 내리는 현상과 같은 종류의 상태 변화는?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 주전자의 물이 끓는다.</li><li>· 2. 아이스크림이 녹는다.</li><li>· 3. 드라이아이스에서 연기가 난다.</li><li>· 4. 습기 찬 화장실 거울에 김이 서린다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans8')">정답 확인</button>
+                    <div id="ans8" class="ans-box">✨ 정답: <b>3</b><br><small>서리는 수증기(기체)가 액체 과정을 거치지 않고 바로 얼음(고체)으로 변하는 '승화' 현상이에요. 드라이아이스에서 연기가 나는 것도 고체(드라이아이스)가 액체 과정을 거치지 않고 바로 기체(이산화탄소)로 변하는 승화 현상이므로 같은 종류의 변화에 속한답니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q10. 물질의 상태 변화에 대한 설명으로 옳지 않은 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 물질의 종류에 따라 녹는점과 끓는점이 다르다.</li><li>· 2. 응고는 열에너지를 방출하는 현상이다.</li><li>· 3. 기화와 증발은 완전히 같은 의미로 사용된다.</li><li>· 4. 액체가 기체로 변할 때 부피는 크게 증가한다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans9')">정답 확인</button>
+                    <div id="ans9" class="ans-box">✨ 정답: <b>3</b><br><small>기화는 액체가 기체로 변하는 현상을 모두 포함하는 말이고, 증발은 기화 중에서도 액체의 표면에서만 일어나는 기화를 뜻해요. 끓음은 액체 내부와 표면에서 활발하게 일어나는 기화이고요. 따라서 기화와 증발은 완전히 같은 의미는 아니랍니다.</small></div>
+                </div>
+        
+            </div>
+            <p style="text-align:center; color:#bdc3c7; margin-top:30px;">아빠가 다니엘을 위해 코드로 만든 사랑의 리포트 ❤️</p>
+        </div>
+    </body>
+    </html>
+    

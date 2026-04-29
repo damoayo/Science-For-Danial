@@ -1,0 +1,194 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 29일 | 과학 6단원: 빛과 파동</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 6단원 '빛과 파동'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <ul><li> 빛은 항상 똑바로 나아가는 '직진'의 성질이 있대요! </li><li> 거울에 비친 내 모습처럼, 빛이 물체에 부딪혀 되돌아오는 '반사' 현상을 알아봐요. </li><li> 물속의 빨대가 꺾여 보이는 마법 같은 '굴절' 현상도 함께 탐험해 봐요! </li></ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/AMLBe6sKxLg" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/SaC14LitWgM" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/Z14Oln53N4w" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 빛의 직진</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">빛의 직진</div>
+                <div class="meaning-ko content-text">💡 정의: 빛이 나아갈 때 항상 똑바로 곧게 나아가는 성질을 말해요.</div>
+                <div class="example-ko content-text">🌍 예시: 손전등 불빛이 직선으로 뻗어나가는 것, 나무 그림자가 선명하게 생기는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 빛의 반사</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">빛의 반사</div>
+                <div class="meaning-ko content-text">💡 정의: 빛이 어떤 물체의 표면에 부딪혀 되돌아 나오는 현상이에요. 거울을 보면 내 얼굴을 볼 수 있는 이유죠!</div>
+                <div class="example-ko content-text">🌍 예시: 거울에 내 모습이 비치는 것, 잔잔한 물가에 주변 풍경이 비치는 것.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 반사의 법칙</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">반사의 법칙</div>
+                <div class="meaning-ko content-text">💡 정의: 빛이 반사될 때, 들어오는 빛(입사광선)이 법선과 이루는 각도(입사각)와 나가는 빛(반사광선)이 법선과 이루는 각도(반사각)는 항상 같아요.</div>
+                <div class="example-ko content-text">🌍 예시: 당구공이 벽에 부딪혀 튕겨 나가는 각도와 비슷하게 생각할 수 있어요.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 빛의 굴절</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">빛의 굴절</div>
+                <div class="meaning-ko content-text">💡 정의: 빛이 서로 다른 물질(예: 공기에서 물)의 경계를 통과할 때, 나아가던 방향이 꺾이는 현상이에요.</div>
+                <div class="example-ko content-text">🌍 예시: 물이 담긴 컵에 꽂은 빨대가 꺾여 보이는 것, 물속의 물고기가 실제보다 가까이 보이는 것.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 만약 빛이 공기에서 물로 들어갈 때 전혀 꺾이지 않고 그대로 직진한다면, 우리는 물속에 있는 물고기를 실제 위치에서 보게 될까요? 아니면 여전히 다른 곳에서 보게 될까요? 그 이유는 무엇일지 상상해 보세요!</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\uadf8\ub9bc\uc790\ub098 \ub808\uc774\uc800 \ubd88\ube5b\uc774 \uc9c1\uc120\uc73c\ub85c \ubcf4\uc774\ub294 \ud604\uc0c1\uc740 \ube5b\uc758 \uc5b4\ub5a4 \uc131\uc9c8 \ub54c\ubb38\uc77c\uae4c\uc694?", "options": ["\ube5b\uc758 \ubc18\uc0ac", "\ube5b\uc758 \uad74\uc808", "\ube5b\uc758 \uc9c1\uc9c4", "\ube5b\uc758 \ud569\uc131"], "hint": "\ube5b\uc740 \ud56d\uc0c1 \uac00\uc7a5 \uc9e7\uc740 \uae38\ub85c \uc6c0\uc9c1\uc774\ub824\uace0 \ud574\uc694!", "a": 2}, {"q": "\uac70\uc6b8\uc744 \ubcf4\uba74 \ub0b4 \ubaa8\uc2b5\uc774 \ube44\uce58\ub294 \uac83\uc740 \ube5b\uc758 \uc5b4\ub5a4 \ud604\uc0c1 \ub54c\ubb38\uc778\uac00\uc694?", "options": ["\uad74\uc808", "\ud761\uc218", "\uc0b0\ub780", "\ubc18\uc0ac"], "hint": "\ube5b\uc774 \ud45c\uba74\uc5d0 \ubd80\ub52a\ud600 \ub2e4\uc2dc \ub3cc\uc544\uc624\ub294 \ud604\uc0c1\uc744 \uc0dd\uac01\ud574 \ubcf4\uc138\uc694.", "a": 3}, {"q": "\ube5b\uc774 \ud3c9\uba74 \uac70\uc6b8\uc5d0 \ubc18\uc0ac\ub420 \ub54c, \uc785\uc0ac\uac01\uacfc \ubc18\uc0ac\uac01\uc758 \uad00\uacc4\uc5d0 \ub300\ud55c \uc124\uba85\uc73c\ub85c \uc633\uc740 \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\uc785\uc0ac\uac01\uc774 \ubc18\uc0ac\uac01\ubcf4\ub2e4 \ud56d\uc0c1 \ud06c\ub2e4", "\uc785\uc0ac\uac01\uc740 \ubc18\uc0ac\uac01\uc758 \ub450 \ubc30\uc774\ub2e4", "\uc785\uc0ac\uac01\uacfc \ubc18\uc0ac\uac01\uc740 \ud56d\uc0c1 \uac19\ub2e4", "\uc785\uc0ac\uac01\uc774 \ubc18\uc0ac\uac01\ubcf4\ub2e4 \ud56d\uc0c1 \uc791\ub2e4"], "hint": "\ube5b\uc774 \ub4e4\uc5b4\uac00\ub294 \uac01\ub3c4\uc640 \ub098\uac00\ub294 \uac01\ub3c4\ub294 \uc5b4\ub5a4 \uad00\uacc4\uc77c\uae4c\uc694?", "a": 2}, {"q": "\ubb3c\uc18d\uc5d0 \ub2f4\uae34 \ube68\ub300\uac00 \uc2e4\uc81c\ubcf4\ub2e4 \uaebe\uc5ec \ubcf4\uc774\ub294 \ud604\uc0c1\uc740 \ube5b\uc758 \uc5b4\ub5a4 \uc131\uc9c8 \ub54c\ubb38\uc77c\uae4c\uc694?", "options": ["\ube5b\uc758 \ud761\uc218", "\ube5b\uc758 \uc0b0\ub780", "\ube5b\uc758 \uad74\uc808", "\ube5b\uc758 \ubc18\uc0ac"], "hint": "\ube5b\uc774 \ub2e4\ub978 \ubb3c\uc9c8\uc744 \ud1b5\uacfc\ud560 \ub54c \ubc29\ud5a5\uc774 \ubc14\ub00c\ub294 \ud604\uc0c1\uc774\uc5d0\uc694.", "a": 2}, {"q": "\ub2e4\uc74c \uc911 \ube5b\uc758 \uad74\uc808 \ud604\uc0c1\uacfc \uad00\ub828\uc774 \uc5c6\ub294 \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\ubb3c\uace0\uae30\uac00 \uc2e4\uc81c\ubcf4\ub2e4 \uc595\uc740 \uacf3\uc5d0 \uc788\ub294 \uac83\ucc98\ub7fc \ubcf4\uc774\ub294 \uac83", "\ubb3c\uc548\uacbd\uc744 \uc4f0\uba74 \ubb3c\uc18d\uc774 \uc798 \ubcf4\uc774\ub294 \uac83", "\ubb34\uc9c0\uac1c\uac00 \ubcf4\uc774\ub294 \ud604\uc0c1", "\ud3c9\uba74 \uac70\uc6b8\uc5d0 \ub0b4 \uc5bc\uad74\uc774 \ube44\uce58\ub294 \uac83"], "hint": "\ube5b\uc774 \ud718\uc5b4\uc838 \ubcf4\uc774\ub294 \uac83\uacfc \uad00\ub828\uc774 \uc5c6\ub294 \uac83\uc744 \ucc3e\uc544\ubcf4\uc138\uc694.", "a": 3}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

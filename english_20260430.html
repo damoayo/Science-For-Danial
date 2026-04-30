@@ -1,0 +1,122 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 04월 30일 | 단원 7 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 7단원을 복습할 거야! 화이팅! 2026년 04월 30일 학습 리포트야.</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> A lot of people are working hard.</p>
+                    <ul><li>동명사는 동사원형에 '-ing'를 붙여 명사처럼 사용하는 형태를 말해.</li><li>'interested in ~ing'는 '~하는 것에 관심이 있다'는 뜻으로, 전치사 'in' 다음에는 동명사(-ing)를 써야 해.</li><li>예문 1: I am interested in learning English. (나는 영어 배우는 것에 관심이 있어.)</li><li>예문 2: She is interested in watching movies. (그녀는 영화 보는 것에 관심이 있어.)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">create</div>
+                <div class="meaning-en">to make something new, to invent something</div>
+                <div class="example-en">👉 Artists create beautiful paintings.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">create</div>
+                <div class="meaning-ko">💡 뜻: 만들다, 창조하다</div>
+                <div class="example-ko">해석: 예술가들은 아름다운 그림을 창조한다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\ub2e4\uc74c \uc601\uc5b4 \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740 \ubb34\uc5c7\uc778\uac00\uc694? director", "hint": "\uc601\ud654\ub098 \ud68c\uc0ac\uc5d0\uc11c \uc6b0\ub450\uba38\ub9ac \uc5ed\ud560\uc744 \ud558\ub294 \uc0ac\ub78c", "a": "\uac10\ub3c5"}, {"q": "\ub2e4\uc74c \ud55c\uad6d\uc5b4 \ub73b\uc5d0 \ub9de\ub294 \uc601\uc5b4 \ub2e8\uc5b4\ub294? '\uc18c \ub5bc\ub97c \ubaa8\ub294 \uc0ac\ub78c'", "hint": "\uc601\ud654 '\ud1a0\uc774 \uc2a4\ud1a0\ub9ac'\uc5d0\ub3c4 \ub098\uc624\ub294 \uc9c1\uc5c5", "a": "wrangler"}, {"q": "\ub2e4\uc74c \uc601\uc5b4 \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740 \ubb34\uc5c7\uc778\uac00\uc694? editor", "hint": "\uae00\uc774\ub098 \uc601\uc0c1 \uc790\ub8cc\ub97c \ub2e4\ub4ec\uace0 \uc218\uc815\ud558\ub294 \uc0ac\ub78c", "a": "\ud3b8\uc9d1\uc790"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub97c \ucc44\uc6b0\uc138\uc694: Who is in _____ of this project? (\uc774 \ud504\ub85c\uc81d\ud2b8\uc758 \ucc45\uc784\uc790\ub294 \ub204\uad6c\uc778\uac00\uc694?)", "hint": "\ucc45\uc784, \ub2f4\ub2f9\uc744 \ub73b\ud558\ub294 \ub2e8\uc5b4", "a": "charge"}, {"q": "\ub2e4\uc74c \uc601\uc5b4 \ub2e8\uc5b4\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740 \ubb34\uc5c7\uc778\uac00\uc694? create", "hint": "\uc0c8\ub85c\uc6b4 \uac83\uc744 \ub9cc\ub4e4\ub2e4", "a": "\ub9cc\ub4e4\ub2e4, \ucc3d\uc870\ud558\ub2e4"}, {"q": "\ub2e4\uc74c \ud55c\uad6d\uc5b4 \ub73b\uc5d0 \ub9de\ub294 \uc601\uc5b4 \ub2e8\uc5b4\ub294? '\ub2f4\ub2f9, \ucc45\uc784'", "hint": "\uc804\uce58\uc0ac 'in'\uacfc \ud568\uaed8 \uc790\uc8fc \uc4f0\uc5ec\uc694", "a": "charge"}, {"q": "\ube48\uce78\uc5d0 \uc54c\ub9de\uc740 \ub2e8\uc5b4\ub294? A movie _____ guides actors. (\uc601\ud654 \uac10\ub3c5\uc740 \ubc30\uc6b0\ub4e4\uc744 \uc9c0\ub3c4\ud55c\ub2e4.)", "hint": "\uc601\ud654 \uc5f0\ucd9c\uc744 \ucd1d\uad04\ud558\ub294 \uc0ac\ub78c", "a": "director"}, {"q": "\ub2e4\uc74c \uc911 '\uae00\uc774\ub098 \uc601\uc0c1\uc744 \uc218\uc815\ud558\ub294 \uc0ac\ub78c'\uc744 \ub73b\ud558\ub294 \ub2e8\uc5b4\ub294?", "hint": "\uc2e0\ubb38\uc0ac\ub098 \ucd9c\ud310\uc0ac\uc5d0 \uc788\ub294 \uc9c1\uc5c5", "a": "editor"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\ub098\ub294 \ub9ce\uc740 \uc0ac\ub78c\ub4e4\uc774 \uc5f4\uc2ec\ud788 \uc77c\ud558\ub294 \uac83\uc5d0 \uad00\uc2ec\uc774 \uc788\uc5b4.", "hint": "\uc624\ub298\uc758 \ud328\ud134 'A lot of people are working hard'\uc640 \ubb38\ubc95 'interested in ~ing'\ub97c \ud65c\uc6a9\ud574 \ubcf4\uc138\uc694.", "a": "I am interested in a lot of people working hard."}, {"q": "\ub108\ub294 \uc0c8\ub85c\uc6b4 \uac83\uc744 \ub9cc\ub4dc\ub294 \uac83\uc5d0 \uad00\uc2ec\uc774 \uc788\ub2c8? \uadf8\ub9ac\uace0 \ub9ce\uc740 \uc0ac\ub78c\ub4e4\uc774 \ub9e4\uc77c \uc5f4\uc2ec\ud788 \uc77c\ud558\uace0 \uc788\uc5b4.", "hint": "\uccab \ubb38\uc7a5\uc740 'interested in ~ing'\ub97c \uc774\uc6a9\ud55c \uc758\ubb38\ubb38\uc73c\ub85c, \ub450 \ubc88\uc9f8 \ubb38\uc7a5\uc740 \uc624\ub298\uc758 \ud328\ud134\uc744 \ud65c\uc6a9\ud558\uc138\uc694.", "a": "Are you interested in creating new things? A lot of people are working hard every day."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

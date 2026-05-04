@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 자동 영어 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #3498db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { background: #fdfefe; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #2980b9; margin-bottom: 8px; }
+            .meaning-en { font-weight: bold; color: #34495e; margin-bottom: 5px; }
+            .example-en { color: #7f8c8d; font-style: italic; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🚀 다니엘의 자동 영어 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 05월 04일 | 단원 8 복습</p>
+            </div>
+
+            <div class="card" style="background: #f8fafd; border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #2980b9;">👨‍🏫 다니엘, 오늘은 8단원을 복습할 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #27ae60;">핵심 문법 & 패턴</h3>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                    <p><b>전화영어 핵심:</b> I think it's fun.</p>
+                    <ul><li>"What do you think?"는 상대방의 생각이나 의견을 물어볼 때 사용하는 핵심 표현입니다. 어떤 대상이나 상황에 대한 의견을 물어볼 때 주로 "What do you think about/of ~?" 형태로 사용해요.</li><li>예문 1: What do you think about this book? (이 책에 대해 어떻게 생각하니?)</li><li>예문 2: What do you think of my new shoes? (내 새 신발 어때?)</li></ul>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0f8ff;">
+                <span class="tag" style="background: #3498db;">Part 2. 마법의 단어장</span>
+                
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">delicious</div>
+                <div class="meaning-en">having a very pleasant taste or smell.</div>
+                <div class="example-en">👉 This pizza is so delicious!</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">delicious</div>
+                <div class="meaning-ko">💡 뜻: 맛있는</div>
+                <div class="example-ko">해석: 이 피자는 정말 맛있어!</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">spicy</div>
+                <div class="meaning-en">having a strong, hot flavor.</div>
+                <div class="example-en">👉 I like spicy food like tteokbokki.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">spicy</div>
+                <div class="meaning-ko">💡 뜻: 매운</div>
+                <div class="example-ko">해석: 나는 떡볶이처럼 매운 음식을 좋아해.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleVoca(this)">
+            <div class="voca-en">
+                <div class="word-title">shocking</div>
+                <div class="meaning-en">causing a sudden, upsetting, or surprising feeling.</div>
+                <div class="example-en">👉 The news was very shocking.</div>
+                <div class="click-hint">클릭하면 한글 뜻이 보여요 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">shocking</div>
+                <div class="meaning-ko">💡 뜻: 충격적인, 경악스러운</div>
+                <div class="example-ko">해석: 그 뉴스는 매우 충격적이었다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 3. 실전 단어 퀴즈</span>
+                <div id="voca-container"></div>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #9b59b6;">Part 4. 핵심 영작 훈련</span>
+                <div id="writing-container"></div>
+            </div>
+        </div>
+
+        <script>
+            function toggleVoca(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#3498db';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId, prefix) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            <input type="text" id="input_${prefix}_${index}" class="quiz-input" placeholder="정답 입력">
+                            <button class="btn-action" onclick="document.getElementById('hint_${prefix}_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #2ecc71; color: white;" onclick="checkQuiz('${prefix}_${index}', '${quiz.a.replace(/'/g, "\'")}')">확인</button>
+                            <div id="hint_${prefix}_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_${prefix}_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim().toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const cleanCorrect = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                if (userAnswer === cleanCorrect || userAnswer.includes(cleanCorrect)) {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 완벽해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "This soup is so _______. It has a strong taste of salt.", "hint": "\uc9e0", "a": "salty"}, {"q": "\ub2e4\uc74c \uc601\uc5b4 \ub2e8\uc5b4 'delicious'\uc758 \ud55c\uad6d\uc5b4 \ub73b\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "hint": "\ub9db\uacfc \uad00\ub828\ub41c \ud45c\ud604", "a": "\ub9db\uc788\ub294"}, {"q": "Don't forget to _______ the letter at the post office.", "hint": "\uc6b0\ud3b8\uc73c\ub85c \ubcf4\ub0b4\ub2e4", "a": "post"}, {"q": "Which word means '\ub9e4\uc6b4' in English?", "hint": "S\ub85c \uc2dc\uc791\ud558\ub294 \ub2e8\uc5b4", "a": "spicy"}, {"q": "The ending of the movie was quite _______.", "hint": "\ucda9\uaca9\uc801\uc778", "a": "shocking"}, {"q": "Can you _______ this package for me?", "hint": "\ubd80\uce58\ub2e4, \uac8c\uc2dc\ud558\ub2e4", "a": "post"}, {"q": "I love _______ food, but my little brother doesn't.", "hint": "\ud600\uac00 \uc5bc\uc5bc\ud55c \ub9db", "a": "spicy"}, {"q": "After running for a long time, I was very _______.", "hint": "\ud53c\uace4\ud55c (\ud559\uc2b5 \uc7ac\ub8cc \uc678 \ub2e8\uc5b4\uc9c0\ub9cc \ubb38\ub9e5\uc0c1 \uc790\uc5f0\uc2a4\ub7ec\uc6b4 \ube48\uce78)", "a": "tired"}], 'voca-container', 'voca');
+            renderQuizzes([{"q": "\uc774 \uac8c\uc784\uc5d0 \ub300\ud574 \uc5b4\ub5bb\uac8c \uc0dd\uac01\ud558\ub2c8? \ub098\ub294 \uc7ac\ubbf8\uc788\ub2e4\uace0 \uc0dd\uac01\ud574.", "hint": "\uc758\uacac \ubb3b\uae30 + \ud575\uc2ec \ud328\ud134 \ud65c\uc6a9", "a": "What do you think about this game? I think it's fun."}, {"q": "\uc774 \uc0c8\ub85c\uc6b4 \uc601\ud654 \uc5b4\ub54c? \ub098\ub294 \uc815\ub9d0 \uba4b\uc9c0\ub2e4\uace0 \uc0dd\uac01\ud574.", "hint": "\uc758\uacac \ubb3b\uae30 + 'I think it's ~' \ud328\ud134 \uc751\uc6a9", "a": "What do you think about this new movie? I think it's cool."}], 'writing-container', 'write');
+        </script>
+    </body>
+    </html>
+    

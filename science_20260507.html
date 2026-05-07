@@ -1,0 +1,206 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 05월 07일 | 과학 7단원: 과학과 나의 미래</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 7단원 '과학과 나의 미래'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스는 <ul><li>과학 기술의 발달 과정과 그 중요성</li><li>인공지능, 사물 인터넷, 생명 공학, 우주 기술 등 첨단 과학 기술의 종류와 특징</li><li>과학 기술이 우리 생활에 미치는 긍정적인 영향과 부정적인 영향</li><li>미래 사회를 위한 과학 기술의 바람직한 방향과 지속 가능한 발전의 중요성</li></ul>
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/w5KnuDx7iqA" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/m45vPYxd8Js" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/whjwag1LedI" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 과학 기술 (Science and Technology)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">과학 기술 (Science and Technology)</div>
+                <div class="meaning-ko content-text">💡 정의: 과학적 지식을 바탕으로 인류의 삶을 편리하고 풍요롭게 만드는 데 사용되는 모든 기술</div>
+                <div class="example-ko content-text">🌍 예시: 스마트폰, 전기 자동차, 의료용 로봇, 인공위성 등이 모두 과학 기술의 결과물이야.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 인공지능 (Artificial Intelligence, AI)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">인공지능 (Artificial Intelligence, AI)</div>
+                <div class="meaning-ko content-text">💡 정의: 인간의 학습 능력, 추론 능력, 지각 능력 등을 컴퓨터 프로그램으로 구현하여 스스로 판단하고 학습하는 기술</div>
+                <div class="example-ko content-text">🌍 예시: AI 스피커, 자율주행 자동차, 챗봇, 얼굴 인식 기술 등에 인공지능이 활용돼.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 사물 인터넷 (Internet of Things, IoT)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">사물 인터넷 (Internet of Things, IoT)</div>
+                <div class="meaning-ko content-text">💡 정의: 다양한 사물에 센서와 통신 기능을 부여하여 인터넷으로 연결하고 정보를 주고받게 하는 기술</div>
+                <div class="example-ko content-text">🌍 예시: 스마트 홈(조명, 냉장고 원격 제어), 스마트 헬스케어 기기(스마트 워치), 스마트 팩토리 등에서 찾아볼 수 있어.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 생명 공학 (Biotechnology)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">생명 공학 (Biotechnology)</div>
+                <div class="meaning-ko content-text">💡 정의: 생명체의 특성이나 기능을 이용하여 인류에게 유용한 물질을 만들거나 기능을 개선하는 기술</div>
+                <div class="example-ko content-text">🌍 예시: 백신 및 의약품 개발, 유전자 변형 농산물, 줄기세포 연구, 범죄 수사(DNA 감식) 등에 사용돼.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 지속 가능한 발전 (Sustainable Development)</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">지속 가능한 발전 (Sustainable Development)</div>
+                <div class="meaning-ko content-text">💡 정의: 현재 세대의 필요를 충족시키면서 미래 세대가 필요를 충족시킬 능력을 손상시키지 않는 발전</div>
+                <div class="example-ko content-text">🌍 예시: 태양광, 풍력 등 신재생 에너지 사용, 에너지 절약, 재활용 활성화, 환경 보호 활동 등이 모두 지속 가능한 발전을 위한 노력이야.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 만약 다니엘이 미래에 과학 기술 개발자가 된다면, 어떤 과학 기술 분야(예: AI, 생명 공학, 우주 기술 등)에 가장 큰 관심을 가지고 있으며, 그 기술을 통해 우리 사회의 어떤 문제를 해결하고 싶은가? 그리고 그 기술이 가져올 긍정적인 미래는 어떤 모습일지 구체적으로 상상해 보자.</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\ub2e4\uc74c \uc911 \uacfc\ud559 \uae30\uc220\uc758 \ubc1c\ub2ec\uc774 \uc6b0\ub9ac \uc0dd\ud65c\uc5d0 \uac00\uc838\uc628 \uae0d\uc815\uc801\uc778 \ubcc0\ud654\uac00 \uc544\ub2cc \uac83\uc740?", "options": ["\uc9c8\ubcd1 \uce58\ub8cc \ubc0f \uac74\uac15 \uc99d\uc9c4", "\uc815\ubcf4 \uad50\ud658\uc758 \ud65c\uc131\ud654\uc640 \uc18c\ud1b5 \uc99d\ub300", "\ud3b8\ub9ac\ud55c \uad50\ud1b5 \uc218\ub2e8\uc73c\ub85c \uc774\ub3d9 \uc2dc\uac04 \ub2e8\ucd95", "\ud658\uacbd \uc624\uc5fc \ubc0f \uc724\ub9ac\uc801 \ubb38\uc81c \ubc1c\uc0dd"], "hint": "\uacfc\ud559 \uae30\uc220\uc758 '\uadf8\ub298'\uc740 \ubb34\uc5c7\uc77c\uae4c?", "a": 4}, {"q": "\uc778\uac04\ucc98\ub7fc \uc0dd\uac01\ud558\uace0 \ud559\uc2b5\ud558\uba70 \ud310\ub2e8\ud558\ub294 \uac83\ucc98\ub7fc \ubcf4\uc774\ub294 \ucef4\ud4e8\ud130 \uae30\uc220\uc744 \ubb34\uc5c7\uc774\ub77c\uace0 \ud558\ub294\uac00?", "options": ["\uc0ac\ubb3c \uc778\ud130\ub137", "\uc778\uacf5\uc9c0\ub2a5", "\uc0dd\uba85 \uacf5\ud559", "\uc6b0\uc8fc \uae30\uc220"], "hint": "\uc2a4\uc2a4\ub85c \ud559\uc2b5\ud558\uace0 \ud310\ub2e8\ud558\ub294 \uae30\uc220\uc774\uc57c.", "a": 2}, {"q": "\ub2e4\uc74c \uc911 \uc0ac\ubb3c \uc778\ud130\ub137(IoT) \uae30\uc220\uc774 \uc801\uc6a9\ub41c \uc0ac\ub840\ub85c \uac00\uc7a5 \uc801\uc808\ud55c \uac83\uc740?", "options": ["\uc790\uc728\uc8fc\ud589 \uc790\ub3d9\ucc28\uac00 \ub3c4\ub85c\ub97c \uc8fc\ud589\ud558\ub294 \uac83", "\uc778\uacf5\uc704\uc131\uc744 \uc774\uc6a9\ud574 \ub0a0\uc528\ub97c \uc608\uce21\ud558\ub294 \uac83", "\uc2a4\ub9c8\ud2b8\ud3f0\uc73c\ub85c \uc9d1 \uc548\uc758 \uc870\uba85\uc744 \ucf1c\uace0 \ub044\ub294 \uac83", "\uc720\uc804\uc790 \ubd84\uc11d\uc744 \ud1b5\ud574 \uc9c8\ubcd1\uc744 \uc9c4\ub2e8\ud558\ub294 \uac83"], "hint": "\uc0ac\ubb3c\ub4e4\uc774 \uc778\ud130\ub137\uc73c\ub85c \uc5f0\uacb0\ub418\uc5b4 \uc11c\ub85c \uc815\ubcf4\ub97c \uc8fc\uace0\ubc1b\ub294 \uacbd\uc6b0\ub97c \ucc3e\uc544\ubd10.", "a": 3}, {"q": "\uc0dd\uba85\uccb4\uc758 \ud2b9\uc131\uc774\ub098 \uae30\ub2a5\uc744 \uc774\uc6a9\ud558\uc5ec \uc778\ub958\uc5d0\uac8c \uc720\uc6a9\ud55c \ubb3c\uc9c8\uc744 \ub9cc\ub4e4\uac70\ub098 \uae30\ub2a5\uc744 \uac1c\uc120\ud558\ub294 \uae30\uc220\uc740 \ubb34\uc5c7\uc778\uac00?", "options": ["\uc778\uacf5\uc9c0\ub2a5", "\uc0ac\ubb3c \uc778\ud130\ub137", "\uc0dd\uba85 \uacf5\ud559", "\uc6b0\uc8fc \uae30\uc220"], "hint": "'\uc0dd\uba85\uccb4'\uc640 \uad00\ub828\ub41c \uae30\uc220\uc774\uc57c.", "a": 3}, {"q": "\ubbf8\ub798 \uacfc\ud559 \uae30\uc220\uc758 \ubc1c\uc804\uc744 \uc704\ud574 \uc6b0\ub9ac\uac00 \ucd94\uad6c\ud574\uc57c \ud560 \ubc14\ub78c\uc9c1\ud55c \ubc29\ud5a5\uacfc \uac70\ub9ac\uac00 \uba3c \uac83\uc740?", "options": ["\ud658\uacbd \ubcf4\ud638\uc640 \uc9c0\uc18d \uac00\ub2a5\ud55c \ubc1c\uc804\uc744 \uc6b0\uc120\uc2dc\ud55c\ub2e4.", "\uae30\uc220 \ubc1c\ub2ec\uc758 \uc18d\ub3c4\ub9cc\uc744 \ucd5c\uc6b0\uc120\uc73c\ub85c \uace0\ub824\ud55c\ub2e4.", "\ubaa8\ub4e0 \uc0ac\ub78c\uc774 \uacfc\ud559 \uae30\uc220\uc758 \ud61c\ud0dd\uc744 \ub204\ub9ac\ub3c4\ub85d \ub178\ub825\ud55c\ub2e4.", "\uc724\ub9ac\uc801 \ubb38\uc81c\uc640 \uc0ac\ud68c\uc801 \ubd80\uc791\uc6a9\uc744 \ucda9\ubd84\ud788 \uace0\ub824\ud55c\ub2e4."], "hint": "\ubb34\uc5c7\uc774\ub4e0 '\ucd5c\uc6b0\uc120'\uc73c\ub85c \uc5ec\uae30\ub294 \uac83\uc740 \uc704\ud5d8\ud560 \uc218 \uc788\uc5b4.", "a": 2}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

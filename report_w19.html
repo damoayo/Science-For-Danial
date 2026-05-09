@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 과학 도서관</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            :root { --main: #3498db; --point: #e67e22; --bg: #f8fafd; --text: #2c3e50; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+            .header { background: linear-gradient(135deg, #6dd5ed, #2193b0); color: white; padding: 60px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+            .container { max-width: 800px; margin: -50px auto 50px; padding: 0 20px; }
+            .card { background: white; border-radius: 25px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eff3f6; }
+            .point-box { border-left: 6px solid var(--main); background: #f0f7ff; padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 25px; position: relative; }
+            .point-num { position: absolute; left: -15px; top: -15px; background: var(--main); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 4px solid white; }
+            .img-deco { width: 100%; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+            .quiz-zone { background: #fff9f2; border: 2px dashed #ffdebd; border-radius: 25px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+            .btn-ans { background: var(--text); color: white; border: none; padding: 8px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9em; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid #2ecc71; }
+            .lab-btn { display: block; text-align: center; background: var(--point); color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2em; transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(230,126,34,0.3); }
+        </style>
+        <script>function toggleAns(id){ var x=document.getElementById(id); x.style.display=(x.style.display==='none'||x.style.display==='')?'block':'none'; }</script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin:0; font-size:2.2em;">🔬 다니엘의 스마트 과학 리포트</h1>
+            <p style="opacity:0.9; font-weight:700; margin-top:10px;">중학교 1학년 과학: 8. 기체의 성질 (보일 법칙과 샤를 법칙)</p>
+        </div>
+        <div class="container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80" class="img-deco">
+                <h2 style="color:var(--main); margin-bottom:30px;">📖 아빠의 핵심 요약 노트</h2>
+    
+                <div class="point-box">
+                    <div class="point-num">1</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">안녕, 다니엘! 오늘은 우리가 매일 숨 쉬는 '기체' 친구들이 어떻게 행동하는지 신기한 두 가지 법칙을 배워볼 거야. 기체는 눈에 잘 보이지 않지만, 아주 작은 알갱이(분자)들이 자유롭게 움직이는 특징을 가지고 있어. 이 알갱이들의 움직임 때문에 기체는 '부피' (얼마나 공간을 차지하는지), '압력' (벽을 미는 힘), '온도' (알갱이들의 활발함 정도)에 따라 다르게 행동한단다. 우리가 앞으로 배울 보일 법칙과 샤를 법칙은 바로 이 세 가지 중 두 가지 관계를 밝혀주는 멋진 법칙들이야!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">2</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">첫 번째는 '보일 법칙'이야. 이 법칙은 '압력'과 '부피'의 관계를 설명해줘. 상상해봐, 주사기 끝을 손으로 꽉 막고 피스톤을 세게 밀면 어떻게 될까? 주사기 안의 공기가 찌부러들면서 부피가 줄어들지? 반대로 피스톤을 당기면 부피가 늘어나고. 바로 이거야! 보일 법칙은 "온도와 기체의 양을 공정한 실험을 위해 똑같이 맞출 조건으로 뒀을 때, 기체의 압력이 커지면 부피는 작아지고, 압력이 작아지면 부피는 커진다"고 알려줘. 다시 말해, 압력과 부피는 서로 반대로 움직이는 '반비례' 관계인 거야. 기체 알갱이들이 좁은 공간에 갇히면 벽에 더 자주 부딪히니까 압력이 세지는 거지!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">3</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">두 번째는 '샤를 법칙'이야. 이 법칙은 '온도'와 '부피'의 관계를 설명해. 추운 겨울날 바람 빠진 축구공을 따뜻한 실내로 가져오면 빵빵해지는 걸 본 적 있어? 아니면 뜨거운 물에 찌그러진 탁구공을 넣으면 다시 펴지는 것도? 이게 바로 샤를 법칙의 예시란다! 샤를 법칙은 "압력과 기체의 양을 공정한 실험을 위해 똑같이 맞출 조건으로 뒀을 때, 기체의 온도가 높아지면 부피도 커지고, 온도가 낮아지면 부피도 작아진다"고 말해. 즉, 온도와 부피는 서로 같은 방향으로 움직이는 '비례' 관계인 거야. 기체 알갱이들이 뜨거워지면 에너지를 얻어 더 빠르고 활발하게 움직이면서 벽에 더 세게 부딪히니까, 부피가 팽창하게 되는 거란다.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">4</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">보일 법칙과 샤를 법칙, 두 가지 모두 기체 알갱이들의 움직임과 아주 깊은 관계가 있어. 보일 법칙은 알갱이들이 얼마나 '빽빽하게' 모여 있는지가 부피와 압력에 영향을 준다는 걸 보여주고, 샤를 법칙은 알갱이들이 얼마나 '활발하게' 움직이는지가 온도와 부피에 영향을 준다는 걸 알려줘. 기체 알갱이들은 눈에 보이지 않지만, 이 작은 알갱이들의 규칙적인 행동 덕분에 우리는 기체의 성질을 예측하고 활용할 수 있는 거지! 정말 신기하지 않니?</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">5</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">이런 기체의 성질은 우리 생활 곳곳에서 발견되고 또 중요하게 사용돼. 예를 들어, 여름철 뜨거운 자동차 안에 부탄가스 같은 스프레이 캔을 두면 아주 위험해. 온도가 높아지면 캔 안의 기체 부피가 팽창하려고 하는데 캔은 부피가 늘어나지 않으니까, 압력이 엄청나게 커져서 폭발할 수도 있거든! 또, 스쿠버 다이버가 깊은 바닷속에서 숨을 쉴 때 내뱉는 공기 방울이 위로 올라올수록 압력이 줄어들어 점점 커지는 것도 보일 법칙 때문이야. 이렇게 과학 법칙을 알면 우리 주변의 현상을 더 잘 이해하고 안전하게 생활하는 데 큰 도움이 된단다!</p>
+                </div>
+        
+                <a href="./lab_w19.html" class="lab-btn">🧪 나만의 애니메이션 실험실 가기 →</a>
+            </div>
+
+            <div class="card quiz-zone">
+                <h2 style="color:var(--point); text-align:center;">📝 실력 쑥쑥! 퀴즈 타임</h2>
+    
+                <div class="q-card">
+                    <p style="font-weight:800;">Q1. 보일 법칙은 온도를 '공정한 실험을 위해 똑같이 맞출 조건'으로 유지할 때, 기체의 압력이 커지면 부피는 작아진다는 것을 설명해.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans0')">정답 확인</button>
+                    <div id="ans0" class="ans-box">✨ 정답: <b>O</b><br><small>맞아! 보일 법칙은 압력과 부피가 반대로 움직이는(반비례) 관계라는 걸 설명해줘. 주사기 피스톤을 누르면 압력이 세지고 부피는 작아지지!</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q2. 샤를 법칙은 기체의 온도가 높아지면 부피도 함께 커진다는 것을 설명해.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">✨ 정답: <b>O</b><br><small>정답! 샤를 법칙은 온도와 부피가 같은 방향으로 움직이는(비례) 관계라는 걸 설명해. 따뜻한 곳에서 풍선이 빵빵해지는 걸 생각하면 돼.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q3. 주사기 끝을 막고 피스톤을 밀면, 주사기 안의 기체 부피는 커져.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">✨ 정답: <b>X</b><br><small>아니야! 주사기 끝을 막고 피스톤을 밀면 압력이 높아져서 기체의 부피는 오히려 '작아진다'고 보일 법칙이 말해주고 있어.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q4. 차가운 얼음물에 넣어둔 풍선이 쭈글쭈글해지는 것은 보일 법칙 때문이야.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans3')">정답 확인</button>
+                    <div id="ans3" class="ans-box">✨ 정답: <b>X</b><br><small>이건 샤를 법칙에 대한 설명이야. 온도가 낮아져서 풍선 안의 기체 부피가 줄어들었기 때문이지. 보일 법칙은 압력과 부피의 관계를 다뤄.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q5. 과학 실험에서 '공정한 실험을 위해 똑같이 맞출 조건'은 우리가 바꾸고 싶은 조건을 제외하고 모든 조건을 똑같이 유지하는 것을 의미해.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans4')">정답 확인</button>
+                    <div id="ans4" class="ans-box">✨ 정답: <b>O</b><br><small>정확해! '공정한 실험을 위해 똑같이 맞출 조건'은 하나의 조건만 변화시켜서 그 변화가 결과에 어떤 영향을 주는지 알아보는 아주 중요한 과학적 방법이란다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q6. 음료수 페트병을 찌그러트리지 않고 냉동실에 넣었더니, 시간이 지나면서 페트병이 약간 찌그러들었어. 이 현상을 가장 잘 설명하는 법칙은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1) 보일 법칙</li><li>· 2) 샤를 법칙</li><li>· 3) 만유인력의 법칙</li><li>· 4) 부력의 법칙</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans5')">정답 확인</button>
+                    <div id="ans5" class="ans-box">✨ 정답: <b>2</b><br><small>냉동실에 넣으면 온도가 낮아지지? 온도가 낮아져서 기체의 부피가 줄어드는 현상은 '샤를 법칙'으로 설명할 수 있어. 만유인력은 중력, 부력은 뜨는 힘과 관련돼.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q7. 다음 중 보일 법칙에 대한 설명으로 옳은 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1) 온도가 높아지면 기체 부피가 커진다.</li><li>· 2) 압력이 낮아지면 기체 부피가 작아진다.</li><li>· 3) 압력이 높아지면 기체 부피가 작아진다.</li><li>· 4) 기체의 양이 늘어나면 기체 부피가 작아진다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans6')">정답 확인</button>
+                    <div id="ans6" class="ans-box">✨ 정답: <b>3</b><br><small>보일 법칙은 압력과 부피가 반비례한다는 것을 설명해. 압력이 높아지면 부피는 작아지지. 1번은 샤를 법칙이고, 2번은 반대로 설명되었어.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q8. 샤를 법칙이 적용되는 예시가 아닌 것은?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1) 뜨거운 물에 찌그러진 탁구공이 펴진다.</li><li>· 2) 열기구가 하늘로 떠오른다.</li><li>· 3) 여름철 자동차 타이어 공기압이 겨울철보다 높아진다.</li><li>· 4) 스쿠버 다이버가 깊은 물속에서 내뱉은 공기 방울이 수면으로 올라올수록 커진다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans7')">정답 확인</button>
+                    <div id="ans7" class="ans-box">✨ 정답: <b>4</b><br><small>1, 2, 3번은 모두 온도 변화에 따른 기체 부피 또는 압력의 변화(샤를 법칙)를 보여주는 예시야. 하지만 4번은 물속 깊이에 따른 '압력 변화' 때문에 공기 방울의 부피가 변하는 것이므로 '보일 법칙'의 예시란다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q9. 어떤 과학 실험에서 '공정한 실험을 위해 똑같이 맞출 조건'으로 정해야 할 것은 무엇일까?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1) 실험 결과</li><li>· 2) 우리가 바꾸고 싶은 조건</li><li>· 3) 우리가 바꾸고 싶은 조건 외의 모든 조건</li><li>· 4) 실험에 사용되는 물질의 종류만</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans8')">정답 확인</button>
+                    <div id="ans8" class="ans-box">✨ 정답: <b>3</b><br><small>정확한 실험 결과를 얻으려면 딱 한 가지 조건만 바꾸고, 나머지 모든 조건들은 똑같이 유지해야 해. 그래야 우리가 바꾼 조건 때문에 어떤 변화가 생겼는지 명확하게 알 수 있거든.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q10. 다니엘이 주사기 끝을 막고 피스톤을 아주 세게 밀었어. 주사기 안 기체의 압력과 부피는 어떻게 변할까?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1) 압력 감소, 부피 증가</li><li>· 2) 압력 증가, 부피 감소</li><li>· 3) 압력 감소, 부피 감소</li><li>· 4) 압력 증가, 부피 증가</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans9')">정답 확인</button>
+                    <div id="ans9" class="ans-box">✨ 정답: <b>2</b><br><small>피스톤을 세게 밀면 기체를 좁은 공간에 가두게 되니까 '압력은 증가'하고, 동시에 기체의 '부피는 감소'하게 돼. 보일 법칙이 말하는 압력과 부피의 반비례 관계를 보여주는 좋은 예시지.</small></div>
+                </div>
+        
+            </div>
+            <p style="text-align:center; color:#bdc3c7; margin-top:30px;">아빠가 다니엘을 위해 코드로 만든 사랑의 리포트 ❤️</p>
+        </div>
+    </body>
+    </html>
+    

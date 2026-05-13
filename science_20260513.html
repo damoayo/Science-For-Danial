@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 스파크 과학 스낵</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            body { font-family: 'Nanum Square Round', sans-serif; background: #f0f4f8; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+            .container { max-width: 800px; margin: auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+            .tag { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+            .voca-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid #2ecc71; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+            .voca-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+            .word-title { font-size: 1.4em; font-weight: 800; color: #27ae60; margin-bottom: 8px; }
+            .click-hint { font-size: 0.8em; color: #bdc3c7; text-align: right; margin-top: 10px; font-weight: bold; }
+            .meaning-ko { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 1.1em; }
+            .example-ko { color: #555; }
+            .quiz-box { border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px; background: #fafafa; }
+            .quiz-q { font-weight: 800; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
+            .quiz-options-box { margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ecf0f1; }
+            .quiz-option { margin-bottom: 8px; font-size: 1.05em; color: #34495e; padding: 5px; border-radius: 5px; transition: 0.2s; text-align: justify; word-break: keep-all;}
+            .quiz-option:hover { background: #f1f8ff; }
+            .quiz-input { width: 100%; padding: 15px; font-size: 1.1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+            .btn-action { padding: 10px 20px; border: none; background: #bdc3c7; color: #2c3e50; border-radius: 5px; cursor: pointer; font-weight: bold; }
+            
+            p, li, div.content-text, .quiz-q, .quiz-option, h3, .thought_experiment {
+                word-break: keep-all;
+                line-height: 1.7;
+                text-align: justify;
+            }
+            .content-text { text-indent: 10px; }
+            ul { padding-left: 20px; }
+            li { margin-bottom: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: #2c3e50;">🔭 다니엘의 스파크 과학 스낵</h1>
+                <p style="color: #7f8c8d; font-weight: bold;">2026년 05월 13일 | 과학 8단원: 종합 복습</p>
+            </div>
+
+            <div class="card" style="border: 1px solid #e1e8ed;">
+                <span class="tag" style="background: #e74c3c;">Part 1. 오늘의 미션</span>
+                <h3 style="color: #c0392b;">👨‍🔬 다니엘, 오늘은 8단원 '종합 복습'에 대해 알아볼 거야! 화이팅!</h3>
+                <hr style="border: 0; height: 1px; background: #dcdde1; margin: 20px 0;">
+                <h3 style="color: #2980b9;">핵심 원리 이해하기</h3>
+                <div class="content-text" style="background: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    오늘의 학습 포커스는 <ul><li>1단원: 물질의 특성과 변화</li><li>2단원: 힘과 운동</li><li>3단원: 에너지와 전환</li><li>4단원: 지구의 구조와 변화</li><li>5단원: 생물의 다양성과 환경</li><li>6단원: 열과 우리 생활</li><li>7단원: 빛과 파동</li></ul> 이 모든 단원의 핵심 개념들을 다시 한번 짚어보며 융합적인 사고력을 키우는 거야!
+                </div>
+            </div>
+
+            
+                <div class="card" style="background: #fff0f5; border: 1px solid #ffb6c1;">
+                    <span class="tag" style="background: #ff69b4;">Part 2. 아빠의 추천 영상 🎬</span>
+                    <h3 class="content-text" style="color: #c0392b;">이 영상을 보면 오늘 배운 내용이 머릿속에 쏙쏙 들어올 거야!</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/if9Xu8awQ1U" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/whjwag1LedI" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                        <iframe width="100%" height="350" src="https://www.youtube.com/embed/atQLsLKrNqc" frameborder="0" allowfullscreen style="border-radius:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+                    
+                    </div>
+                </div>
+                
+
+            <div class="card">
+                <span class="tag" style="background: #2ecc71;">Part 3. 개념 뒤집기 카드</span>
+                <p style="color: #27ae60; font-weight:bold;">키워드를 보고 어떤 뜻인지 먼저 상상해 본 다음 클릭해 봐!</p>
+                
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 밀도</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">밀도</div>
+                <div class="meaning-ko content-text">💡 정의: 어떤 물질의 질량을 그 물질의 부피로 나눈 값으로, 단위 부피당 질량을 의미한다. 물질의 종류에 따라 고유한 값을 가진다.</div>
+                <div class="example-ko content-text">🌍 예시: 물 위에 식용유가 뜨는 것은 물보다 식용유의 밀도가 작기 때문이다. 가벼운 배가 물에 뜨는 것도 배의 평균 밀도가 물보다 작게 설계되었기 때문이다.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 관성</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">관성</div>
+                <div class="meaning-ko content-text">💡 정의: 물체가 현재의 운동 상태(정지 또는 등속 직선 운동)를 계속 유지하려는 성질이다. 질량이 클수록 관성이 커진다.</div>
+                <div class="example-ko content-text">🌍 예시: 정지해 있던 버스가 갑자기 출발할 때 몸이 뒤로 쏠리거나, 달리던 버스가 급정거할 때 몸이 앞으로 쏠리는 현상이 관성 때문이다.</div>
+            </div>
+        </div>
+        
+        <div class="voca-card" onclick="toggleCard(this)">
+            <div class="voca-en">
+                <div class="word-title">🔬 광합성</div>
+                <div class="click-hint">클릭해서 뜻과 예시 보기 👆</div>
+            </div>
+            <div class="voca-ko" style="display: none;">
+                <div class="word-title" style="color:#e67e22;">광합성</div>
+                <div class="meaning-ko content-text">💡 정의: 식물이나 일부 미생물이 빛 에너지를 이용하여 이산화 탄소와 물을 원료로 유기물(포도당)과 산소를 만들어내는 과정이다.</div>
+                <div class="example-ko content-text">🌍 예시: 나무나 풀이 햇빛을 받아 스스로 양분을 만들고, 동시에 우리가 숨 쉬는 데 필요한 산소를 공기 중으로 내보내는 과정이 광합성이다.</div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background: #f39c12;">Part 4. 실전 과학 퀴즈</span>
+                <p style="color: #e67e22; font-weight:bold; margin-bottom: 15px;">정답 번호를 입력상자에 적어보자!</p>
+                <div id="quiz-container"></div>
+            </div>
+            
+            <div class="card" style="background: #fdf5e6;">
+                <span class="tag" style="background: #8e44ad;">Part 5. 아인슈타인 사고 실험</span>
+                <h3 class="content-text thought_experiment" style="color: #8e44ad;">🧠 만약 지구의 모든 식물이 갑자기 사라진다면, 우리 주변 환경과 생물들에게 어떤 변화가 일어날까요? 그리고 그 이유는 무엇일지 오늘 배운 개념들을 바탕으로 설명해 볼까요?</h3>
+            </div>
+        </div>
+
+        <script>
+            function toggleCard(card) {
+                const enDiv = card.querySelector('.voca-en');
+                const koDiv = card.querySelector('.voca-ko');
+                if (enDiv.style.display === 'none') {
+                    enDiv.style.display = 'block'; koDiv.style.display = 'none'; card.style.borderLeftColor = '#2ecc71';
+                } else {
+                    enDiv.style.display = 'none'; koDiv.style.display = 'block'; card.style.borderLeftColor = '#e67e22';
+                }
+            }
+
+            function renderQuizzes(quizzes, containerId) {
+                const container = document.getElementById(containerId);
+                quizzes.forEach((quiz, index) => {
+                    let optionsHtml = '';
+                    if (quiz.options && quiz.options.length > 0) {
+                        optionsHtml = '<div class="quiz-options-box">';
+                        quiz.options.forEach((opt, i) => {
+                            optionsHtml += '<div class="quiz-option">' + (i+1) + '. ' + opt + '</div>';
+                        });
+                        optionsHtml += '</div>';
+                    }
+
+                    const html = `
+                        <div class="quiz-box">
+                            <div class="quiz-q">Q${index+1}. ${quiz.q}</div>
+                            ${optionsHtml}
+                            <input type="text" id="input_q_${index}" class="quiz-input" placeholder="정답 번호 입력 (예: 2)">
+                            <button class="btn-action" onclick="document.getElementById('hint_q_${index}').style.display='block'">힌트</button>
+                            <button class="btn-action" style="background: #3498db; color: white;" onclick="checkQuiz('q_${index}', '${quiz.a}')">확인</button>
+                            <div id="hint_q_${index}" style="display:none; color:#e67e22; margin-top:10px;">💡 ${quiz.hint}</div>
+                            <div id="result_q_${index}" style="display:none; margin-top:15px; font-weight:bold;"></div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+
+            function checkQuiz(id, correctAnswer) {
+                const userAnswer = document.getElementById(`input_${id}`).value.trim();
+                const cleanCorrect = String(correctAnswer).trim(); 
+                
+                const resultDiv = document.getElementById(`result_${id}`);
+                resultDiv.style.display = 'block';
+                
+                if (userAnswer === cleanCorrect && userAnswer !== '') {
+                    resultDiv.style.color = '#2ecc71'; resultDiv.innerHTML = "🎉 정답입니다! 훌륭해요!";
+                } else {
+                    resultDiv.style.color = '#e74c3c'; resultDiv.innerHTML = `🤔 정답: <b>${correctAnswer}번</b>`;
+                }
+            }
+
+            renderQuizzes([{"q": "\uc9c8\ub7c9\uc774 100g\uc774\uace0 \ubd80\ud53c\uac00 50cm\u00b3\uc778 \uc5b4\ub5a4 \uc561\uccb4 \ubb3c\uc9c8\uc758 \ubc00\ub3c4\ub294 \uc5bc\ub9c8\uc77c\uae4c\uc694?", "options": ["0.5 g/cm\u00b3", "1.0 g/cm\u00b3", "2.0 g/cm\u00b3", "5.0 g/cm\u00b3"], "hint": "\ubc00\ub3c4\ub294 \uc9c8\ub7c9\uc744 \ubd80\ud53c\ub85c \ub098\ub208 \uac12\uc774\uc57c!", "a": "3"}, {"q": "\uc6b4\ub3d9\ud558\ub358 \ubb3c\uccb4\uac00 \uc678\ubd80\uc5d0\uc11c \ud798\uc744 \ubc1b\uc9c0 \uc54a\uc73c\uba74 \uadf8 \uc6b4\ub3d9 \uc0c1\ud0dc\ub97c \uacc4\uc18d \uc720\uc9c0\ud558\ub824\ub294 \uc131\uc9c8\uc744 \ubb34\uc5c7\uc774\ub77c\uace0 \ud560\uae4c\uc694?", "options": ["\ub9c8\ucc30\ub825", "\uad00\uc131", "\uc911\ub825", "\ud0c4\uc131\ub825"], "hint": "\ub2ec\ub9ac\ub358 \uc0ac\ub78c\uc774 \ubc1c\uc744 \ud5db\ub514\ub38c \ub118\uc5b4\uc9c8 \ub54c, \uacc4\uc18d \uc55e\uc73c\ub85c \ub098\uc544\uac00\ub824\ub294 \ud604\uc0c1\uacfc \uad00\ub828\uc774 \uc788\uc5b4.", "a": "2"}, {"q": "\ubc1c\uc804\uc18c\uc5d0\uc11c \uc218\ub825 \ubc1c\uc804\uc744 \ud1b5\ud574 \uc804\uae30\ub97c \uc0dd\uc0b0\ud560 \ub54c \uc8fc\ub85c \uc77c\uc5b4\ub098\ub294 \uc5d0\ub108\uc9c0 \uc804\ud658 \uacfc\uc815\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\ube5b \uc5d0\ub108\uc9c0 \u2192 \uc804\uae30 \uc5d0\ub108\uc9c0", "\ud654\ud559 \uc5d0\ub108\uc9c0 \u2192 \uc804\uae30 \uc5d0\ub108\uc9c0", "\uc6b4\ub3d9 \uc5d0\ub108\uc9c0 \u2192 \uc704\uce58 \uc5d0\ub108\uc9c0 \u2192 \uc804\uae30 \uc5d0\ub108\uc9c0", "\uc704\uce58 \uc5d0\ub108\uc9c0 \u2192 \uc6b4\ub3d9 \uc5d0\ub108\uc9c0 \u2192 \uc804\uae30 \uc5d0\ub108\uc9c0"], "hint": "\ub192\uc740 \uacf3\uc5d0 \uc788\ub294 \ubb3c\uc774 \ub5a8\uc5b4\uc9c0\uba74\uc11c \ud130\ube48\uc744 \ub3cc\ub824 \uc804\uae30\ub97c \ub9cc\ub4e4\uc5b4\ub0b4\ub294 \uacfc\uc815\uc744 \uc0dd\uac01\ud574\ubd10!", "a": "4"}, {"q": "\ub300\ub959\ud310\uacfc \ud574\uc591\ud310\uc774 \uc11c\ub85c \ucda9\ub3cc\ud558\ub294 \uacbd\uacc4\uc5d0\uc11c \ud574\uc591\ud310\uc774 \ub300\ub959\ud310 \uc544\ub798\ub85c \uc12d\uc785\ud560 \ub54c \uc8fc\ub85c \ud615\uc131\ub418\ub294 \uc9c0\ud615\uc73c\ub85c \uc633\uc9c0 \uc54a\uc740 \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\ud574\uad6c", "\ud638\uc0c1 \uc5f4\ub3c4", "\uc2b5\uace1 \uc0b0\ub9e5", "\ud574\ub839"], "hint": "\ud310\uc774 \uc11c\ub85c \uba40\uc5b4\uc9c0\ub294 \ubc1c\uc0b0\ud615 \uacbd\uacc4\uc5d0\uc11c \uc8fc\ub85c \ud615\uc131\ub418\ub294 \uc9c0\ud615\uc744 \ucc3e\uc544\ubd10!", "a": "4"}, {"q": "\uc2dd\ubb3c\uc774 \uad11\ud569\uc131\uc744 \ud560 \ub54c \ud544\uc694\ud55c \uc694\uc18c\uac00 \uc544\ub2cc \uac83\uc740 \ubb34\uc5c7\uc77c\uae4c\uc694?", "options": ["\ubb3c", "\uc774\uc0b0\ud654 \ud0c4\uc18c", "\uc0b0\uc18c", "\ube5b \uc5d0\ub108\uc9c0"], "hint": "\uad11\ud569\uc131 \uacfc\uc815\uc5d0\uc11c \uc0dd\uc131\ub418\ub294 \uae30\uccb4\uac00 \uc788\uc5b4.", "a": "3"}], 'quiz-container');
+        </script>
+    </body>
+    </html>
+    

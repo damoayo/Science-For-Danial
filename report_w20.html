@@ -1,0 +1,153 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>다니엘의 과학 도서관</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700;800&display=swap');
+            :root { --main: #3498db; --point: #e67e22; --bg: #f8fafd; --text: #2c3e50; }
+            body { font-family: 'Nanum Square Round', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+            .header { background: linear-gradient(135deg, #6dd5ed, #2193b0); color: white; padding: 60px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+            .container { max-width: 800px; margin: -50px auto 50px; padding: 0 20px; }
+            .card { background: white; border-radius: 25px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eff3f6; }
+            .point-box { border-left: 6px solid var(--main); background: #f0f7ff; padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 25px; position: relative; }
+            .point-num { position: absolute; left: -15px; top: -15px; background: var(--main); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 4px solid white; }
+            .img-deco { width: 100%; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+            .quiz-zone { background: #fff9f2; border: 2px dashed #ffdebd; border-radius: 25px; padding: 30px; }
+            .q-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+            .btn-ans { background: var(--text); color: white; border: none; padding: 8px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9em; }
+            .ans-box { display: none; background: #e8f8f5; padding: 15px; border-radius: 10px; margin-top: 10px; border-left: 5px solid #2ecc71; }
+            .lab-btn { display: block; text-align: center; background: var(--point); color: white; padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 1.2em; transition: 0.3s; }
+            .lab-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(230,126,34,0.3); }
+        </style>
+        <script>function toggleAns(id){ var x=document.getElementById(id); x.style.display=(x.style.display==='none'||x.style.display==='')?'block':'none'; }</script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin:0; font-size:2.2em;">🔬 다니엘의 스마트 과학 리포트</h1>
+            <p style="opacity:0.9; font-weight:700; margin-top:10px;">중학교 1학년 과학: 9. 빛과 파동 (빛의 반사와 굴절)</p>
+        </div>
+        <div class="container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80" class="img-deco">
+                <h2 style="color:var(--main); margin-bottom:30px;">📖 아빠의 핵심 요약 노트</h2>
+    
+                <div class="point-box">
+                    <div class="point-num">1</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">안녕, 다니엘! 오늘은 중학교 1학년 과학에서 제일 신기하고 재미있는 '빛'에 대해 이야기해 볼 거야. 우리가 매일 보고 느끼는 빛이 어떻게 움직이고 어떤 마법을 부리는지, 다섯 가지 포인트로 쉽고 친절하게 알려줄게. 잘 들어봐!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">2</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**1. 빛은 항상 똑바로 나아가요! (직진)**
+우리 친구들이 손전등을 켜면 빛이 어떻게 퍼져나가는지 본 적 있지? 빛은 신기하게도 항상 쭉- 곧게, 아주 똑바로 나아가는 성질이 있어. 이걸 '빛의 직진'이라고 해. 우리가 그림자를 볼 수 있는 이유도 바로 빛이 곧게 나아가다가 어떤 물체에 가려지면 그 뒤에는 빛이 없어서 어두운 그림자가 생기는 거란다. 또, 레이저 포인터로 점을 찍을 때도 빛이 휘지 않고 곧게 날아가서 원하는 곳에 점이 찍히는 걸 볼 수 있어. 빛은 옆길로 새지 않고 언제나 꼿꼿하게 직진하는 멋진 친구야!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">3</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**2. 빛이 부딪혀서 돌아와요! (반사)**
+거울 앞에 서면 다니엘의 모습이 또렷하게 보이잖아? 이게 바로 '빛의 반사'라는 현상 때문이야. 빛이 거울이나 어떤 물체에 부딪히면, 공이 벽에 맞고 튕겨 나오듯이 빛도 튕겨져 나오는 걸 반사라고 해. 반사는 크게 두 가지 종류가 있는데, 매끈한 거울처럼 빛이 한 방향으로 가지런히 튕겨 나오는 걸 '정반사'라고 해. 이 정반사 덕분에 우리는 거울에 비친 내 모습을 선명하게 볼 수 있지. 반면에 울퉁불퉁한 벽이나 종이 같은 곳에 빛이 부딪히면 여러 방향으로 마구잡이로 튕겨나가는데, 이걸 '난반사'라고 해. 난반사 덕분에 우리는 거울이 아닌 다른 물체들도 두루두루 볼 수 있는 거란다. 만약 난반사가 없다면 우리는 거울만 볼 수 있을 거야! 그리고 빛이 반사될 때는 한 가지 중요한 규칙이 있어. 빛이 거울을 향해 들어가는 각도(입사각)와 튕겨져 나오는 각도(반사각)는 항상 똑같다는 거야. 이걸 '반사의 법칙'이라고 불러!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">4</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**3. 빛이 다른 물질을 만나면 휘어져요! (굴절)**
+다니엘, 투명한 컵에 물을 담고 연필을 넣어 본 적 있어? 연필이 물속에서 꺾여 보이거나, 어항 속 물고기가 실제보다 더 커 보이거나 가까이 있는 것처럼 보이는 경험도 있을 거야. 이게 바로 '빛의 굴절' 때문이야. 빛이 공기 중에서 물속으로 들어가거나, 유리 같은 다른 물질을 통과할 때, 빛의 방향이 갑자기 꺾이는 현상을 굴절이라고 해. 왜 꺾이냐고? 물질마다 빛이 통과하는 속도가 다르기 때문이야. 마치 달리기를 할 때 운동장(공기)을 달리다가 갑자기 수영장(물)으로 들어가면 속도가 느려지면서 방향이 바뀌는 것과 비슷하다고 생각하면 돼. 이렇게 빛이 꺾이는 현상 덕분에 돋보기로 글씨를 확대해서 보거나, 안경으로 시력을 교정할 수 있는 거란다.</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">5</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**4. 반사와 굴절은 우리 생활 곳곳에 숨어있어요!**
+우리가 앞에서 배운 빛의 반사와 굴절은 생각보다 우리 주변에 아주 많아! 거울이나 잠망경은 빛의 '반사'를 이용한 도구들이고, 돋보기, 안경, 카메라, 현미경 같은 것들은 모두 빛의 '굴절'을 영리하게 활용해서 만들어진 것들이야. 밤하늘에 반짝이는 별빛도 지구 대기를 통과하면서 굴절되기 때문에 실제 위치보다 조금 다르게 보이기도 해. 그리고 비 온 뒤에 뜨는 예쁜 무지개도 햇빛이 공기 중의 물방울을 통과하면서 굴절과 반사를 거쳐 여러 가지 색으로 나뉘어 보이는 현상이란다. 빛의 반사와 굴절이 없었다면 우리의 세상은 지금과는 많이 다르고 불편했을 거야!</p>
+                </div>
+        
+                <div class="point-box">
+                    <div class="point-num">6</div>
+                    <p style="margin:0; font-weight:700; color:#34495e; line-height:1.8;">**5. 공정한 실험을 위해 똑같이 맞출 조건은 중요해요!**
+우리가 빛의 반사나 굴절에 대한 실험을 할 때, 아주 중요한 게 한 가지 있어. 바로 '공정한 실험을 위해 똑같이 맞출 조건'을 잘 지키는 거야. 예를 들어, 빛의 반사각이 어떻게 변하는지 알아보고 싶다고 하자. 이때 우리는 빛이 들어가는 각도(입사각)만 다르게 하고, 사용하는 거울의 종류나 빛의 세기, 주변 밝기 같은 다른 모든 조건은 똑같이 맞춰야 해. 만약 거울의 종류도 바꾸고 빛의 세기도 다르게 하면, 반사각이 변한 게 입사각 때문인지, 아니면 거울이나 빛의 세기 때문인지 알 수 없게 되거든. 이렇게 우리가 알아보고 싶은 한 가지 조건만 다르게 하고, 나머지는 모두 똑같이 유지해야만 정확하고 믿을 수 있는 실험 결과를 얻을 수 있단다. 이건 모든 과학 실험에서 아주 기본이 되는 중요한 원칙이야!</p>
+                </div>
+        
+                <a href="./lab_w20.html" class="lab-btn">🧪 나만의 애니메이션 실험실 가기 →</a>
+            </div>
+
+            <div class="card quiz-zone">
+                <h2 style="color:var(--point); text-align:center;">📝 실력 쑥쑥! 퀴즈 타임</h2>
+    
+                <div class="q-card">
+                    <p style="font-weight:800;">Q1. 빛이 매끄러운 거울에 부딪혀 한 방향으로 가지런히 튕겨 나가는 것을 '난반사'라고 한다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans0')">정답 확인</button>
+                    <div id="ans0" class="ans-box">✨ 정답: <b>X</b><br><small>매끄러운 거울에서 빛이 한 방향으로 가지런히 튕겨 나가는 것은 '정반사'입니다. 난반사는 울퉁불퉁한 면에서 빛이 여러 방향으로 흩어지는 현상입니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q2. 물속에 담긴 연필이 꺾여 보이는 것은 빛의 굴절 현상 때문이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans1')">정답 확인</button>
+                    <div id="ans1" class="ans-box">✨ 정답: <b>O</b><br><small>빛이 공기 중에서 물로 들어가면서 진행 방향이 꺾이는 현상이 굴절이며, 이 때문에 연필이 꺾여 보입니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q3. 빛은 공기 중에서 물로 들어갈 때 속도가 빨라지기 때문에 굴절된다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans2')">정답 확인</button>
+                    <div id="ans2" class="ans-box">✨ 정답: <b>X</b><br><small>빛은 공기 중에서 물로 들어갈 때 속도가 '느려지기' 때문에 굴절됩니다. 물질마다 빛의 속도가 달라서 굴절이 일어납니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q4. 우리가 거울이 아닌 일반 물체들을 볼 수 있는 것은 그 물체에서 난반사된 빛이 우리 눈으로 들어오기 때문이다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans3')">정답 확인</button>
+                    <div id="ans3" class="ans-box">✨ 정답: <b>O</b><br><small>맞아요! 대부분의 물체는 표면이 울퉁불퉁해서 빛을 여러 방향으로 난반사시키고, 이 난반사된 빛이 우리 눈에 들어와서 물체를 볼 수 있게 해줍니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q5. 빛이 거울에 반사될 때, 거울에 들어가는 빛의 각도(입사각)와 튕겨져 나오는 빛의 각도(반사각)는 항상 같다.</p>
+                    
+                    <button class="btn-ans" onclick="toggleAns('ans4')">정답 확인</button>
+                    <div id="ans4" class="ans-box">✨ 정답: <b>O</b><br><small>'반사의 법칙'에 따라 입사각과 반사각은 항상 같습니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q6. 다음 중 빛의 직진 성질을 가장 잘 보여주는 현상은 무엇일까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 물속에 잠긴 젓가락이 휘어져 보인다.</li><li>· 2. 거울에 내 모습이 비친다.</li><li>· 3. 나무 뒤에 서 있는 사람에게 그림자가 생긴다.</li><li>· 4. 물고기가 실제보다 얕은 곳에 있는 것처럼 보인다.</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans5')">정답 확인</button>
+                    <div id="ans5" class="ans-box">✨ 정답: <b>3</b><br><small>그림자는 빛이 곧게 나아가다가 불투명한 물체에 가려져 생기는 현상입니다. 1번과 4번은 굴절, 2번은 반사 현상입니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q7. 빛이 공기 중에서 물로 들어갈 때 꺾이는 현상을 무엇이라고 할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 반사</li><li>· 2. 굴절</li><li>· 3. 직진</li><li>· 4. 분산</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans6')">정답 확인</button>
+                    <div id="ans6" class="ans-box">✨ 정답: <b>2</b><br><small>빛이 다른 물질을 통과하면서 진행 방향이 꺾이는 현상을 굴절이라고 합니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q8. 매끄러운 거울에 빛을 비추면 빛이 한 방향으로 가지런히 튕겨 나간다. 이 현상을 무엇이라고 할까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 난반사</li><li>· 2. 정반사</li><li>· 3. 굴절</li><li>· 4. 흡수</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans7')">정답 확인</button>
+                    <div id="ans7" class="ans-box">✨ 정답: <b>2</b><br><small>매끄러운 면에서 빛이 한 방향으로 가지런히 반사되는 것을 정반사라고 합니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q9. 과학 실험에서 우리가 알고 싶은 조건 외의 모든 다른 조건을 똑같이 맞추는 이유로 가장 적절한 것은 무엇일까요? (공정한 실험을 위해 똑같이 맞출 조건)</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 실험 도구를 아끼기 위해서</li><li>· 2. 실험이 더 빨리 끝나게 하기 위해서</li><li>· 3. 실험 결과를 믿을 수 있고 공정하게 얻기 위해서</li><li>· 4. 실험을 더 재미있게 만들기 위해서</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans8')">정답 확인</button>
+                    <div id="ans8" class="ans-box">✨ 정답: <b>3</b><br><small>우리가 알아보고 싶은 하나의 조건이 어떤 결과를 가져오는지 정확히 알기 위해서는 다른 모든 조건들을 똑같이 유지해야 합니다. 그래야 실험 결과가 공정하고 믿을 수 있게 됩니다.</small></div>
+                </div>
+        
+                <div class="q-card">
+                    <p style="font-weight:800;">Q10. 다음 중 빛의 굴절을 이용한 도구가 아닌 것은 무엇일까요?</p>
+                    <ul style="list-style:none; padding:0 0 10px 10px; color:#666;"><li>· 1. 돋보기</li><li>· 2. 안경</li><li>· 3. 거울</li><li>· 4. 현미경</li></ul>
+                    <button class="btn-ans" onclick="toggleAns('ans9')">정답 확인</button>
+                    <div id="ans9" class="ans-box">✨ 정답: <b>3</b><br><small>돋보기, 안경, 현미경은 모두 렌즈를 사용하여 빛을 굴절시켜 물체를 확대하거나 시력을 교정하는 도구입니다. 거울은 빛의 반사를 이용하는 도구입니다.</small></div>
+                </div>
+        
+            </div>
+            <p style="text-align:center; color:#bdc3c7; margin-top:30px;">아빠가 다니엘을 위해 코드로 만든 사랑의 리포트 ❤️</p>
+        </div>
+    </body>
+    </html>
+    
